@@ -10,6 +10,8 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+#define BACKLOG 4
+
 /**
  * @return nothing but turns server into the daemon state
 */
