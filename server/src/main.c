@@ -107,10 +107,9 @@ int accept_socket(int server_socket) {
 //    return new_client;
 //}
 
-int *handle_client(t_client *client) {
-    client->counter++;
-
-    return &client->counter;
+void *handle_client(void *args) {
+    printf("Test functional of handle_client %s", (char *)args);
+    return NULL;
 }
 
 int main(int argc, char **argv) {
@@ -130,7 +129,7 @@ int main(int argc, char **argv) {
     pthread_mutex_t clients_mutex;
     pthread_mutex_init(&clients_mutex, NULL);
 
-    while (true) {
+    while (1) {
 //        struct sockaddr_in client_address;
         int client_socket = accept_socket(server_socket);
 
@@ -138,9 +137,7 @@ int main(int argc, char **argv) {
 //        new_client->address = client_address;
         new_client->client_socket = client_socket;
 
-
         pthread_t thread;
-        int result = pthread_create(&thread, NULL, handle_client, new_client);
 
         if (pthread_create(&thread, NULL, handle_client, new_client) != 0) {
             perror("Failed to create a thread.\n");

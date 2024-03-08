@@ -45,7 +45,7 @@ void bind_socket(int server_socket, char *port);
 void listen_socket(int server_socket);
 int accept_socket(int server_socket);
 //t_client *create_new_client(const struct sockaddr_in client_address, int client_socket);
-int *handle_client(t_client *client);
+void *handle_client(void *args);
 
 // #include "threads.h"
 void create_detached_thread(void *(*func)(void *), void *arg);
