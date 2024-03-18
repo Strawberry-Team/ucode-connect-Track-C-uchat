@@ -1,6 +1,9 @@
 #pragma once
 
 #include "libmx.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
 
@@ -21,3 +24,4 @@ typedef struct s_client {
 } t_client;
 
 extern t_server *server;
+extern t_client *client;
