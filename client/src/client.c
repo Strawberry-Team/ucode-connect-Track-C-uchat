@@ -42,8 +42,6 @@ int main(int argc, char **argv) {
 
     // todo create reconnect foo
 
-
-
     // todo request_handler
 
     return 0;
