@@ -15,9 +15,14 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <time.h>
+#include <openssl/ssl.h>
+#include <openssl/err.h>
 
 #define BACKLOG 4
 #define LOG_FILE "server/server_errors.log"
+#define CERTIFICATE "server/ssl/certificate.crt"
+#define PRIVATE_KEY "server/ssl/private_key.key"
+
 
 typedef struct s_client {
 //    int serv_fd;

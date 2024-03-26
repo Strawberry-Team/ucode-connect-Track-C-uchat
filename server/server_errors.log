@@ -5,3 +5,13 @@
 [2024-03-15 16:44:37]	PID 5380	Couldn't bind socket: Address already in use
 [2024-03-15 16:44:37]	PID 5390	Couldn't bind socket: Address already in use
 [2024-03-15 16:44:40]	PID 5402	Couldn't bind socket: Address already in use
+[2024-03-26 18:11:17]	PID 78436	Couldn't bind socket: Address already in use
+
+[2024-03-26 18:24:33]	PID 78735	Unable to create SSL context: : Invalid argument
+C0FAE40102000000:error:0A0000C4:SSL routines:SSL_CTX_new_ex:null ssl method passed:ssl/ssl_lib.c:3860:
+[2024-03-26 18:25:20]	PID 78753	Unable to create SSL context: Invalid argument
+C0FAE40102000000:error:0A0000C4:SSL routines:SSL_CTX_new_ex:null ssl method passed:ssl/ssl_lib.c:3860:
+[2024-03-26 18:27:21]	PID 78794	Unable to create SSL context: Invalid argument
+C0FAE40102000000:error:0A0000C4:SSL routines:SSL_CTX_new_ex:null ssl method passed:ssl/ssl_lib.c:3860:
+[2024-03-26 18:30:55]	PID 78848	Unable to create SSL context: Invalid argument
+C0FAE40102000000:error:0A0000C4:SSL routines:SSL_CTX_new_ex:null ssl method passed:ssl/ssl_lib.c:3860:

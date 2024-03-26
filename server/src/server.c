@@ -1,7 +1,7 @@
 #include "server.h"
 //  COMPILE:
 // clang -std=c11 -Wall -Wextra -Werror -Wpedantic src/*.c -o server -I inc
-// cd server/src/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c *.c -o server.o -I ../inc -I ../../libraries/libmx/inc && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/src/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -o uchat_server && ./uchat_server 8090
+// cd server/src/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c *.c -o server.o -I ../inc -I ../../libraries/libmx/inc -I /opt/homebrew/include && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/src/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -o uchat_server && ./uchat_server 8090
 // kill PID
 
 pthread_mutex_t clients_mutex;
@@ -20,13 +20,21 @@ void log_to_file(char *message) {
     fclose(log_file);
 }
 
+void log_ssl_err_to_file(char *message) {
+    FILE *log_file = fopen(LOG_FILE, "a");
+    log_to_file(message);
+    ERR_print_errors_fp(log_file); // todo або використовувати -- void ERR_print_errors_cb(int (*cb)(const char *str, size_t len, void *u), void *u);
+    fclose(log_file);
+}
+
 void create_deamon(void) {
     pid_t pid = fork();
     pid_t sid = 0;
 
     if (pid < 0) {
-        char *str = "Failed to create child process";
-        log_to_file(str, len(str));
+//        char *str = "Failed to create child process";
+//        log_to_file(str, len(str));
+        log_to_file("Failed to create child process");
         exit(EXIT_FAILURE);
     }
 
@@ -105,6 +113,39 @@ void free_clients(void) {
     pthread_mutex_unlock(&clients_mutex);
 }
 
+SSL_CTX *create_context(void) {
+    const SSL_METHOD *method;
+    method = TLS_server_method();
+    SSL_CTX *context;
+    context = SSL_CTX_new(method); // todo NULL for testing log_ssl_err_to_file()
+
+    if (!context) {
+        log_ssl_err_to_file("Unable to create SSL context");
+    }
+
+    return context;
+}
+
+bool configure_context(SSL_CTX *context) {
+    /* Set the key and cert */
+    if (SSL_CTX_use_certificate_file(context, CERTIFICATE, SSL_FILETYPE_PEM) <= 0) {
+        log_ssl_err_to_file("Couldn't load the certificate into the SSL_CTX");
+        return false;
+    }
+
+    if (SSL_CTX_use_PrivateKey_file(context, PRIVATE_KEY, SSL_FILETYPE_PEM) <= 0 ) {
+        log_ssl_err_to_file("Couldn't load the private key into the SSL_CTX");
+        return false;
+    }
+
+    if (SSL_CTX_check_private_key(context) != 1) {
+        log_ssl_err_to_file("The private key has no consistency with the certificate");
+        return false;
+    }
+
+    return true;
+}
+
 int main(int argc, char **argv) {
     if (argc != 2) {
         printf("usage: %s [port]\n", argv[0]);
@@ -115,6 +156,18 @@ int main(int argc, char **argv) {
     int server_socket = create_socket();
     bind_socket(server_socket, argv[1]);
     listen_socket(server_socket);
+
+    SSL_library_init();
+    OpenSSL_add_all_algorithms();
+    SSL_load_error_strings();
+    SSL_CTX *context = create_context();
+    SSL *ssl;
+
+    if (!context || !configure_context(context)) {
+        SSL_CTX_free(context);
+        close(server_socket);
+        exit(EXIT_FAILURE);
+    }
 
     pthread_mutex_init(&clients_mutex, NULL);
 
@@ -129,6 +182,47 @@ int main(int argc, char **argv) {
         t_client *new_client = (t_client *) malloc(sizeof(t_client));
         new_client->client_socket = client_socket;
         mx_push_back(&user_list, new_client);
+
+        ssl = SSL_new(context);
+
+        if (!ssl) {
+            log_ssl_err_to_file("Creation of a new SSL structure failed");
+            SSL_free(ssl);
+            break;
+        }
+
+        if (SSL_set_fd(ssl, client_socket)) {
+            log_ssl_err_to_file("Unable to set file descriptor as input/output device for TLS/SSL side");
+            SSL_free(ssl);
+            break;
+        }
+
+        if (SSL_accept(ssl) <= 0) {
+            //todo разобраться shutdown
+//            void close_connection(SSL *ssl) {
+//                if (ssl)
+//                {
+//                    SSL_shutdown(ssl);
+//                    SSL_free(ssl);
+//                }
+//                int socket = SSL_get_fd(ssl);
+//                if (socket != -1)
+//                {
+//                    shutdown(socket, SHUT_RDWR);
+//                    close(socket);
+//                }
+//            }
+        }
+
+        // Set the client socket to non-blocking mode
+//        flags = fcntl(client_socket, F_GETFL, 0);
+//        fcntl(client_socket, F_SETFL, flags | O_NONBLOCK);
+//        fcntl(client_socket, F_SETFD, O_NONBLOCK);
+//        client_info = (t_client_info *)malloc(sizeof(*client_info));
+//        client_info->socket_info = client_socket;
+//        client_info->ssl = ssl;
+//        client_info->user = NULL;
+
         pthread_t thread;
 
         if (pthread_create(&thread, NULL, handle_client, new_client) != 0) {
@@ -139,6 +233,7 @@ int main(int argc, char **argv) {
         pthread_detach(thread);
     }
 
+    SSL_CTX_free(context);
     free_clients();
     close(server_socket);
     exit(EXIT_FAILURE);
