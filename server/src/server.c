@@ -32,8 +32,6 @@ void create_deamon(void) {
     pid_t sid = 0;
 
     if (pid < 0) {
-//        char *str = "Failed to create child process";
-//        log_to_file(str, len(str));
         log_to_file("Failed to create child process");
         exit(EXIT_FAILURE);
     }
@@ -104,7 +102,17 @@ void free_clients(void) {
 
     while (user_list != NULL) {
         t_list *current = user_list->next;
-        close(((t_client *)(user_list->data))->client_socket);
+
+        if (((t_client *)(user_list->data))->client_socket) {
+            shutdown(((t_client *)(user_list->data))->client_socket, SHUT_RDWR);
+            close(((t_client *)(user_list->data))->client_socket);
+        }
+
+        if (((t_client *)(user_list->data))->ssl) {
+            SSL_shutdown(((t_client *)(user_list->data))->ssl);
+            SSL_free(((t_client *)(user_list->data))->ssl);
+        }
+
         free(user_list);
         user_list = current;
     }
@@ -187,42 +195,20 @@ int main(int argc, char **argv) {
 
         if (!ssl) {
             log_ssl_err_to_file("Creation of a new SSL structure failed");
-            SSL_free(ssl);
             break;
         }
 
         if (SSL_set_fd(ssl, client_socket)) {
             log_ssl_err_to_file("Unable to set file descriptor as input/output device for TLS/SSL side");
-            SSL_free(ssl);
             break;
         }
 
         if (SSL_accept(ssl) <= 0) {
-            //todo разобраться shutdown
-//            void close_connection(SSL *ssl) {
-//                if (ssl)
-//                {
-//                    SSL_shutdown(ssl);
-//                    SSL_free(ssl);
-//                }
-//                int socket = SSL_get_fd(ssl);
-//                if (socket != -1)
-//                {
-//                    shutdown(socket, SHUT_RDWR);
-//                    close(socket);
-//                }
-//            }
+            log_ssl_err_to_file("The TLS/SSL handshake was not successful");
+            break;
         }
 
-        // Set the client socket to non-blocking mode
-//        flags = fcntl(client_socket, F_GETFL, 0);
-//        fcntl(client_socket, F_SETFL, flags | O_NONBLOCK);
-//        fcntl(client_socket, F_SETFD, O_NONBLOCK);
-//        client_info = (t_client_info *)malloc(sizeof(*client_info));
-//        client_info->socket_info = client_socket;
-//        client_info->ssl = ssl;
-//        client_info->user = NULL;
-
+        new_client->ssl = ssl;
         pthread_t thread;
 
         if (pthread_create(&thread, NULL, handle_client, new_client) != 0) {

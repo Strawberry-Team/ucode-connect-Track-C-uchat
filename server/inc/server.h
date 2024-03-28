@@ -28,6 +28,8 @@ typedef struct s_client {
 //    int serv_fd;
 //    struct sockaddr_in address;
     int client_socket;
+    SSL *ssl;
+
 //    char *login;
 //    char *passwd;
 //    bool connected;
