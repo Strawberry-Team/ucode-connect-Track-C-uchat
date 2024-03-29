@@ -1,8 +1,9 @@
-#include "server.h"
 //  COMPILE:
 // clang -std=c11 -Wall -Wextra -Werror -Wpedantic src/*.c -o server -I inc
 // cd server/src/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c *.c -o server.o -I ../inc -I ../../libraries/libmx/inc -I /opt/homebrew/include && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/src/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -o uchat_server && ./uchat_server 8090
 // kill PID
+
+#include "server.h"
 
 pthread_mutex_t clients_mutex;
 t_list *user_list;
@@ -198,17 +199,18 @@ int main(int argc, char **argv) {
             break;
         }
 
-        if (SSL_set_fd(ssl, client_socket)) {
+        new_client->ssl = ssl;
+
+        if (!SSL_set_fd(new_client->ssl, client_socket)) {
             log_ssl_err_to_file("Unable to set file descriptor as input/output device for TLS/SSL side");
             break;
         }
 
-        if (SSL_accept(ssl) <= 0) {
+        if (SSL_accept(new_client->ssl) != 1) {
             log_ssl_err_to_file("The TLS/SSL handshake was not successful");
             break;
         }
 
-        new_client->ssl = ssl;
         pthread_t thread;
 
         if (pthread_create(&thread, NULL, handle_client, new_client) != 0) {

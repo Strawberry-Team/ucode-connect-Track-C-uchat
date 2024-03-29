@@ -1,10 +1,38 @@
 // cd client/src/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c *.c -o client.o -I ../inc -I ../../libraries/libmx/inc && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic client/src/*.o -I client/inc -I libraries/libmx/inc -L libraries/libmx -lmx -o uchat && ./uchat 127.0.0.1 8090
 
-
 #include "client.h"
 
 t_server *server;
 t_client *client;
+
+SSL_CTX *create_context(void) {
+    const SSL_METHOD *method;
+    method = TLS_client_method();
+    SSL_CTX *context;
+    context = SSL_CTX_new(method); // todo NULL for testing log_ssl_err_to_file()
+
+    return context;
+}
+
+void free_and_exit(void) {
+    if (client->client_socket) {
+        shutdown(client->socket, SHUT_RDWR);
+        close(client->client_socket);
+    }
+
+    if (client->ssl) {
+        SSL_shutdown(client->ssl);
+        SSL_free(client->ssl);
+    }
+
+    if (client->context) {
+        SSL_free(client->context);
+    }
+
+    free(client);
+    free(server);
+    exit(EXIT_FAILURE);
+}
 
 int main(int argc, char **argv) {
     if (argc != 3) {
@@ -27,17 +55,43 @@ int main(int argc, char **argv) {
 
     if (client->client_socket < 0) {
         perror("Socket creation failed");
-        free(server);
-        free(client);
-        exit(EXIT_FAILURE);
+        free_and_exit();
     }
 
     if (connect(client->client_socket,(struct sockaddr *)&(server->address), sizeof(server->address)) != 0) {
         perror("Couldn't connect with the server");
-        close(client->client_socket);
-        free(client);
-        free(server);
-        exit(EXIT_FAILURE);
+        free_and_exit();
+    }
+
+    SSL_library_init();
+    OpenSSL_add_all_algorithms();
+    SSL_load_error_strings();
+    SSL_CTX *context = create_context();
+    SSL *ssl;
+
+    if (!context) {
+        perror("Unable to create SSL context");
+        free_and_exit();
+    }
+
+    client->context = context;
+    ssl = SSL_new(context);
+
+    if (!ssl) {
+        perror("Creation of a new SSL structure failed");
+        free_and_exit();
+    }
+
+    client->ssl = ssl;
+
+    if (!SSL_set_fd(client->ssl, client->client_socket)) {
+        perror("Unable to set file descriptor as input/output device for TLS/SSL side");
+        free_and_exit();
+    }
+
+    if (SSL_connect(client->ssl) != 1) {
+        perror("The TLS/SSL handshake was not successful");
+        free_and_exit();
     }
 
     // todo create reconnect foo

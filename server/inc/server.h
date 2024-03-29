@@ -23,13 +23,11 @@
 #define CERTIFICATE "server/ssl/certificate.crt"
 #define PRIVATE_KEY "server/ssl/private_key.key"
 
-
 typedef struct s_client {
 //    int serv_fd;
 //    struct sockaddr_in address;
     int client_socket;
     SSL *ssl;
-
 //    char *login;
 //    char *passwd;
 //    bool connected;
@@ -46,4 +44,3 @@ void listen_socket(int server_socket);
 int accept_socket(int server_socket);
 void *handle_client(void *args);
 void free_clients(void);
-
