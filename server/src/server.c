@@ -33,7 +33,7 @@ void create_deamon(void) {
     pid_t sid = 0;
 
     if (pid < 0) {
-        log_to_file("Failed to create child process ");
+        log_to_file("Failed to create child process");
         exit(EXIT_FAILURE);
     }
 
