@@ -24,7 +24,7 @@ void log_to_file(char *message) {
 void log_ssl_err_to_file(char *message) {
     FILE *log_file = fopen(LOG_FILE, "a");
     log_to_file(message);
-    ERR_print_errors_fp(log_file); //     todo або використовувати -- void ERR_print_errors_cb(int (*cb)(const char *str, size_t len, void *u), void *u);
+    ERR_print_errors_fp(log_file); // todo або використовувати -- void ERR_print_errors_cb(int (*cb)(const char *str, size_t len, void *u), void *u);
     fclose(log_file);
 }
 
@@ -33,7 +33,7 @@ void create_deamon(void) {
     pid_t sid = 0;
 
     if (pid < 0) {
-        log_to_file("Failed to create child process ");
+        log_to_file("Failed to create child process");
         exit(EXIT_FAILURE);
     }
 
