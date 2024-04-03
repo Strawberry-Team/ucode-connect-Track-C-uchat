@@ -1,4 +1,5 @@
-//  COMPILE:
+// brew install openssl@3
+// COMPILE && RUN:
 // clang -std=c11 -Wall -Wextra -Werror -Wpedantic src/*.c -o server -I inc
 // cd server/src/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c *.c -o server.o -I ../inc -I ../../libraries/libmx/inc -I /opt/homebrew/include && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/src/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -o uchat_server && ./uchat_server 8090
 // kill PID
@@ -7,6 +8,7 @@
 
 pthread_mutex_t clients_mutex;
 t_list *user_list;
+t_client *client_info;
 
 void log_to_file(char *message) {
     FILE *log_file = fopen(LOG_FILE, "a");
@@ -89,10 +91,10 @@ void listen_socket(int server_socket) {
     }
 }
 
-void *handle_client(void *args) {
-    printf("Test functional of handle_client %s", (char *)args);
-    return NULL;
-}
+//void *handle_client(void *args) {
+//    printf("Test functional of handle_client %s", (char *)args);
+//    return NULL;
+//}
 
 void free_clients(void) {
     if (user_list == NULL) {
@@ -180,7 +182,7 @@ int main(int argc, char **argv) {
 
     pthread_mutex_init(&clients_mutex, NULL);
 
-    while (1) {
+    while (true) {
         int client_socket = accept(server_socket, NULL, NULL);
 
         if (client_socket < 0) {
@@ -188,9 +190,9 @@ int main(int argc, char **argv) {
             break;
         }
 
-        t_client *new_client = (t_client *) malloc(sizeof(t_client));
-        new_client->client_socket = client_socket;
-        mx_push_back(&user_list, new_client);
+        t_client *client_info = (t_client *) malloc(sizeof(t_client));
+        client_info->client_socket = client_socket;
+        mx_push_back(&user_list, client_info);
 
         ssl = SSL_new(context);
 
@@ -199,26 +201,31 @@ int main(int argc, char **argv) {
             break;
         }
 
-        new_client->ssl = ssl;
+        client_info->ssl = ssl;
 
-        if (!SSL_set_fd(new_client->ssl, client_socket)) {
+        if (!SSL_set_fd(client_info->ssl, client_socket)) {
             log_ssl_err_to_file("Unable to set file descriptor as input/output device for TLS/SSL side");
             break;
         }
 
-        if (SSL_accept(new_client->ssl) != 1) {
+        if (SSL_accept(client_info->ssl) != 1) {
             log_ssl_err_to_file("The TLS/SSL handshake was not successful");
             break;
         }
 
         pthread_t thread;
+        pthread_attr_t thread_attr;
+        pthread_attr_init(&thread_attr);
 
-        if (pthread_create(&thread, NULL, handle_client, new_client) != 0) {
+        if (pthread_create(&thread, &thread_attr, thread_controller, client_info) != 0) {
+//        if (pthread_create(&thread, &thread_attr, handle_client_request, client_info) != 0) {
             log_to_file("Failed to create a thread");
             break;
         }
 
-        pthread_detach(thread);
+//        // todo треба обрати щось одне: або pthread_join() або pthread_detach()
+        pthread_detach(thread); // робить потік відокремленим і його ресурси будуть автоматично звільнені після завершення виконання. коли вам не потрібно чекати завершення потоку, і ви хочете, щоб ресурси були автоматично звільнені
+//        pthread_join(thread, NULL); // блокує головний потік, доки потік thread не завершиться. коли вам потрібно впевнитися, що всі потоки завершили роботу, перш ніж програма завершиться
     }
 
     SSL_CTX_free(context);
