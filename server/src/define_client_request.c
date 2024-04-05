@@ -11,7 +11,7 @@ char *read_client_socket(SSL *ssl) {
 
         if (bytes_read <= 0) {
             if (SSL_get_error(ssl, bytes_read) == SSL_ERROR_WANT_READ) {
-                log_ssl_err_to_file("There is still unprocessed data available at the SSL. Continue reading...\n");
+                log_ssl_err_to_file("There is still unprocessed data available at the TLS/SSL connection. Continue reading...\n");
                 continue;
             }
 
