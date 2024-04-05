@@ -1,10 +1,12 @@
 #pragma once
 
 #include "libmx.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdbool.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <pthread.h>
@@ -44,3 +46,16 @@ void listen_socket(int server_socket);
 int accept_socket(int server_socket);
 void *handle_client(void *args);
 void free_clients(void);
+<<<<<<< HEAD
+=======
+SSL_CTX *create_context(void);
+bool configure_context(SSL_CTX *context);
+//void *handle_client(void *args);
+
+// functions from "define_client_request.c" file
+char *read_client_socket(SSL *ssl);
+void *parse_request_type(char *json_string);
+void *thread_controller(void *arg);
+void *process_client_request(t_request_type request_type, cJSON *json);
+
+>>>>>>> 9fa5f1d (Connection with database, get user data from DB, prototypes of send responses, handle login and some other functions are created)
