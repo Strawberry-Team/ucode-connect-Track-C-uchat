@@ -1,10 +1,12 @@
 #pragma once
 
 #include "libmx.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdbool.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <pthread.h>
@@ -66,6 +68,7 @@ int create_socket(void);
 void bind_socket(int server_socket, char *port);
 void listen_socket(int server_socket);
 void free_clients(void);
+
 SSL_CTX *create_context(void);
 bool configure_context(SSL_CTX *context);
 //void *handle_client(void *args);
@@ -78,3 +81,4 @@ void *process_client_request(t_request_type request_type, cJSON *json);
 
 // functions from "process_client_request.c" file
 void handle_login(cJSON *json);
+

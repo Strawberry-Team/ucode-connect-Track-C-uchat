@@ -1,14 +1,4 @@
-#include "server.h"
-#include "data_base.h"
-
-t_user_data dbu_get_user_data(sqlite3 *db, char *username) {
-    t_user_data *user_data = NULL;
-    sqlite3_stmt *stmt;
-
-
-
-
-}
+#include "api.h"
 
 void handle_login(cJSON *json) {
     cJSON *json_credentials = cJSON_GetObjectItemCaseSensitive(json, "credentials");
@@ -31,11 +21,40 @@ void handle_login(cJSON *json) {
         return;
     }
 
-    sqlite3 *db;
-    db_init();
-    db = db_open();
+    if (!db_create()) {
+        cJSON_Delete(json);
+        return;
+    }
+
+    sqlite3 *db = db_open();
+
+    if (!db) {
+        cJSON_Delete(json);
+        return;
+    }
 
     t_user_data user_data;
-    user_data = dbu_get_user_data(db, client_info->username);
+    user_data = db_get_user_data_from(db, client_info->username);
 
+    if (!user_data) {
+        log_to_file("The passed user's credentials is invalid");
+        send_status_response(client_info->ssl, LOGIN, ERROR_INVALID_CREDENTIALS);
+        sqlite3_close(db);
+        return;
+    }
+
+    log_to_file("The passed user's credentials exists in the database");
+
+    if (mx_strcmp(client_info->password, user_data->password) != 0) {
+//    if (memcmp(user_data->password, client_info->password, SHA256_DIGEST_LENGTH) != 0) {
+        log_to_file("The passed user's credentials is invalid");
+        send_status_response(client_info->ssl, LOGIN, ERROR_INVALID_CREDENTIALS);
+        sqlite3_close(db);
+        return;
+    }
+
+    log_to_file("User \"%s\" successfully logged in", client_info->username);
+    send_login_response(client_info->ssl, LOGIN, SUCCESS_VALID_CREDENTIALS, user_data);
+//    sqlite3_close(db); // todo Do we need to clode database in this point?
 }
+
