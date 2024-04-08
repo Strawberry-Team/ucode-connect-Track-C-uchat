@@ -17,7 +17,7 @@ typedef struct s_user_data {
 } t_user_data;
 
 // enumeration of error types
-typedef enum e_status_type{
+typedef enum e_status_type {
     SUCCESS,
     SUCCESS_VALID_CREDENTIALS,
     SUCCESS_CHAT_EXIST,

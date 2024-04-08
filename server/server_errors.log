@@ -23,3 +23,25 @@ C0FAE40102000000:error:0A0000C4:SSL routines:SSL_CTX_new_ex:null ssl method pass
 [2024-04-08 17:24:01]	PID 91821	Couldn't bind socket: Address already in use
 [2024-04-08 17:24:37]	PID 91875	Deamon started with pid 91876: Undefined error: 0
 [2024-04-08 17:25:19]	PID 91876	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer
+[2024-04-08 18:51:47]	PID 98628	Deamon started with pid 98630: Undefined error: 0
+[2024-04-08 18:52:59]	PID 98684	Deamon started with pid 98688: Undefined error: 0
+[2024-04-08 18:53:43]	PID 98711	Deamon started with pid 98712: Undefined error: 0
+[2024-04-08 18:54:44]	PID 98712	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer
+[2024-04-08 21:21:25]	PID 1201	Deamon started with pid 1204: Undefined error: 0
+[2024-04-08 22:14:16]	PID 1204	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer
+[2024-04-08 22:15:47]	PID 2231	Deamon started with pid 2232: Undefined error: 0
+[2024-04-08 22:15:57]	PID 2232	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer
+[2024-04-08 22:20:54]	PID 2350	Deamon started with pid 2351: Undefined error: 0
+[2024-04-08 22:21:03]	PID 2351	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer
+[2024-04-08 22:21:37]	PID 2393	Deamon started with pid 2394: Undefined error: 0
+[2024-04-08 22:21:41]	PID 2394	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer
+[2024-04-08 22:23:05]	PID 2458	Deamon started with pid 2459: Undefined error: 0
+[2024-04-08 22:23:08]	PID 2459	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer
+[2024-04-08 22:29:21]	PID 2704	Deamon started with pid 2705: Undefined error: 0
+[2024-04-08 22:29:25]	PID 2705	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer
+[2024-04-08 22:31:37]	PID 2751	Deamon started with pid 2752: Undefined error: 0
+[2024-04-08 22:31:39]	PID 2752	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer
+[2024-04-08 22:32:12]	PID 2798	Deamon started with pid 2799: Undefined error: 0
+[2024-04-08 22:32:16]	PID 2799	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer
+[2024-04-08 22:33:43]	PID 2836	Deamon started with pid 2837: Undefined error: 0
+[2024-04-08 22:33:46]	PID 2837	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer

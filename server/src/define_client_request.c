@@ -36,8 +36,6 @@ char *read_client_socket(SSL *ssl) {
 }
 
 void parse_request_type(char *json_string) { // todo може повертати t_request_type
-//    t_map_entry *entery;
-
     cJSON *json = cJSON_Parse(json_string);
 
     if (!json) {
