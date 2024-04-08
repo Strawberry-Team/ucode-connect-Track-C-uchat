@@ -17,9 +17,9 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <time.h>
-#include <openssl/ssl.h>
-#include <openssl/err.h>
-#include <cjson/cJSON.h>
+#include <openssl/ssl.h> // -I /opt/homebrew/include
+#include <openssl/err.h> // -I /opt/homebrew/include
+#include <cjson/cJSON.h> // -I /opt/homebrew/include
 
 #define BACKLOG 4
 #define BUF_SIZE 100000
@@ -75,10 +75,10 @@ bool configure_context(SSL_CTX *context);
 
 // functions from "define_client_request.c" file
 char *read_client_socket(SSL *ssl);
-void *parse_request_type(char *json_string);
+void parse_request_type(char *json_string);
 void *thread_controller(void *arg);
-void *process_client_request(t_request_type request_type, cJSON *json);
+void process_client_request(t_request_type request_type, cJSON *json);
 
-// functions from "process_client_request.c" file
-void handle_login(cJSON *json);
+//// functions from "process_client_request.c" file
+//bool handle_login(cJSON *json);
 

@@ -15,3 +15,11 @@ C0FAE40102000000:error:0A0000C4:SSL routines:SSL_CTX_new_ex:null ssl method pass
 C0FAE40102000000:error:0A0000C4:SSL routines:SSL_CTX_new_ex:null ssl method passed:ssl/ssl_lib.c:3860:
 [2024-03-26 18:30:55]	PID 78848	Unable to create SSL context: Invalid argument
 C0FAE40102000000:error:0A0000C4:SSL routines:SSL_CTX_new_ex:null ssl method passed:ssl/ssl_lib.c:3860:
+[2024-04-08 16:07:40]	PID 89708	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer
+[2024-04-08 16:10:00]	PID 90196	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer
+[2024-04-08 17:22:20]	PID 91776	Deamon started with pid 91778
+: Undefined error: 0
+[2024-04-08 17:24:01]	PID 91820	Deamon started with pid 91821: Undefined error: 0
+[2024-04-08 17:24:01]	PID 91821	Couldn't bind socket: Address already in use
+[2024-04-08 17:24:37]	PID 91875	Deamon started with pid 91876: Undefined error: 0
+[2024-04-08 17:25:19]	PID 91876	Failed to read data from the TLS/SSL connection to buffer: Connection reset by peer
