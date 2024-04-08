@@ -1,6 +1,6 @@
 #include "api.h"
 
-void handle_login(cJSON *json) {
+bool handle_login(cJSON *json) {
     cJSON *json_credentials = cJSON_GetObjectItemCaseSensitive(json, "credentials");
 
     if (!cJSON_IsNull(json_credentials) && cJSON_IsObject(json_credentials)) { // todo можна замінити на json_credentials != NULL
@@ -18,29 +18,29 @@ void handle_login(cJSON *json) {
     } else {
         log_to_file("Could not parse the \"credentials\" from a cJSON object");
         cJSON_Delete(json);
-        return;
+        return false;
     }
 
     if (!db_create()) {
         cJSON_Delete(json);
-        return;
+        return false;
     }
 
-    sqlite3 *db = db_open();
+    sqlite3 *db = db_file_open();
 
     if (!db) {
         cJSON_Delete(json);
-        return;
+        return false;
     }
 
-    t_user_data user_data;
-    user_data = db_get_user_data_from(db, client_info->username);
+    t_user_data *user_data;
+    user_data = db_get_user_data(db, client_info->username);
 
     if (!user_data) {
         log_to_file("The passed user's credentials is invalid");
         send_status_response(client_info->ssl, LOGIN, ERROR_INVALID_CREDENTIALS);
         sqlite3_close(db);
-        return;
+        return false;
     }
 
     log_to_file("The passed user's credentials exists in the database");
@@ -50,11 +50,14 @@ void handle_login(cJSON *json) {
         log_to_file("The passed user's credentials is invalid");
         send_status_response(client_info->ssl, LOGIN, ERROR_INVALID_CREDENTIALS);
         sqlite3_close(db);
-        return;
+        return false;
     }
 
-    log_to_file("User \"%s\" successfully logged in", client_info->username);
+    char msg[200];
+    sprintf(msg, "User \"%s\" successfully logged in", client_info->username);
+    log_to_file(msg);
     send_login_response(client_info->ssl, LOGIN, SUCCESS_VALID_CREDENTIALS, user_data);
 //    sqlite3_close(db); // todo Do we need to clode database in this point?
+    return true;
 }
 

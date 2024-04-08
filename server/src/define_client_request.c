@@ -1,4 +1,5 @@
 #include "server.h"
+#include "api.h"
 
 // read the information received from the client and write it as a string
 char *read_client_socket(SSL *ssl) {
@@ -11,7 +12,7 @@ char *read_client_socket(SSL *ssl) {
 
         if (bytes_read <= 0) {
             if (SSL_get_error(ssl, bytes_read) == SSL_ERROR_WANT_READ) {
-                log_ssl_err_to_file("There is still unprocessed data available at the TLS/SSL connection. Continue reading...\n");
+                log_ssl_err_to_file("There is still unprocessed data available at the TLS/SSL connection. Continue reading...");
                 continue;
             }
 
@@ -34,7 +35,7 @@ char *read_client_socket(SSL *ssl) {
     return strdup(buffer);
 }
 
-void *parse_request_type(char *json_string) { // todo може повертати t_request_type
+void parse_request_type(char *json_string) { // todo може повертати t_request_type
 //    t_map_entry *entery;
 
     cJSON *json = cJSON_Parse(json_string);
@@ -43,7 +44,9 @@ void *parse_request_type(char *json_string) { // todo може повертат�
         const char *error_ptr = cJSON_GetErrorPtr();
 
         if (error_ptr != NULL) {
-            log_to_file("Could not parse the cJSON object from client. A pointer to the error location: [%s]", error_ptr);
+            char msg[200];
+            sprintf(msg, "Could not parse the cJSON object from client. A pointer to the error location: [%s]", error_ptr);
+            log_to_file(msg);
         }
 
         cJSON_Delete(json);
@@ -115,10 +118,10 @@ void *thread_controller(void *arg) {
 //log_to_file("Could not process a client request. A non-existent request type was received.");
 //return; // todo чи треба щось повертати в такому випадку?
 //}
-void *process_client_request(t_request_type request_type, cJSON *json) {
+void process_client_request(t_request_type request_type, cJSON *json) {
     if (request_type != REGISTER
-        || request_type != LOGIN
-        || request_type != UNKNOWN_TYPE) {
+        && request_type != LOGIN
+        && request_type != UNKNOWN_TYPE) {
         if (!handle_login(json)) {
             log_to_file("Could not authenticate the user before processing the client request");
             pthread_exit(NULL);
@@ -127,45 +130,45 @@ void *process_client_request(t_request_type request_type, cJSON *json) {
     }
 
     switch (request_type) {
-        case REGISTER:
-            handle_registration(json);
-            break;
+//        case REGISTER:
+//            handle_registration(json);
+//            break;
         case LOGIN:
             handle_login(json);
             break;
-        case CREATE_CHAT:
-            handle_chat_creation(json);
-            break;
-        case ADD_MEMBER_TO_CHAT:
-            handle_adding_new_member_to_chat(json);
-            break;
-        case GET_USER_CHATS:
-            handle_getting_chats(json);
-            break;
-        case SEND_MESSAGE:
-            handle_text_message_sending(json);
-            break;
-        case GET_MESSAGES_IN_CHAT:
-            handle_messages_in_chat_getting(json);
-            break;
-        case SEND_MESSAGE_AND_GET_MESSAGE_UPDATES:
-            handle_message_sending_and_messages_updates_getting(json);
-            break;
-        case DELETE_MESSAGE_AND_GET_MESSAGE_UPDATES:
-            handle_message_deleting_and_messages_updates_getting(json);
-            break;
-        case CHANGE_MESSAGE_AND_GET_MESSAGE_UPDATES:
-            handle_message_changing_and_message_updates_getting(json);
-            break;
-        case REPLY_TO_MESSAGE_AND_GET_MESSAGE_UPDATES:
-            handle_message_replying_and_message_updates_getting(json);
-            break;
-        case GET_MESSAGE_UPDATES:
-            handle_message_updates_getting(json);
-            break;
-        case GET_CHAT_MEMBERS:
-            handle_getting_chat_members(json);
-            break;
+//        case CREATE_CHAT:
+//            handle_chat_creation(json);
+//            break;
+//        case ADD_MEMBER_TO_CHAT:
+//            handle_adding_new_member_to_chat(json);
+//            break;
+//        case GET_USER_CHATS:
+//            handle_getting_chats(json);
+//            break;
+//        case SEND_MESSAGE:
+//            handle_text_message_sending(json);
+//            break;
+//        case GET_MESSAGES_IN_CHAT:
+//            handle_messages_in_chat_getting(json);
+//            break;
+//        case SEND_MESSAGE_AND_GET_MESSAGE_UPDATES:
+//            handle_message_sending_and_messages_updates_getting(json);
+//            break;
+//        case DELETE_MESSAGE_AND_GET_MESSAGE_UPDATES:
+//            handle_message_deleting_and_messages_updates_getting(json);
+//            break;
+//        case CHANGE_MESSAGE_AND_GET_MESSAGE_UPDATES:
+//            handle_message_changing_and_message_updates_getting(json);
+//            break;
+//        case REPLY_TO_MESSAGE_AND_GET_MESSAGE_UPDATES:
+//            handle_message_replying_and_message_updates_getting(json);
+//            break;
+//        case GET_MESSAGE_UPDATES:
+//            handle_message_updates_getting(json);
+//            break;
+//        case GET_CHAT_MEMBERS:
+//            handle_getting_chat_members(json);
+//            break;
         case UNKNOWN_TYPE:
             log_to_file("Could not process a client request. A non-existent request type was received.");
             break;
@@ -175,4 +178,5 @@ void *process_client_request(t_request_type request_type, cJSON *json) {
 
 //    close(client->client_socket);
     pthread_exit(NULL); // припиняє виконання поточного потоку, але інші потоки можуть продовжувати працювати
+    return;
 }

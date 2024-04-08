@@ -3,7 +3,7 @@
 #include "server.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <sqlite3.h> // todo  -I /usr/bin/
+#include <sqlite/include/sqlite3.h> // -I /usr/bin/      -I /opt/homebrew/opt/        -L /opt/homebrew/opt/sqlite/lib -lsqlite3
 
 #define DATABASE_FILE "server/database/uchat.db"
 #define CREATE_DB_TABLES_FILE "server/database/create_db_tables.db"
@@ -35,12 +35,8 @@ typedef enum e_status_type{
  * unsigned char: Цей тип даних може зберігати значення від 0 до 255. Якщо ваш алгоритм хешування генерує хеш-суми в цьому діапазоні, то unsigned char є кращим вибором.
  */
 
-
-// functions from "define_client_request.c" file
-t_user_data db_get_user_data(sqlite3 *db, char *username);
-
-
 // functions from "send_response_to_client.c" file
 sqlite3 *db_file_open(void);
 bool db_create(void);
-void send_login_response(SSL *ssl, t_user_data *user_data);
+t_user_data *db_get_user_data(sqlite3 *db, char *username);
+

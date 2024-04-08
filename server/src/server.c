@@ -1,8 +1,10 @@
 // brew install openssl@3
 // COMPILE && RUN:
-// clang -std=c11 -Wall -Wextra -Werror -Wpedantic src/*.c -o server -I inc
-// cd server/src/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c *.c -o server.o -I ../inc -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /usr/bin/ && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/src/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -o uchat_server && ./uchat_server 8090
+// DEPRECATED --- clang -std=c11 -Wall -Wextra -Werror -Wpedantic src/*.c -o server -I inc
+// DEPRECATED --- cd server/src/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c *.c -o server.o -I ../inc -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /usr/bin/ && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/src/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -o uchat_server && ./uchat_server 8090
 // kill PID
+// DEPRECATED --- cd server/obj && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /usr/bin/ -I /opt/homebrew/opt/sqlite/include && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../database/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /usr/bin/ -I /opt/homebrew/opt/sqlite/include && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/obj/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/Cellar/sqlite/3.45.2/lib/ -lsqlite3 -o uchat_server && ./uchat_server 8090
+// cd server/obj && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c ../database/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /opt/homebrew/opt/ -I /usr/bin/ && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/obj/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/opt/sqlite/lib -lsqlite3 -o uchat_server && ./uchat_server 8090
 
 #include "server.h"
 
@@ -41,6 +43,9 @@ void create_deamon(void) {
 
     if (pid > 0) {
         printf("Deamon started with pid %d\n", pid);
+        char msg[200];
+        sprintf(msg, "Deamon started with pid %d", pid);
+        log_to_file(msg);
         exit(EXIT_SUCCESS);
     }
 

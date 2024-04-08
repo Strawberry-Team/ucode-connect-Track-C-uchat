@@ -13,7 +13,6 @@ void send_status_response(SSL *ssl, t_request_type request_type, t_status_type s
     if (!cJSON_AddNumberToObject(json, "request_type", request_type)
         || !cJSON_AddNumberToObject(json, "status", status)) {
         log_to_file("Could not add the data in the cJSON object to send a status response to the client");
-        CJSON_Delete(json_data_obj);
         cJSON_Delete(json);
         return;
     }
@@ -28,7 +27,6 @@ void send_status_response(SSL *ssl, t_request_type request_type, t_status_type s
     }
 
     free(json_string); // або mx_strdel(&json_string);
-    CJSON_Delete(json_data_obj);
     cJSON_Delete(json);
     return;
 }
@@ -42,7 +40,7 @@ void send_login_response(SSL *ssl, t_request_type request_type, t_status_type st
         || !json_data_obj) {
         log_to_file("Could not create the cJSON object to send a login response to the client");
         send_status_response(ssl, request_type, ERROR_JSON_FAILED);
-        CJSON_Delete(json_data_obj);
+        cJSON_Delete(json_data_obj);
         cJSON_Delete(json);
         return;
     }
@@ -56,7 +54,7 @@ void send_login_response(SSL *ssl, t_request_type request_type, t_status_type st
         || !cJSON_AddNumberToObject(json_data_obj, "icon_id", user_data->icon_id)) {
         log_to_file("Could not add the data in the cJSON object to send a login response to the client");
         send_status_response(ssl, request_type, ERROR_JSON_FAILED);
-        CJSON_Delete(json_data_obj);
+        cJSON_Delete(json_data_obj);
         cJSON_Delete(json);
         return;
     }
@@ -71,7 +69,7 @@ void send_login_response(SSL *ssl, t_request_type request_type, t_status_type st
     }
 
     free(json_string); // або mx_strdel(&json_string);
-    CJSON_Delete(json_data_obj);
+    cJSON_Delete(json_data_obj);
     cJSON_Delete(json);
     return;
 }

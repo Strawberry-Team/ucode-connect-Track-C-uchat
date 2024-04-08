@@ -6,6 +6,9 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
+#include <openssl/ssl.h> // -I /opt/homebrew/include
+#include <openssl/err.h> // -I /opt/homebrew/include
+#include <cjson/cJSON.h> // -I /opt/homebrew/include
 
 typedef struct s_server {
     struct sockaddr_in address;
@@ -17,7 +20,7 @@ typedef struct s_server {
 typedef struct s_client {
     int client_socket;
     SSL *ssl;
-    SSL_ctx *context;
+    SSL_CTX *context;
 //    struct sockaddr_in address;
 //    int id;
 //    char *login;
