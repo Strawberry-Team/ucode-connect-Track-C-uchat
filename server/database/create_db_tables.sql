@@ -21,7 +21,7 @@ create table icons
 create table users
 (
     id         INTEGER not null,
-    login      TEXT    not null
+    username      TEXT    not null
         constraint users_pk
             unique,
     password   TEXT    not null,

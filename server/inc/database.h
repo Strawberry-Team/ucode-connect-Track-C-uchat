@@ -6,7 +6,7 @@
 #include <sqlite/include/sqlite3.h> // -I /usr/bin/      -I /opt/homebrew/opt/        -L /opt/homebrew/opt/sqlite/lib -lsqlite3
 
 #define DATABASE_FILE "server/database/uchat.db"
-#define CREATE_DB_TABLES_FILE "server/database/create_db_tables.db"
+#define CREATE_DB_TABLES_FILE "server/database/create_db_tables.sql"
 #define USERS_TABLE_COLUMNS_COUNT 4 // id, login(username), password, icon_id
 
 typedef struct s_user_data {
@@ -26,7 +26,8 @@ typedef enum e_status_type {
     ERROR_INVALID_CREDENTIALS,
     ERROR_CHAT_NONEXIST,
     ERROR_USER_NOT_IN_CHAT,
-    ERROR_USER_DONT_HAVE_PERMISSION
+    ERROR_USER_DONT_HAVE_PERMISSION,
+    UNKNOWN_STATUS
 } t_status_type;
 
 /*

@@ -1,0 +1,9 @@
+[2024-04-10 23:59:28]	INFO	PID 50183	RESPONSE:
+User data:
+id: 0
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-10 23:59:28]	ERROR	PID 50183	Unexpected error reading from client socket: Bad file descriptor
+[2024-04-10 23:59:28]	ERROR	PID 50183	bytes_read=-1	error_code=5	: Bad file descriptor

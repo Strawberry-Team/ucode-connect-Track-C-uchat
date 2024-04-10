@@ -1,0 +1,4 @@
+[2024-04-11 00:09:47]	INFO	PID 50524	Deamon started with pid 50525
+[2024-04-11 00:09:50]	INFO	PID 50525	Database successfully opened
+[2024-04-11 00:09:50]	INFO	PID 50525	The passed user's credentials exists in the database
+[2024-04-11 00:09:50]	INFO	PID 50525	User "Inessa" successfully logged in

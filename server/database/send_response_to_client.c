@@ -5,28 +5,30 @@ void send_status_response(SSL *ssl, t_request_type request_type, t_status_type s
     cJSON *json = cJSON_CreateObject();
 
     if (!json) {
-        log_to_file("Could not create the cJSON object to send a status response to the client");
+        log_to_file("Could not create the cJSON object to send a status response to the client", ERROR);
         cJSON_Delete(json);
         return;
     }
+
+    //    pthread_mutex_lock(&clients_mutex); // todo
 
     if (!cJSON_AddNumberToObject(json, "request_type", request_type)
         || !cJSON_AddNumberToObject(json, "status", status)) {
-        log_to_file("Could not add the data in the cJSON object to send a status response to the client");
+        log_to_file("Could not add the data in the cJSON object to send a status response to the client", ERROR);
         cJSON_Delete(json);
         return;
     }
 
-    json_string = cJSON_Print(json);
+    json_string = cJSON_Print(json); // todo Друкує JSON-об'єкт або масив у форматі, що включає відступи та нові рядки. альтернатива cJSON_PrintUnformatted() - без відступів та нових рядків.
 
-    int bytes_written = SSL_write(ssl, json_string, strlen(json_string)); // або mx_strlen()
+    int bytes_written = SSL_write(ssl, json_string, strlen(json_string)); // todo  або mx_strlen()
 
     if (bytes_written <= 0) {
-        log_to_file("Could not write JSON string over the TLS/SSL connection to send a login response to the client");
-        free(json_string); // або mx_strdel(&json_string);
+        log_to_file("Could not write JSON string over the TLS/SSL connection to send a login response to the client", ERROR);
     }
 
-    free(json_string); // або mx_strdel(&json_string);
+//    pthread_mutex_unlock(&clients_mutex); //todo
+    free(json_string); // todo  або mx_strdel(&json_string);
     cJSON_Delete(json);
     return;
 }
@@ -38,7 +40,7 @@ void send_login_response(SSL *ssl, t_request_type request_type, t_status_type st
 
     if (!json
         || !json_data_obj) {
-        log_to_file("Could not create the cJSON object to send a login response to the client");
+        log_to_file("Could not create the cJSON object to send a login response to the client", ERROR);
         send_status_response(ssl, request_type, ERROR_JSON_FAILED);
         cJSON_Delete(json_data_obj);
         cJSON_Delete(json);
@@ -52,9 +54,8 @@ void send_login_response(SSL *ssl, t_request_type request_type, t_status_type st
         || !cJSON_AddStringToObject(json_data_obj, "username", user_data->username)
         || !cJSON_AddStringToObject(json_data_obj, "password", user_data->password)
         || !cJSON_AddNumberToObject(json_data_obj, "icon_id", user_data->icon_id)) {
-        log_to_file("Could not add the data in the cJSON object to send a login response to the client");
+        log_to_file("Could not add the data in the cJSON object to send a login response to the client", ERROR);
         send_status_response(ssl, request_type, ERROR_JSON_FAILED);
-        cJSON_Delete(json_data_obj);
         cJSON_Delete(json);
         return;
     }
@@ -64,12 +65,11 @@ void send_login_response(SSL *ssl, t_request_type request_type, t_status_type st
     int bytes_written = SSL_write(ssl, json_string, strlen(json_string)); // або mx_strlen()
 
     if (bytes_written <= 0) {
-        log_to_file("Could not write JSON string over the TLS/SSL connection to send a login response to the client");
+        log_to_file("Could not write JSON string over the TLS/SSL connection to send a login response to the client", ERROR);
         free(json_string); // або mx_strdel(&json_string);
     }
 
     free(json_string); // або mx_strdel(&json_string);
-    cJSON_Delete(json_data_obj);
     cJSON_Delete(json);
     return;
 }

@@ -1,4 +1,3 @@
-// brew install openssl@3
 // COMPILE && RUN:
 // DEPRECATED --- clang -std=c11 -Wall -Wextra -Werror -Wpedantic src/*.c -o server -I inc
 // DEPRECATED --- cd server/src/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c *.c -o server.o -I ../inc -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /usr/bin/ && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/src/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -o uchat_server && ./uchat_server 8090
@@ -12,22 +11,31 @@ pthread_mutex_t clients_mutex;
 t_list *user_list;
 t_client *client_info;
 
-void log_to_file(char *message) {
+void log_to_file(char *message, t_log_type log_type) {
     FILE *log_file = fopen(LOG_FILE, "a");
     time_t current_time;
     struct tm *time_info;
     char time_string[80];
-    time(&current_time); // Get the current time
-    time_info = localtime(&current_time); // Convert the current time to local time
-    strftime(time_string, sizeof(time_string), "%Y-%m-%d %H:%M:%S", time_info); // Formatting the time into a string
-    fprintf(log_file, "[%s]\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno)); //Write a log message
-    free(time_info);
+    /* Get the current time */
+    time(&current_time);
+    /* Convert the current time to local time */
+    time_info = localtime(&current_time);
+    /* Formatting the time into a string */
+    strftime(time_string, sizeof(time_string), "%Y-%m-%d %H:%M:%S", time_info);
+
+    /* Write a log message */
+    if (log_type == INFO) {
+        fprintf(log_file, "[%s]\tINFO\tPID %d\t%s\n", time_string, getpid(), message);
+    } else {
+        fprintf(log_file, "[%s]\tERROR\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
+    }
+//    free(time_info); //todo occurs the memory errors
     fclose(log_file);
 }
 
 void log_ssl_err_to_file(char *message) {
     FILE *log_file = fopen(LOG_FILE, "a");
-    log_to_file(message);
+    log_to_file(message, ERROR);
     ERR_print_errors_fp(log_file); // todo або використовувати -- void ERR_print_errors_cb(int (*cb)(const char *str, size_t len, void *u), void *u);
     fclose(log_file);
 }
@@ -37,7 +45,7 @@ void create_deamon(void) {
     pid_t sid = 0;
 
     if (pid < 0) {
-        log_to_file("Failed to create child process");
+        log_to_file("Failed to create child process", ERROR);
         exit(EXIT_FAILURE);
     }
 
@@ -45,7 +53,7 @@ void create_deamon(void) {
         printf("Deamon started with pid %d\n", pid);
         char msg[200];
         sprintf(msg, "Deamon started with pid %d", pid);
-        log_to_file(msg);
+        log_to_file(msg, INFO);
         exit(EXIT_SUCCESS);
     }
 
@@ -53,7 +61,7 @@ void create_deamon(void) {
     sid = setsid();
 
     if (sid < 0) {
-        log_to_file("Failed to create session");
+        log_to_file("Failed to create session", ERROR);
         exit(EXIT_FAILURE);
     }
 
@@ -63,10 +71,11 @@ void create_deamon(void) {
 }
 
 int create_socket(void) {
-    int server_socket = socket(AF_INET, SOCK_STREAM, 0); // creating the socket with IPv4 domain and TCP protocol
+    /* Creating the socket with IPv4 domain and TCP protocol */
+    int server_socket = socket(AF_INET, SOCK_STREAM, 0);
 
     if (server_socket < 0) {
-        log_to_file("Socket creation failed");
+        log_to_file("Socket creation failed", ERROR);
         exit(EXIT_FAILURE);
     }
 
@@ -75,31 +84,29 @@ int create_socket(void) {
 
 void bind_socket(int server_socket, char *port) {
     struct sockaddr_in server_address;
-    server_address.sin_family = AF_INET; //  initializing structure elements for address
-    server_address.sin_port = htons(atoi(port)); // convert port to network byte order using htons
-    server_address.sin_addr.s_addr = INADDR_ANY; // any address available
+    /* Initializing structure elements for address */
+    server_address.sin_family = AF_INET;
+    /* Convert port to network byte order using htons */
+    server_address.sin_port = htons(atoi(port));
+    /* Any address available */
+    server_address.sin_addr.s_addr = INADDR_ANY;
 
-    // bind the socket with the values address and port from the sockaddr_in structure
+    /* Bind the socket with the values address and port from the sockaddr_in structure */
     if (bind(server_socket, (struct sockaddr*)&server_address, sizeof(struct sockaddr)) < 0) {
-        log_to_file("Couldn't bind socket");
+        log_to_file("Couldn't bind socket", ERROR);
         close(server_socket);
         exit(EXIT_FAILURE);
     }
 }
 
 void listen_socket(int server_socket) {
-    // listen on specified port with a maximum of 4 requests
+    /* Listen on specified port with a maximum of 4 requests */
     if (listen(server_socket, BACKLOG) < 0) {
-        log_to_file("Couldn't listen for connections");
+        log_to_file("Couldn't listen for connections", ERROR);
         close(server_socket);
         exit(EXIT_FAILURE);
     }
 }
-
-//void *handle_client(void *args) {
-//    printf("Test functional of handle_client %s", (char *)args);
-//    return NULL;
-//}
 
 void free_clients(void) {
     if (user_list == NULL) {
@@ -144,12 +151,12 @@ SSL_CTX *create_context(void) {
 
 bool configure_context(SSL_CTX *context) {
     /* Set the key and cert */
-    if (SSL_CTX_use_certificate_file(context, CERTIFICATE, SSL_FILETYPE_PEM) <= 0) {
+    if (SSL_CTX_use_certificate_file(context, SSL_CERTIFICATE, SSL_FILETYPE_PEM) <= 0) {
         log_ssl_err_to_file("Couldn't load the certificate into the SSL_CTX");
         return false;
     }
 
-    if (SSL_CTX_use_PrivateKey_file(context, PRIVATE_KEY, SSL_FILETYPE_PEM) <= 0 ) {
+    if (SSL_CTX_use_PrivateKey_file(context, SSL_PRIVATE_KEY, SSL_FILETYPE_PEM) <= 0 ) {
         log_ssl_err_to_file("Couldn't load the private key into the SSL_CTX");
         return false;
     }
@@ -191,11 +198,11 @@ int main(int argc, char **argv) {
         int client_socket = accept(server_socket, NULL, NULL);
 
         if (client_socket < 0) {
-            log_to_file("Couldn't establish connection with client");
+            log_to_file("Couldn't establish connection with client", ERROR);
             break;
         }
 
-        t_client *client_info = (t_client *) malloc(sizeof(t_client));
+        client_info = (t_client *) malloc(sizeof(t_client));
         client_info->client_socket = client_socket;
         mx_push_back(&user_list, client_info);
 
@@ -206,12 +213,16 @@ int main(int argc, char **argv) {
             break;
         }
 
+//        SSL_set_mode(ssl, SSL_MODE_ASYNC); //todo працює і без цього. треба?
+
         client_info->ssl = ssl;
 
         if (!SSL_set_fd(client_info->ssl, client_socket)) {
             log_ssl_err_to_file("Unable to set file descriptor as input/output device for TLS/SSL side");
             break;
         }
+
+//        SSL_set_accept_state(client_info->ssl); //todo працює і без цього. треба?
 
         if (SSL_accept(client_info->ssl) != 1) {
             log_ssl_err_to_file("The TLS/SSL handshake was not successful");
@@ -223,8 +234,7 @@ int main(int argc, char **argv) {
         pthread_attr_init(&thread_attr);
 
         if (pthread_create(&thread, &thread_attr, thread_controller, client_info) != 0) {
-//        if (pthread_create(&thread, &thread_attr, handle_client_request, client_info) != 0) {
-            log_to_file("Failed to create a thread");
+            log_to_file("Failed to create a thread", ERROR);
             break;
         }
 

@@ -14,7 +14,12 @@
 #define BUF_SIZE 100000
 #define REQUEST_TYPE_COUNT 15
 #define STATUS_TYPE_COUNT 10
-#define LOG_FILE "client/client_errors.log"
+#define LOG_FILE "client/client.log"
+
+typedef enum e_log_type {
+    INFO,
+    ERROR
+} t_log_type;
 
 typedef struct s_server {
     struct sockaddr_in address;
@@ -49,7 +54,7 @@ typedef enum e_request_type { // todo підтримувати акутальн�
     GET_MESSAGE_UPDATES,
     GET_CHAT_MEMBERS,
     LOGOUT,
-    UNKNOWN_TYPE = -1
+    UNKNOWN_REQUEST = -1
 } t_request_type;
 
 // enumeration of error types
@@ -63,30 +68,33 @@ typedef enum e_status_type {
     ERROR_CHAT_NONEXIST,
     ERROR_USER_NOT_IN_CHAT,
     ERROR_USER_DONT_HAVE_PERMISSION,
+    UNKNOWN_STATUS = -1
 } t_status_type;
 
 typedef struct s_user_data {
+    pthread_mutex_t mutex;
     t_request_type request_type;
     char *username;
     char *password; // якщо "unsigned char *password", то для SHA-256 хеша розмір поля буде 32 байти.
 } t_user_data;
 
+extern pthread_mutex_t client_mutex;
 extern t_server *server;
 extern t_client *client;
 
 // functions from "client.c" file
-void log_to_file(char *message);
+void log_to_file(char *message, t_log_type log_type);
 void log_ssl_err_to_file(char *message);
 SSL_CTX *create_context(void);
 void free_and_exit(void);
 
 
 // functions from "send_request_to_server.c" file
-void send_login_to_server(SSL *ssl, t_request_type request_type, t_user_data *user_data);
-bool handle_login_response(cJSON *json);
+void send_login_req_to_server(SSL *ssl, t_request_type request_type, t_user_data *user_data);
+bool handle_login_response(char *json_string);
 char *read_client_socket(SSL *ssl);
-void process_server_response(t_request_type request_type, cJSON *json);
-void parse_request_type(char *json_string);
-void *controller(void *arg);
+void process_server_response(t_request_type request_type, char *json_string);
+t_request_type parse_request_type(char *json_string);
+void controller(void *arg);
 
 

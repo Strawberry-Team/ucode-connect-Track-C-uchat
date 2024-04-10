@@ -21,12 +21,31 @@
 #include <openssl/err.h> // -I /opt/homebrew/include
 #include <cjson/cJSON.h> // -I /opt/homebrew/include
 
+//#ifdef MACOS_VER
+//#define SSL_CERTIFICATE "server/ssl/cert.pem"
+//#else
+//#define SSL_CERTIFICATE "server/ssl/certificate.crt"
+//#endif
+//
+//#ifdef MACOS_VER
+//#define SSL_PRIVATE_KEY "server/ssl/cert-key.pem"
+//#else
+//#define SSL_PRIVATE_KEY "server/ssl/private_key.key"
+//#endif
+
 #define BACKLOG 4
 #define BUF_SIZE 100000
 #define REQUEST_TYPE_COUNT 15
-#define LOG_FILE "server/server_errors.log"
-#define CERTIFICATE "server/ssl/certificate.crt"
-#define PRIVATE_KEY "server/ssl/private_key.key"
+#define LOG_FILE "server/server.log"
+//#define SSL_CERTIFICATE "server/ssl/certificate.crt"
+//#define SSL_PRIVATE_KEY "server/ssl/private_key.key"
+#define SSL_CERTIFICATE "server/ssl/cert.pem"
+#define SSL_PRIVATE_KEY "server/ssl/cert-key.pem"
+
+typedef enum e_log_type {
+    INFO,
+    ERROR
+} t_log_type;
 
 typedef struct s_client {
 //    int serv_fd;
@@ -35,7 +54,7 @@ typedef struct s_client {
     SSL *ssl;
     char *username;
     char *password;
-//    bool connected;
+    bool is_connected;
 } t_client;
 
 typedef enum e_request_type { // todo підтримувати акутальним значення REQUEST_TYPE_COUNT
@@ -53,7 +72,7 @@ typedef enum e_request_type { // todo підтримувати акутальн�
     GET_MESSAGE_UPDATES,
     GET_CHAT_MEMBERS,
     LOGOUT,
-    UNKNOWN_TYPE = -1
+    UNKNOWN_REQUEST = -1
 } t_request_type;
 
 extern pthread_mutex_t clients_mutex;
@@ -61,7 +80,7 @@ extern t_list *user_list;
 extern t_client *client_info;
 
 // functions from "server.c" file
-void log_to_file(char *message);
+void log_to_file(char *message, t_log_type log_type);
 void log_ssl_err_to_file(char *message);
 void create_deamon(void);
 int create_socket(void);
@@ -75,9 +94,9 @@ bool configure_context(SSL_CTX *context);
 
 // functions from "define_client_request.c" file
 char *read_client_socket(SSL *ssl);
-void parse_request_type(char *json_string);
+t_request_type parse_request_type(char *json_string);
 void *thread_controller(void *arg);
-void process_client_request(t_request_type request_type, cJSON *json);
+void process_client_request(t_request_type request_type, char *json_string);
 
 //// functions from "process_client_request.c" file
 //bool handle_login(cJSON *json);
