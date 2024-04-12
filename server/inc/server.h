@@ -20,6 +20,7 @@
 #include <openssl/ssl.h> // -I /opt/homebrew/include
 #include <openssl/err.h> // -I /opt/homebrew/include
 #include <cjson/cJSON.h> // -I /opt/homebrew/include
+//#include <sqlite/include/sqlite3.h> // -I /usr/bin/      -I /opt/homebrew/opt/        -L /opt/homebrew/opt/sqlite/lib -lsqlite3
 
 //#ifdef MACOS_VER
 //#define SSL_CERTIFICATE "server/ssl/cert.pem"
@@ -37,13 +38,15 @@
 #define BUF_SIZE 100000
 #define REQUEST_TYPE_COUNT 15
 #define LOG_FILE "server/server.log"
-//#define SSL_CERTIFICATE "server/ssl/certificate.crt"
-//#define SSL_PRIVATE_KEY "server/ssl/private_key.key"
-#define SSL_CERTIFICATE "server/ssl/cert.pem"
-#define SSL_PRIVATE_KEY "server/ssl/cert-key.pem"
+//#define SSL_CERTIFICATE "server/ssl/certificate.crt" // for NOT Mac OS
+//#define SSL_PRIVATE_KEY "server/ssl/private_key.key" // for NOT Mac OS
+#define SSL_CERTIFICATE "server/ssl/cert.pem" // for Mac OS
+#define SSL_PRIVATE_KEY "server/ssl/cert-key.pem" // for Mac OS
 
 typedef enum e_log_type {
     INFO,
+    SSL_ERROR,
+    DB_ERROR,
     ERROR
 } t_log_type;
 
@@ -76,12 +79,13 @@ typedef enum e_request_type { // todo підтримувати акутальн�
 } t_request_type;
 
 extern pthread_mutex_t clients_mutex;
+extern pthread_mutex_t logging_mutex;
 extern t_list *user_list;
-extern t_client *client_info;
 
 // functions from "server.c" file
 void log_to_file(char *message, t_log_type log_type);
-void log_ssl_err_to_file(char *message);
+//void log_ssl_err_to_file(char *message);
+//void log_db_error_to_file(char *message, sqlite3 *db);
 void create_deamon(void);
 int create_socket(void);
 void bind_socket(int server_socket, char *port);
@@ -96,7 +100,7 @@ bool configure_context(SSL_CTX *context);
 char *read_client_socket(SSL *ssl);
 t_request_type parse_request_type(char *json_string);
 void *thread_controller(void *arg);
-void process_client_request(t_request_type request_type, char *json_string);
+void process_client_request(t_client *client_info, t_request_type request_type, char *json_string);
 
 //// functions from "process_client_request.c" file
 //bool handle_login(cJSON *json);

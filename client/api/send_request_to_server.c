@@ -13,8 +13,6 @@ void send_login_req_to_server(SSL *ssl, t_request_type request_type, t_user_data
         return;
     }
 
-//    pthread_mutex_lock(&client_mutex); // todo
-
     if (!cJSON_AddNumberToObject(json, "request_type", request_type)
         || !cJSON_AddItemToObject(json, "credentials", json_credentials_obj)
         || !cJSON_AddStringToObject(json_credentials_obj, "username", user_data->username)
@@ -32,7 +30,6 @@ void send_login_req_to_server(SSL *ssl, t_request_type request_type, t_user_data
         log_to_file("Could not write JSON string over the TLS/SSL connection to send a login request to the server", ERROR);
     }
 
-//    pthread_mutex_unlock(&client_mutex); //todo
     free(json_string); // todo або mx_strdel(&json_string);
     cJSON_Delete(json);
     return;
@@ -54,9 +51,7 @@ bool handle_login_response(char *json_string) {
         return false;
     }
 
-//    pthread_mutex_lock(&client_mutex); // todo
     const cJSON *json_status = cJSON_GetObjectItemCaseSensitive(json, "status");
-//    pthread_mutex_unlock(&client_mutex); //todo
     int request_status;
 
     if (!cJSON_IsNumber(json_status)
@@ -77,7 +72,6 @@ bool handle_login_response(char *json_string) {
         return false;
     }
 
-//    pthread_mutex_lock(&client_mutex); //todo
     const cJSON *json_data_obj = cJSON_GetObjectItemCaseSensitive(json, "data");
 
     if (cJSON_IsObject(json_data_obj)) {
@@ -101,7 +95,6 @@ bool handle_login_response(char *json_string) {
         return false;
     }
 
-//    pthread_mutex_unlock(&client_mutex); // todo
     // todo printf for testing
     printf("RESPONSE:\nUser data:\nid: %d\nusername: %s\npassword: %s\nicon_id: %d\n", client->id, client->username, client->password, client->icon_id);
     char msg[200];
@@ -170,7 +163,6 @@ void process_server_response(t_request_type request_type, char *json_string) {
             break;
     }
 
-    close(client->client_socket); //todo dowe need to do it?
     return;
 }
 
@@ -189,11 +181,8 @@ t_request_type parse_request_type(char *json_string) {
         return UNKNOWN_REQUEST;
     }
 
-
-//    pthread_mutex_lock(&client_mutex); //todo
     t_request_type request_type;
     const cJSON *json_req_type = cJSON_GetObjectItemCaseSensitive(json, "request_type");
-//    pthread_mutex_unlock(&client_mutex); //todo
 
     if (!cJSON_IsNumber(json_req_type)
         || json_req_type->valueint < 0
@@ -209,38 +198,74 @@ t_request_type parse_request_type(char *json_string) {
     return request_type;
 }
 
+void reconnect_to_server(void) {
+    log_to_file("The reconnection to server is started", INFO);
+
+    while (true) {
+        sleep(3);
+
+        client->client_socket = socket(AF_INET, SOCK_STREAM, 0);
+
+        if (client->client_socket < 0) {
+            perror("Socket creation failed");
+            continue;
+        }
+
+        if (connect(client->client_socket, (struct sockaddr *) &(server->address), sizeof(server->address)) != 0) {
+            perror("Couldn't connect with the server");
+            close(client->client_socket);
+            continue;
+        }
+
+        client->ssl = SSL_new(client->context);
+
+        if (!client->ssl) {
+            perror("Creation of a new SSL structure failed");
+            close(client->client_socket);
+            continue;
+        }
+
+        if (!SSL_set_fd(client->ssl, client->client_socket)) {
+            perror("Unable to set file descriptor as input/output device for TLS/SSL side");
+            close(client->client_socket);
+            SSL_free(client->ssl);
+            continue;
+        }
+
+        if (SSL_connect(client->ssl) != 1) {
+            perror("The TLS/SSL handshake was not successful");
+            close(client->client_socket);
+            SSL_free(client->ssl);
+            continue;
+        }
+
+        perror("The reconnection to server was successful");
+        log_to_file("The reconnection to server was successful", INFO);
+        break;
+    }
+}
+
 /* Read the information received from the server and write it as a string */
-char *read_client_socket(SSL *ssl) {
-//    char buffer[BUF_SIZE]; // Initialize an empty buffer
-//    memset(buffer, 0, sizeof(buffer));
+char *read_client_socket(void) {
     char *buffer = (char *) malloc(BUF_SIZE * sizeof(char));
     int bytes_read = 0;
     int total_bytes_read = 0;
 
-//    pthread_mutex_lock(&client_mutex);//todo
-
     while (true) {
-        bytes_read = SSL_read(ssl, buffer + total_bytes_read, BUF_SIZE - total_bytes_read);
+        bytes_read = SSL_read(client->ssl, buffer + total_bytes_read, BUF_SIZE - total_bytes_read);
 
         if (bytes_read <= 0) {
-            int error_code = SSL_get_error(ssl, bytes_read);
+            int error_code = SSL_get_error(client->ssl, bytes_read);
 
             if (error_code == SSL_ERROR_WANT_READ
                  || error_code == SSL_ERROR_WANT_WRITE) {
                 log_ssl_err_to_file("There is still unprocessed data available at the TLS/SSL connection. Continue reading...");
+                sleep(3);
                 continue;
-            } else if (error_code == SSL_ERROR_ZERO_RETURN) {
-                log_ssl_err_to_file("Connection is closed");
-//                pthread_mutex_unlock(&client_mutex); //todo
-                return NULL;
             } else {
-                log_ssl_err_to_file("Unexpected error reading from client socket");
-
-                char msg[200];
-                sprintf(msg, "bytes_read=%d\terror_code=%d\t", bytes_read, error_code);
-                log_to_file(msg, ERROR);
-                // todo for testing
-//                pthread_mutex_unlock(&client_mutex); //todo
+                log_ssl_err_to_file("Connection is closed");
+                // todo reconnect_SSL_foo() must be added
+                reconnect_to_server();
                 return NULL;
             }
         }
@@ -249,25 +274,22 @@ char *read_client_socket(SSL *ssl) {
 
         if (total_bytes_read >= BUF_SIZE) { /* буфер переповнений */
             log_to_file("Buffer for reading is overflowing", ERROR);
-//            pthread_mutex_unlock(&client_mutex); //todo
             return NULL;
         } else if (buffer[total_bytes_read] == '\0') { /* кінець файлу, дані повністю прочитані */
             break;
         }
     }
 
-//    pthread_mutex_unlock(&client_mutex); //todo
-    buffer[total_bytes_read] = '\0';
+//    buffer[total_bytes_read] = '\0';
     return mx_strdup(buffer);
 }
 
-void controller(void *arg) {
-    t_client *client = (t_client *) arg;
+void controller(void) {
     char *json_string = NULL;
     t_request_type request_type;
 
     while (true) {
-        json_string = read_client_socket(client->ssl);
+        json_string = read_client_socket();
 
         if (!json_string) {
             continue;

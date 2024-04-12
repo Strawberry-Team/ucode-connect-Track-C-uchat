@@ -8,7 +8,7 @@
 //extern t_client *client_info;
 
 // functions from "process_client_request.c" file
-bool handle_login(char *json_string);
+bool handle_login(t_client *client_info, char *json_string);
 
 // functions from "send_response_to_client.c" file
 void send_status_response(SSL *ssl, t_request_type request_type, t_status_type status);

@@ -1,6 +1,6 @@
 #include "api.h"
 
-bool handle_login(char *json_string) {
+bool handle_login(t_client *client_info, char *json_string) {
     cJSON *json = cJSON_Parse(json_string);
 
     if (!json) {
@@ -16,9 +16,7 @@ bool handle_login(char *json_string) {
         return false;
     }
 
-//    pthread_mutex_lock(&clients_mutex); // todo
     const cJSON *json_credentials = cJSON_GetObjectItemCaseSensitive(json, "credentials");
-//    pthread_mutex_unlock(&clients_mutex); // todo
 
     if (cJSON_IsObject(json_credentials)) {
         const cJSON *json_username = cJSON_GetObjectItemCaseSensitive(json_credentials, "username");

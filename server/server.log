@@ -1,4 +1,150 @@
-[2024-04-11 00:09:47]	INFO	PID 50524	Deamon started with pid 50525
-[2024-04-11 00:09:50]	INFO	PID 50525	Database successfully opened
-[2024-04-11 00:09:50]	INFO	PID 50525	The passed user's credentials exists in the database
-[2024-04-11 00:09:50]	INFO	PID 50525	User "Inessa" successfully logged in
+[2024-04-11 15:52:32]	INFO	PID 65882	Deamon started with pid 65883
+[2024-04-11 15:52:35]	INFO	PID 65883	Database successfully opened
+[2024-04-11 15:52:35]	INFO	PID 65883	The passed user's credentials exists in the database
+[2024-04-11 15:52:35]	INFO	PID 65883	User "Inessa" successfully logged in
+[2024-04-11 15:53:21]	INFO	PID 65923	Deamon started with pid 65924
+[2024-04-11 15:54:04]	SSL	PID 65924	The TLS/SSL handshake was not successful: Undefined error: 0
+C03AF60102000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-11 15:55:28]	INFO	PID 65956	Deamon started with pid 65957
+[2024-04-11 15:55:31]	INFO	PID 65957	Database successfully opened
+[2024-04-11 15:55:31]	INFO	PID 65957	The passed user's credentials exists in the database
+[2024-04-11 15:55:31]	INFO	PID 65957	User "Inessa" successfully logged in
+[2024-04-11 15:55:59]	INFO	PID 66000	Deamon started with pid 66001
+[2024-04-11 15:56:16]	SSL	PID 66001	The TLS/SSL handshake was not successful: Undefined error: 0
+C03AF60102000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-11 15:58:45]	INFO	PID 66055	Deamon started with pid 66056
+[2024-04-11 15:58:48]	INFO	PID 66056	Database successfully opened
+[2024-04-11 15:58:48]	INFO	PID 66056	The passed user's credentials exists in the database
+[2024-04-11 15:58:48]	INFO	PID 66056	User "Inessa" successfully logged in
+[2024-04-11 15:59:13]	INFO	PID 66091	Deamon started with pid 66092
+[2024-04-11 16:02:04]	SSL	PID 66092	Connection is closed: Undefined error: 0
+0030C96B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-11 16:02:59]	INFO	PID 66179	Deamon started with pid 66180
+[2024-04-11 16:03:13]	ERROR	PID 66203	Couldn't bind socket: Address already in use
+[2024-04-11 16:03:13]	INFO	PID 66202	Deamon started with pid 66203
+[2024-04-11 16:03:20]	INFO	PID 66180	Database successfully opened
+[2024-04-11 16:03:20]	INFO	PID 66180	The passed user's credentials exists in the database
+[2024-04-11 16:03:20]	INFO	PID 66180	User "Inessa" successfully logged in
+[2024-04-11 16:03:38]	INFO	PID 66235	Deamon started with pid 66236
+[2024-04-11 16:06:32]	SSL	PID 66236	The TLS/SSL handshake was not successful: Undefined error: 0
+C03AF60102000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-11 16:15:01]	INFO	PID 66369	Deamon started with pid 66370
+[2024-04-11 16:15:52]	ERROR	PID 66404	Couldn't bind socket: Address already in use
+[2024-04-11 16:15:52]	INFO	PID 66403	Deamon started with pid 66404
+[2024-04-11 16:15:55]	INFO	PID 66422	Deamon started with pid 66423
+[2024-04-11 16:15:55]	ERROR	PID 66423	Couldn't bind socket: Address already in use
+[2024-04-11 16:16:22]	ERROR	PID 66455	Couldn't bind socket: Address already in use
+[2024-04-11 16:16:22]	INFO	PID 66454	Deamon started with pid 66455
+[2024-04-11 16:17:54]	ERROR	PID 66498	Couldn't bind socket: Address already in use
+[2024-04-11 16:17:54]	INFO	PID 66497	Deamon started with pid 66498
+[2024-04-11 16:17:56]	INFO	PID 66370	Database successfully opened
+[2024-04-11 16:17:56]	INFO	PID 66370	The passed user's credentials exists in the database
+[2024-04-11 16:17:56]	INFO	PID 66370	User "Inessa" successfully logged in
+[2024-04-11 16:19:04]	INFO	PID 66550	Deamon started with pid 66551
+[2024-04-11 16:25:27]	INFO	PID 66647	Deamon started with pid 66648
+[2024-04-11 16:25:27]	ERROR	PID 66648	Couldn't bind socket: Address already in use
+[2024-04-11 16:25:29]	INFO	PID 66551	Database successfully opened
+[2024-04-11 16:25:29]	INFO	PID 66551	The passed user's credentials exists in the database
+[2024-04-11 16:25:29]	INFO	PID 66551	User "Inessa" successfully logged in
+[2024-04-11 16:25:47]	INFO	PID 66688	Deamon started with pid 66689
+[2024-04-11 16:31:14]	ERROR	PID 66769	Couldn't bind socket: Address already in use
+[2024-04-11 16:31:14]	INFO	PID 66768	Deamon started with pid 66769
+[2024-04-11 16:31:16]	INFO	PID 66689	Database successfully opened
+[2024-04-11 16:31:16]	INFO	PID 66689	The passed user's credentials exists in the database
+[2024-04-11 16:31:16]	INFO	PID 66689	User "Inessa" successfully logged in
+[2024-04-11 16:31:44]	INFO	PID 66818	Deamon started with pid 66819
+[2024-04-11 16:33:59]	SSL	PID 66819	Connection is closed: Undefined error: 0
+00F0586D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-11 16:34:20]	ERROR	PID 66861	Couldn't bind socket: Address already in use
+[2024-04-11 16:34:20]	INFO	PID 66860	Deamon started with pid 66861
+[2024-04-11 16:34:22]	INFO	PID 66819	Database successfully opened
+[2024-04-11 16:34:22]	INFO	PID 66819	The passed user's credentials exists in the database
+[2024-04-11 16:34:22]	INFO	PID 66819	User "Inessa" successfully logged in
+[2024-04-11 16:34:39]	INFO	PID 66904	Deamon started with pid 66905
+[2024-04-11 16:37:02]	INFO	PID 66936	Deamon started with pid 66937
+[2024-04-11 16:37:02]	ERROR	PID 66937	Couldn't bind socket: Address already in use
+[2024-04-11 16:38:17]	ERROR	PID 66979	Couldn't bind socket: Address already in use
+[2024-04-11 16:38:17]	INFO	PID 66978	Deamon started with pid 66979
+[2024-04-11 16:38:19]	INFO	PID 66905	Database successfully opened
+[2024-04-11 16:38:19]	INFO	PID 66905	The passed user's credentials exists in the database
+[2024-04-11 16:38:19]	INFO	PID 66905	User "Inessa" successfully logged in
+[2024-04-11 16:38:39]	INFO	PID 67021	Deamon started with pid 67022
+[2024-04-11 16:39:16]	INFO	PID 67022	Database successfully opened
+[2024-04-11 16:39:16]	INFO	PID 67022	The passed user's credentials exists in the database
+[2024-04-11 16:39:16]	INFO	PID 67022	User "Inessa" successfully logged in
+[2024-04-11 16:39:29]	INFO	PID 67022	Database successfully opened
+[2024-04-11 16:39:29]	INFO	PID 67022	The passed user's credentials exists in the database
+[2024-04-11 16:39:29]	INFO	PID 67022	User "Inessa" successfully logged in
+[2024-04-11 16:39:37]	SSL	PID 67022	Connection is closed: Undefined error: 0
+00B0246F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-11 16:40:35]	INFO	PID 67084	Deamon started with pid 67085
+[2024-04-11 17:30:06]	INFO	PID 67924	Deamon started with pid 67926
+[2024-04-11 17:30:06]	ERROR	PID 67926	Couldn't bind socket: Address already in use
+[2024-04-11 17:30:17]	INFO	PID 67085	Database successfully opened
+[2024-04-11 17:30:17]	INFO	PID 67085	The passed user's credentials exists in the database
+[2024-04-11 17:30:17]	INFO	PID 67085	User "Inessa" successfully logged in
+[2024-04-11 17:31:07]	SSL	PID 67085	Connection is closed: Undefined error: 0
+0070936F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-11 17:31:43]	INFO	PID 67989	Deamon started with pid 67990
+[2024-04-11 17:31:45]	ERROR	PID 67990	client data: 1: Undefined error: 0
+[2024-04-11 17:31:45]	INFO	PID 67990	Database successfully opened
+[2024-04-11 17:31:45]	INFO	PID 67990	The passed user's credentials exists in the database
+[2024-04-11 17:31:45]	INFO	PID 67990	User "Inessa" successfully logged in
+[2024-04-11 17:37:34]	SSL	PID 67990	Connection is closed: Undefined error: 0
+0070D16F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-11 17:40:02]	INFO	PID 68154	Deamon started with pid 68155
+[2024-04-11 17:40:08]	ERROR	PID 68155	client data: 1: Undefined error: 0
+[2024-04-11 17:40:08]	INFO	PID 68155	Database successfully opened
+[2024-04-11 17:40:08]	INFO	PID 68155	The passed user's credentials exists in the database
+[2024-04-11 17:40:08]	INFO	PID 68155	User "Inessa" successfully logged in
+[2024-04-11 17:42:21]	SSL	PID 68155	Connection is closed: Undefined error: 0
+00F0586D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-11 17:43:46]	ERROR	PID 68246	Couldn't bind socket: Address already in use
+[2024-04-11 17:43:46]	INFO	PID 68245	Deamon started with pid 68246
+[2024-04-11 17:43:58]	ERROR	PID 68155	client data: 4: Undefined error: 0
+[2024-04-11 17:43:58]	INFO	PID 68155	Database successfully opened
+[2024-04-11 17:43:58]	INFO	PID 68155	The passed user's credentials exists in the database
+[2024-04-11 17:43:58]	INFO	PID 68155	User "Inessa" successfully logged in
+[2024-04-11 17:44:21]	SSL	PID 68155	Connection is closed: Undefined error: 0
+00F0586D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-11 17:44:38]	INFO	PID 68294	Deamon started with pid 68295
+[2024-04-11 17:44:41]	ERROR	PID 68295	client data: testing testing: Undefined error: 0
+[2024-04-11 17:44:41]	INFO	PID 68295	Database successfully opened
+[2024-04-11 17:44:41]	INFO	PID 68295	The passed user's credentials exists in the database
+[2024-04-11 17:44:41]	INFO	PID 68295	User "Inessa" successfully logged in
+[2024-04-11 18:06:01]	SSL	PID 68295	Connection is closed: Undefined error: 0
+00F0E56B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-11 18:08:06]	INFO	PID 68726	Deamon started with pid 68728
+[2024-04-11 18:08:09]	INFO	PID 68728	Database successfully opened
+[2024-04-11 18:08:09]	INFO	PID 68728	The passed user's credentials exists in the database
+[2024-04-11 18:08:09]	INFO	PID 68728	User "Inessa" successfully logged in
+[2024-04-11 18:55:09]	SSL	PID 68728	Connection is closed: Undefined error: 0
+00B0916D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-12 10:29:55]	INFO	PID 76202	Deamon started with pid 76204
+[2024-04-12 10:30:15]	INFO	PID 76250	Deamon started with pid 76251
+[2024-04-12 10:30:23]	SSL	PID 76251	Connection is closed: Undefined error: 0
+0070686B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-12 10:30:56]	INFO	PID 76296	Deamon started with pid 76297
+[2024-04-12 10:32:11]	INFO	PID 76363	Deamon started with pid 76364
+[2024-04-12 10:33:06]	INFO	PID 76416	Deamon started with pid 76417
+[2024-04-12 10:33:33]	SSL	PID 76417	Connection is closed: Undefined error: 0
+0070DE6B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-12 10:34:01]	INFO	PID 76453	Deamon started with pid 76454
+[2024-04-12 10:38:29]	INFO	PID 76538	Deamon started with pid 76540
+[2024-04-12 10:41:38]	INFO	PID 76605	Deamon started with pid 76606
+[2024-04-12 10:41:44]	INFO	PID 76606	Database successfully opened
+[2024-04-12 10:41:44]	INFO	PID 76606	The passed user's credentials exists in the database
+[2024-04-12 10:41:44]	INFO	PID 76606	User "Inessa" successfully logged in
+[2024-04-12 10:42:09]	INFO	PID 76606	Database successfully opened
+[2024-04-12 10:42:09]	INFO	PID 76606	The passed user's credentials exists in the database
+[2024-04-12 10:42:09]	INFO	PID 76606	User "Inessa" successfully logged in
+[2024-04-12 10:42:18]	SSL	PID 76606	Connection is closed: Undefined error: 0
+00B0FF6A01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-12 10:42:41]	INFO	PID 76673	Deamon started with pid 76674
+[2024-04-12 10:42:49]	INFO	PID 76674	Database successfully opened
+[2024-04-12 10:42:49]	INFO	PID 76674	The passed user's credentials exists in the database
+[2024-04-12 10:42:49]	INFO	PID 76674	User "Inessa" successfully logged in
+[2024-04-12 10:42:56]	SSL	PID 76674	Connection is closed: Undefined error: 0
+00307C6B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-12 10:42:58]	SSL	PID 76674	Connection is closed: Undefined error: 0
+0070736B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:

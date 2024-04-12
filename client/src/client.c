@@ -4,7 +4,6 @@
 
 #include "client.h"
 
-pthread_mutex_t client_mutex;
 t_server *server;
 t_client *client;
 
@@ -33,7 +32,7 @@ void log_to_file(char *message, t_log_type log_type) {
 void log_ssl_err_to_file(char *message) {
     FILE *log_file = fopen(LOG_FILE, "a");
     log_to_file(message, ERROR);
-    ERR_print_errors_fp(log_file); // todo або використовувати -- void ERR_print_errors_cb(int (*cb)(const char *str, size_t len, void *u), void *u);
+    ERR_print_errors_fp(log_file);
     fclose(log_file);
 }
 
@@ -41,7 +40,7 @@ SSL_CTX *create_context(void) {
     const SSL_METHOD *method;
     method = TLS_client_method();
     SSL_CTX *context;
-    context = SSL_CTX_new(method); // todo NULL for testing log_ssl_err_to_file()
+    context = SSL_CTX_new(method);
 
     return context;
 }
@@ -63,7 +62,6 @@ void free_and_exit(void) {
 
     printf("Thread joined\n");
     log_to_file("Thread joined", INFO);
-    pthread_mutex_destroy(&client_mutex);
     free(client);
     free(server);
     exit(EXIT_FAILURE);
@@ -75,20 +73,13 @@ int main(int argc, char **argv) {
         exit(EXIT_SUCCESS);
     }
 
-    if (pthread_mutex_init(&client_mutex, NULL) != 0) {
-        perror("Client mutex initialization failed");
-        log_to_file("Client mutex initialization failed", ERROR);
-        exit(EXIT_FAILURE);
-    }
-
     server = (t_server *) malloc(sizeof(t_server));
     server->address.sin_family = AF_INET;
     server->address.sin_port = htons(atoi(argv[2]));
-//    server->address.sin_addr.s_addr = argv[1];  // todo do we need it?
 
     if (inet_pton(AF_INET, argv[1], &(server->address.sin_addr)) <= 0) {
-        perror("inet_pton error occured");
-        log_to_file("inet_pton error occured", ERROR);
+        perror("Could not convert the network address");
+        log_to_file("Could not convert the network address", ERROR);
         exit(EXIT_FAILURE);
     }
 
@@ -128,8 +119,6 @@ int main(int argc, char **argv) {
         free_and_exit();
     }
 
-//    SSL_set_mode(ssl, SSL_MODE_ASYNC); //todo працює і без цього. треба?
-
     client->ssl = ssl;
 
     if (!SSL_set_fd(client->ssl, client->client_socket)) {
@@ -137,8 +126,6 @@ int main(int argc, char **argv) {
         log_to_file("Unable to set file descriptor as input/output device for TLS/SSL side", ERROR);
         free_and_exit();
     }
-
-//    SSL_set_connect_state(client->ssl); //todo працює і без цього. треба?
 
     if (SSL_connect(client->ssl) != 1) {
         perror("The TLS/SSL handshake was not successful");
@@ -150,16 +137,14 @@ int main(int argc, char **argv) {
     user_data = (t_user_data *) malloc(sizeof(t_user_data));
     user_data->request_type = LOGIN;
     const char *username = "Inessa";
-    user_data->username = strdup(username); // todo  or mx_strdup()
+    user_data->username = strdup(username);
     char *password = "PaSsWoRd";
-    user_data->password = strdup(password); // todo or mx_strdup()
+    user_data->password = strdup(password);
 
     send_login_req_to_server(client->ssl, LOGIN, user_data);
 
-    // todo create reconnect foo
-
     // todo request_handler. do we need threads or something else?
-    controller(client);
+    controller();
 
     return 0;
 }

@@ -10,8 +10,6 @@ void send_status_response(SSL *ssl, t_request_type request_type, t_status_type s
         return;
     }
 
-    //    pthread_mutex_lock(&clients_mutex); // todo
-
     if (!cJSON_AddNumberToObject(json, "request_type", request_type)
         || !cJSON_AddNumberToObject(json, "status", status)) {
         log_to_file("Could not add the data in the cJSON object to send a status response to the client", ERROR);
@@ -27,7 +25,6 @@ void send_status_response(SSL *ssl, t_request_type request_type, t_status_type s
         log_to_file("Could not write JSON string over the TLS/SSL connection to send a login response to the client", ERROR);
     }
 
-//    pthread_mutex_unlock(&clients_mutex); //todo
     free(json_string); // todo  або mx_strdel(&json_string);
     cJSON_Delete(json);
     return;

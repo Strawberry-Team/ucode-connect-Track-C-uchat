@@ -8,11 +8,13 @@
 #include "server.h"
 
 pthread_mutex_t clients_mutex;
+pthread_mutex_t logging_mutex;
 t_list *user_list;
-t_client *client_info;
 
 void log_to_file(char *message, t_log_type log_type) {
+    pthread_mutex_lock(&logging_mutex);
     FILE *log_file = fopen(LOG_FILE, "a");
+
     time_t current_time;
     struct tm *time_info;
     char time_string[80];
@@ -26,19 +28,32 @@ void log_to_file(char *message, t_log_type log_type) {
     /* Write a log message */
     if (log_type == INFO) {
         fprintf(log_file, "[%s]\tINFO\tPID %d\t%s\n", time_string, getpid(), message);
+    } else if (log_type == SSL_ERROR) {
+        fprintf(log_file, "[%s]\tSSL\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
+        ERR_print_errors_fp(log_file);
+//    } else if (log_type == DB_ERROR) {
+//        fprintf(log_file, "[%s]\tDB\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
     } else {
         fprintf(log_file, "[%s]\tERROR\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
     }
 //    free(time_info); //todo occurs the memory errors
     fclose(log_file);
+    pthread_mutex_unlock(&logging_mutex);
 }
 
-void log_ssl_err_to_file(char *message) {
-    FILE *log_file = fopen(LOG_FILE, "a");
-    log_to_file(message, ERROR);
-    ERR_print_errors_fp(log_file); // todo або використовувати -- void ERR_print_errors_cb(int (*cb)(const char *str, size_t len, void *u), void *u);
-    fclose(log_file);
-}
+//void log_ssl_err_to_file(char *message) {
+//    FILE *log_file = fopen(LOG_FILE, "a");
+//    log_to_file(message, ERROR);
+//    ERR_print_errors_fp(log_file);
+//    fclose(log_file);
+//}
+
+//void log_db_error_to_file(char *message, sqlite3 *db) {
+//    char msg[100];
+//    sprintf(msg, ": [%d | %s]", sqlite3_errcode(db), sqlite3_errmsg(db));
+//    mx_strcat(message, msg);
+//    log_to_file(msg, DB_ERROR);
+//}
 
 void create_deamon(void) {
     pid_t pid = fork();
@@ -140,10 +155,10 @@ SSL_CTX *create_context(void) {
     const SSL_METHOD *method;
     method = TLS_server_method();
     SSL_CTX *context;
-    context = SSL_CTX_new(method); // todo NULL for testing log_ssl_err_to_file()
+    context = SSL_CTX_new(method);
 
     if (!context) {
-        log_ssl_err_to_file("Unable to create SSL context");
+        log_to_file("Unable to create SSL context", SSL_ERROR);
     }
 
     return context;
@@ -152,17 +167,17 @@ SSL_CTX *create_context(void) {
 bool configure_context(SSL_CTX *context) {
     /* Set the key and cert */
     if (SSL_CTX_use_certificate_file(context, SSL_CERTIFICATE, SSL_FILETYPE_PEM) <= 0) {
-        log_ssl_err_to_file("Couldn't load the certificate into the SSL_CTX");
+        log_to_file("Couldn't load the certificate into the SSL_CTX", SSL_ERROR);
         return false;
     }
 
     if (SSL_CTX_use_PrivateKey_file(context, SSL_PRIVATE_KEY, SSL_FILETYPE_PEM) <= 0 ) {
-        log_ssl_err_to_file("Couldn't load the private key into the SSL_CTX");
+        log_to_file("Couldn't load the private key into the SSL_CTX", SSL_ERROR);
         return false;
     }
 
     if (SSL_CTX_check_private_key(context) != 1) {
-        log_ssl_err_to_file("The private key has no consistency with the certificate");
+        log_to_file("The private key has no consistency with the certificate", SSL_ERROR);
         return false;
     }
 
@@ -173,6 +188,12 @@ int main(int argc, char **argv) {
     if (argc != 2) {
         printf("usage: %s [port]\n", argv[0]);
         exit(EXIT_SUCCESS);
+    }
+
+    if (pthread_mutex_init(&logging_mutex, NULL) != 0
+        || pthread_mutex_init(&clients_mutex, NULL) != 0) {
+        log_to_file("Mutex initialization failed", ERROR);
+        exit(EXIT_FAILURE);
     }
 
     create_deamon();
@@ -186,13 +207,12 @@ int main(int argc, char **argv) {
     SSL_CTX *context = create_context();
     SSL *ssl;
 
-    if (!context || !configure_context(context)) {
+    if (!context
+        || !configure_context(context)) {
         SSL_CTX_free(context);
         close(server_socket);
         exit(EXIT_FAILURE);
     }
-
-    pthread_mutex_init(&clients_mutex, NULL);
 
     while (true) {
         int client_socket = accept(server_socket, NULL, NULL);
@@ -202,30 +222,26 @@ int main(int argc, char **argv) {
             break;
         }
 
-        client_info = (t_client *) malloc(sizeof(t_client));
+        t_client *client_info = (t_client *) malloc(sizeof(t_client));
         client_info->client_socket = client_socket;
         mx_push_back(&user_list, client_info);
 
         ssl = SSL_new(context);
 
         if (!ssl) {
-            log_ssl_err_to_file("Creation of a new SSL structure failed");
+            log_to_file("Creation of a new SSL structure failed", SSL_ERROR);
             break;
         }
-
-//        SSL_set_mode(ssl, SSL_MODE_ASYNC); //todo працює і без цього. треба?
 
         client_info->ssl = ssl;
 
         if (!SSL_set_fd(client_info->ssl, client_socket)) {
-            log_ssl_err_to_file("Unable to set file descriptor as input/output device for TLS/SSL side");
+            log_to_file("Unable to set file descriptor as input/output device for TLS/SSL side", SSL_ERROR);
             break;
         }
 
-//        SSL_set_accept_state(client_info->ssl); //todo працює і без цього. треба?
-
         if (SSL_accept(client_info->ssl) != 1) {
-            log_ssl_err_to_file("The TLS/SSL handshake was not successful");
+            log_to_file("The TLS/SSL handshake was not successful", SSL_ERROR);
             break;
         }
 
@@ -238,9 +254,7 @@ int main(int argc, char **argv) {
             break;
         }
 
-//        // todo треба обрати щось одне: або pthread_join() або pthread_detach()
-        pthread_detach(thread); // робить потік відокремленим і його ресурси будуть автоматично звільнені після завершення виконання. коли вам не потрібно чекати завершення потоку, і ви хочете, щоб ресурси були автоматично звільнені
-//        pthread_join(thread, NULL); // блокує головний потік, доки потік thread не завершиться. коли вам потрібно впевнитися, що всі потоки завершили роботу, перш ніж програма завершиться
+        pthread_detach(thread);
     }
 
     SSL_CTX_free(context);

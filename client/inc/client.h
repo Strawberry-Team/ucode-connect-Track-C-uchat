@@ -32,7 +32,6 @@ typedef struct s_client {
     int client_socket;
     SSL *ssl;
     SSL_CTX *context;
-//    struct sockaddr_in address;
     int id;
     char *username;
     char *password;
@@ -72,13 +71,11 @@ typedef enum e_status_type {
 } t_status_type;
 
 typedef struct s_user_data {
-    pthread_mutex_t mutex;
     t_request_type request_type;
     char *username;
     char *password; // якщо "unsigned char *password", то для SHA-256 хеша розмір поля буде 32 байти.
 } t_user_data;
 
-extern pthread_mutex_t client_mutex;
 extern t_server *server;
 extern t_client *client;
 
@@ -92,9 +89,10 @@ void free_and_exit(void);
 // functions from "send_request_to_server.c" file
 void send_login_req_to_server(SSL *ssl, t_request_type request_type, t_user_data *user_data);
 bool handle_login_response(char *json_string);
-char *read_client_socket(SSL *ssl);
+void reconnect_to_server(void);
+char *read_client_socket(void);
 void process_server_response(t_request_type request_type, char *json_string);
 t_request_type parse_request_type(char *json_string);
-void controller(void *arg);
+void controller(void);
 
 
