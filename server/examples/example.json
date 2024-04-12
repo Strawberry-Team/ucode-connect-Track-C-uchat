@@ -1,18 +1,28 @@
 {
-  "requestType": "createUser",
-  "data": {
-    "username": "irepeshko",
-    "password": "22%w1s@1"
+"request_type": 0,//   "login"
+  "credentials": {
+    "username": "alaskevych",
+    "password": "213w1s1"
   }
 };
-{
-"requestType": "signin",
-"credentials": {
-"username": "alaskevych",
-"password": "213w1s1"
-}
-},
 
+{
+"request_type": 0,//   "login"
+"status": 0,
+"data": {
+"id": 10,
+"username": "alaskevych",
+"password": "213w1s1",
+"icon_id": 1
+}
+};
+{
+"request_type": "createUser",
+"data": {
+"username": "irepeshko",
+"password": "22%w1s@1"
+}
+};
 {
 "requestType": "signout",
 "credentials": {

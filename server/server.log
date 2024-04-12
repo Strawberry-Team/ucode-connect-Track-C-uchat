@@ -148,3 +148,11 @@ C03AF60102000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/r
 00307C6B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
 [2024-04-12 10:42:58]	SSL	PID 76674	Connection is closed: Undefined error: 0
 0070736B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-12 13:00:07]	INFO	PID 78641	Deamon started with pid 78643
+[2024-04-12 13:01:58]	INFO	PID 78685	Deamon started with pid 78686
+[2024-04-12 13:01:58]	ERROR	PID 78686	Couldn't bind socket: Address already in use
+[2024-04-12 13:02:01]	INFO	PID 78643	Database successfully opened
+[2024-04-12 13:02:01]	INFO	PID 78643	The passed user's credentials exists in the database
+[2024-04-12 13:02:01]	INFO	PID 78643	User "Inessa" successfully logged in
+[2024-04-12 13:06:37]	SSL	PID 78643	Connection is closed: Undefined error: 0
+0030BE6B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:

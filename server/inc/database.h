@@ -16,20 +16,6 @@ typedef struct s_user_data {
     int icon_id;
 } t_user_data;
 
-// enumeration of error types
-typedef enum e_status_type {
-    SUCCESS,
-    SUCCESS_VALID_CREDENTIALS,
-    SUCCESS_CHAT_EXIST,
-    SUCCESS_USER_IN_CHAT,
-    ERROR_JSON_FAILED,
-    ERROR_INVALID_CREDENTIALS,
-    ERROR_CHAT_NONEXIST,
-    ERROR_USER_NOT_IN_CHAT,
-    ERROR_USER_DONT_HAVE_PERMISSION,
-    UNKNOWN_STATUS
-} t_status_type;
-
 /*
  * Який тип даних вибрати для поля "password":
  * char: Цей тип даних може зберігати значення від -128 до 127. Якщо ваш алгоритм хешування генерує хеш-суми в цьому діапазоні, то char є кращим вибором.

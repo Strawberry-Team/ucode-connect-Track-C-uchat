@@ -24,7 +24,7 @@ void send_login_req_to_server(SSL *ssl, t_request_type request_type, t_user_data
 
     json_string = cJSON_Print(json); // todo Друкує JSON-об'єкт або масив у форматі, що включає відступи та нові рядки. альтернатива cJSON_PrintUnformatted() - без відступів та нових рядків.
 
-    int bytes_written = SSL_write(ssl, json_string, strlen(json_string)); // todo або mx_strlen()
+    int bytes_written = SSL_write(ssl, json_string, strlen(json_string));
 
     if (bytes_written <= 0) {
         log_to_file("Could not write JSON string over the TLS/SSL connection to send a login request to the server", ERROR);
@@ -67,6 +67,7 @@ bool handle_login_response(char *json_string) {
 
     if (request_status != SUCCESS_VALID_CREDENTIALS) {
 //        handle_error_response(); // todo CREATE THIS FOO
+        // todo создать вывод сообщения об ошибке на фронте
         log_to_file("Wrong status for login request. Expected: SUCCESS_VALID_CREDENTIALS", ERROR);
         cJSON_Delete(json);
         return false;
@@ -111,8 +112,7 @@ void process_server_response(t_request_type request_type, char *json_string) {
         && request_type != UNKNOWN_REQUEST) {
         if (!handle_login_response(json_string)) {
             log_to_file("Could not authenticate the user before processing the client request", ERROR);
-            pthread_exit(NULL);
-            return;
+            free_and_exit();
         }
     }
 
@@ -260,7 +260,7 @@ char *read_client_socket(void) {
             if (error_code == SSL_ERROR_WANT_READ
                  || error_code == SSL_ERROR_WANT_WRITE) {
                 log_ssl_err_to_file("There is still unprocessed data available at the TLS/SSL connection. Continue reading...");
-                sleep(3);
+                sleep(1);
                 continue;
             } else {
                 log_ssl_err_to_file("Connection is closed");
@@ -281,7 +281,7 @@ char *read_client_socket(void) {
     }
 
 //    buffer[total_bytes_read] = '\0';
-    return mx_strdup(buffer);
+    return strdup(buffer);
 }
 
 void controller(void) {
