@@ -3,6 +3,9 @@
 #include "client.h"
 #include "gui.h"
 
+#include <unistd.h>
+
+
 // functions from "get_server_response.c" file
 void controller(void);
 int process_data_from_controller(gpointer data);

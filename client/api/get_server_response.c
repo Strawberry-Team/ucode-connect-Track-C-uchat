@@ -45,7 +45,8 @@ char *read_client_socket(void) {
             if (error_code == SSL_ERROR_WANT_READ
                  || error_code == SSL_ERROR_WANT_WRITE) {
                 log_to_file("There is still unprocessed data available at the TLS/SSL connection. Continue reading...", SSL_ERROR);
-                sleep(1);
+//                sleep(1);
+//                usleep(500);
                 continue;
             } else {
                 log_to_file("Connection is closed", SSL_ERROR);
@@ -71,7 +72,7 @@ void reconnect_to_server(void) {
     log_to_file("The reconnection to server is started", INFO);
 
     while (true) {
-        sleep(3);
+//        sleep(3);
 
         client_info->client_socket = socket(AF_INET, SOCK_STREAM, 0);
 

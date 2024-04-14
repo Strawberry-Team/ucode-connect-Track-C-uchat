@@ -240,17 +240,17 @@ int main(int argc, char **argv) {
             break;
         }
 
-        int flags = fcntl(client_info->client_socket, F_GETFL, 0);
-
-        if (flags == -1) {
-            log_to_file("Could not get socket flags", ERROR);
-            break;
-        }
-
-        if (fcntl(client_info->client_socket, F_SETFL, flags | O_NONBLOCK) == -1) {
-            log_to_file("Could not set socket to non-blocking mode", ERROR);
-            break;
-        }
+//        int flags = fcntl(client_info->client_socket, F_GETFL, 0);
+//
+//        if (flags == -1) {
+//            log_to_file("Could not get socket flags", ERROR);
+//            break;
+//        }
+//
+//        if (fcntl(client_info->client_socket, F_SETFL, flags | O_NONBLOCK) == -1) {
+//            log_to_file("Could not set socket to non-blocking mode", ERROR);
+//            break;
+//        }
 
         pthread_t thread;
         pthread_attr_t thread_attr;

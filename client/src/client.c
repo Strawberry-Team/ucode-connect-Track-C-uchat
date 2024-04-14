@@ -145,19 +145,19 @@ int main(int argc, char **argv) {
         free_and_exit();
     }
 
-    int flags = fcntl(client_info->client_socket, F_GETFL, 0);
-
-    if (flags == -1) {
-        perror("Could not get socket flags");
-        log_to_file("Could not get socket flags", ERROR);
-        free_and_exit();
-    }
-
-    if (fcntl(client_info->client_socket, F_SETFL, flags | O_NONBLOCK) == -1) {
-        perror("Could not set socket to non-blocking mode");
-        log_to_file("Could not set socket to non-blocking mode", ERROR);
-        free_and_exit();
-    }
+//    int flags = fcntl(client_info->client_socket, F_GETFL, 0);
+//
+//    if (flags == -1) {
+//        perror("Could not get socket flags");
+//        log_to_file("Could not get socket flags", ERROR);
+//        free_and_exit();
+//    }
+//
+//    if (fcntl(client_info->client_socket, F_SETFL, flags | O_NONBLOCK) == -1) {
+//        perror("Could not set socket to non-blocking mode");
+//        log_to_file("Could not set socket to non-blocking mode", ERROR);
+//        free_and_exit();
+//    }
 
     gtk_init(&argc, &argv); // Ініціалізувати GTK
     gtk_inital_function();
