@@ -59,7 +59,6 @@ void send_login_request(SSL *ssl, t_request_type request_type, t_user_data *user
     }
 
     json_string = cJSON_Print(json);
-
     int bytes_written = SSL_write(ssl, json_string, strlen(json_string));
 
     if (bytes_written <= 0) {

@@ -6,8 +6,6 @@ const gchar *username = "Anton";
 // Глобальный флаг для отслеживания применения фильтрации
 bool filter_applied = false;
 // Инициализация значений по умолчанию
-t_server *server;
-t_client *client;
 /*char message_buffer[1024] = "";
 char selected_message_text[1024] = "";
 char selected_message_sender[40] = "";
@@ -531,19 +529,18 @@ void create_message_side(void) {
 
 
 void onSignInClicked(void) {
-    if (!builder_chat) { // Перевірка, чи конструктор вже існує
-        builder_chat = gtk_builder_new(); // Створити конструктор
-        gtk_builder_add_from_file(builder_chat, CHAT_GLADE, NULL); // Завантажити файл client/resources/chat.glade
+    if (!builder) { // Перевірка, чи конструктор вже існує
+        builder = gtk_builder_new(); // Створити конструктор
+        gtk_builder_add_from_file(builder, CHAT_GLADE, NULL); // Завантажити файл client/resources/chat.glade
     }
 
-    if(getSignInData()) {
-        send_login_request(client->ssl, LOGIN, user_data);
+    if (getSignInData()) {
+        send_login_request(client_info->ssl, LOGIN, user_data);
     } else {
         g_print("hyeta");
         gtk_widget_show(error_label);
         gtk_label_set_text(GTK_LABEL(error_label), (const gchar*) "Не верный логин или пароль!");
         gtk_widget_set_opacity(error_label, 1.0);
-
     }
 }
 
@@ -557,7 +554,6 @@ void onSignUpClicked(GtkButton *sign_up_button) {
     user_data = (t_user_data *) malloc(sizeof(t_user_data));
     gboolean usernameValidation = getSignUpDataUsername();
     gboolean passwordsMatch = getSignUpDataPasswords();
-
 
     // Проверка совпадения паролей
     if (!passwordsMatch && !usernameValidation) {
@@ -575,15 +571,13 @@ void onSignUpClicked(GtkButton *sign_up_button) {
     } else {
         g_print("%s\n",user_data->password);
         g_print("%s\n",user_data->username);
-//        send_registration_req_to_server(client->ssl, REGISTER, user_data);
-        send_registration_request(client->ssl, REGISTER, user_data);
+        send_registration_request(client_info->ssl, REGISTER, user_data);
         GtkWidget *sign_up_window = gtk_widget_get_toplevel(GTK_WIDGET(sign_up_button)); // Отримання вікна(chat), до якого відноситься кнопка
         gtk_widget_hide(sign_up_window);
         GtkWidget *chat = GTK_WIDGET(gtk_builder_get_object(builder_chat, "our_chat")); // Отримати вікно чату
         g_signal_connect(chat, "destroy", G_CALLBACK(on_window_destroy), NULL);
         gtk_widget_show_all(chat); // Показати вікно чату
     }
-
 }
 
 gboolean onProfilePageClose(GtkWidget *widget) {
@@ -891,7 +885,6 @@ void getMessage(void) { /*GtkButton *send_message_button, gpointer data */
 
 void onShowPasswButtonClicked(GtkToggleButton *show_passw_button/*, gpointer user_data*/) {
     GtkWidget *password_entry_signin = GTK_WIDGET(gtk_builder_get_object(builder, "password_entry_signin"));
-
     gtk_entry_set_visibility(GTK_ENTRY(password_entry_signin), gtk_toggle_button_get_active(show_passw_button));
 }
 
@@ -902,6 +895,7 @@ gboolean on_enter_press(GdkEventKey *event, gpointer user_data) { /*GtkWidget *w
         gtk_button_clicked(GTK_BUTTON(user_data));
         return TRUE; // Событие обработано
     }
+
     return FALSE; // Продолжаем обработку события
 }
 
@@ -920,8 +914,7 @@ void day_theme(__attribute__((unused)) GtkWidget *button, gboolean state/*, void
                                               GTK_STYLE_PROVIDER_PRIORITY_USER);
 }
 
-void on_users_selection_changed(GtkWidget *s)
-{
+void on_users_selection_changed(GtkWidget *s) {
     gchar *value;
     GtkTreeIter iter;
     GtkTreeModel *model;
@@ -934,8 +927,6 @@ void on_users_selection_changed(GtkWidget *s)
     g_print("Выбранный пользователь: %s\n", selected_username);
 
 }
-
-
 
 // Функция для проверки совпадений имён
 bool check_username_exists(const gchar *selected_username) {
@@ -957,15 +948,13 @@ bool check_username_exists(const gchar *selected_username) {
         g_free(existing_username);
         valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(chats_store), &iter);
     }
+
     return false; // Имя пользователя не найдено в модели чатов
 }
 
 void add_chat(const gchar *username, const gchar *selected_username) {
-
     GtkTreeIter iter;
-
     gtk_list_store_append(chats_store, &iter);
-
     // Добавляем данные чата в соответствующие столбцы
     gtk_list_store_set(chats_store, &iter,
                        CHAT_ID_COLUMN, "1", // Пустая строка, так как ID может быть заполнен вашей логикой
@@ -978,6 +967,7 @@ void add_chat(const gchar *username, const gchar *selected_username) {
 
 void onCreateChatButtonClicked(void) { /*GtkButton *b, gpointer data*/
     gtk_entry_set_text(GTK_ENTRY(search_entry_username), "");
+
     if (check_username_exists(selected_username)) {
         g_print("Пользователь уже существует в модели чатов.\n");
         return;
@@ -995,7 +985,6 @@ gpointer controller_thread(gpointer data) {
 
 
 void gtk_inital_function(void) {
-
     builder = gtk_builder_new();
     gtk_builder_add_from_file(builder, REG_LOGIN_GLADE, NULL);
 

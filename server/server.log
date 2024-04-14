@@ -1,5 +1,22 @@
-[2024-04-14 21:28:05]	SSL_ERROR	PID 15215	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
-[2024-04-14 21:28:08]	SSL_ERROR	PID 15215	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
-[2024-04-14 21:28:11]	SSL_ERROR	PID 15215	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
-[2024-04-14 21:28:14]	SSL_ERROR	PID 15215	Connection is closed: Undefined error: 0
-0070DB6D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 22:43:15]	SSL_ERROR	PID 15891	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
+[2024-04-14 22:43:18]	SSL_ERROR	PID 15891	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
+[2024-04-14 22:43:21]	SSL_ERROR	PID 15891	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
+[2024-04-14 22:43:24]	SSL_ERROR	PID 15891	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
+[2024-04-14 22:43:27]	SSL_ERROR	PID 15891	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
+[2024-04-14 22:43:30]	SSL_ERROR	PID 15891	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
+[2024-04-14 22:43:33]	SSL_ERROR	PID 15891	Connection is closed: Undefined error: 0
+0070536B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 22:45:25]	INFO		PID 17062	Deamon started with pid 17063
+[2024-04-14 22:45:36]	SSL_ERROR	PID 17063	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
+[2024-04-14 22:45:39]	SSL_ERROR	PID 17063	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
+[2024-04-14 22:45:42]	SSL_ERROR	PID 17063	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
+[2024-04-14 22:45:45]	SSL_ERROR	PID 17063	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
+[2024-04-14 22:45:48]	INFO		PID 17063	Database successfully opened
+[2024-04-14 22:45:48]	INFO		PID 17063	Database successfully closed
+[2024-04-14 22:45:48]	INFO		PID 17063	The database has credentials for the user: inessa
+[2024-04-14 22:45:48]	INFO		PID 17063	Successfully logged in user: inessa
+[2024-04-14 22:45:48]	SSL_ERROR	PID 17063	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
+[2024-04-14 22:45:51]	SSL_ERROR	PID 17063	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
+[2024-04-14 22:45:54]	SSL_ERROR	PID 17063	There is still unprocessed data available at the TLS/SSL connection. Continue reading...: Resource temporarily unavailable
+[2024-04-14 22:45:57]	SSL_ERROR	PID 17063	Connection is closed: Undefined error: 0
+00B0366D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:

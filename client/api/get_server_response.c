@@ -14,9 +14,6 @@ void controller(void) {
 
         // Вызываем функцию обработки данных немедленно в контексте главного потока
         g_main_context_invoke(context, (GSourceFunc)process_data_from_controller, (gpointer)json_string);
-
-        // Освобождаем память json_string, если необходимо
-         g_free(json_string);
     }
 
     return;
@@ -28,9 +25,6 @@ int process_data_from_controller(gpointer data) {
     // Пример вызова функции для обработки полученных данных
     t_request_type request_type = parse_request_type(json_string);
     process_server_response(request_type, json_string);
-
-    // Освобождаем память, если она выделена динамически
-    g_free(json_string);
 
     // Возвращаем 0, чтобы функция не была повторно добавлена в очередь
     return 0;
@@ -55,7 +49,6 @@ char *read_client_socket(void) {
                 continue;
             } else {
                 log_to_file("Connection is closed", SSL_ERROR);
-                // todo reconnect_SSL_foo() must be added
                 reconnect_to_server();
                 return NULL;
             }
@@ -71,8 +64,7 @@ char *read_client_socket(void) {
         }
     }
 
-//    buffer[total_bytes_read] = '\0';
-    return strdup(buffer);
+    return mx_strdup(buffer);
 }
 
 void reconnect_to_server(void) {

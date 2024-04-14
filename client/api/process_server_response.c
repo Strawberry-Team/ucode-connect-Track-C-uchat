@@ -64,14 +64,7 @@ bool handle_auth_response(char *json_string) {
     cJSON *json = cJSON_Parse(json_string);
 
     if (!json) {
-        const char *error_ptr = cJSON_GetErrorPtr();
-
-        if (error_ptr != NULL) {
-            char msg[200];
-            sprintf(msg, "Could not parse the cJSON object from server. A pointer to the error location: [%s]", error_ptr);
-            log_to_file(msg, CJSON_ERROR);
-        }
-
+        log_to_file("Could not parse the cJSON object from server", CJSON_ERROR);
         cJSON_Delete(json);
         return false;
     }
