@@ -323,7 +323,7 @@ char *read_client_socket(void) {
             if (error_code == SSL_ERROR_WANT_READ
                  || error_code == SSL_ERROR_WANT_WRITE) {
                 log_ssl_err_to_file("There is still unprocessed data available at the TLS/SSL connection. Continue reading...");
-                sleep(1/2);
+                sleep(1);
                 continue;
             } else {
                 log_ssl_err_to_file("Connection is closed");
