@@ -1,21 +1,53 @@
+REGISTER request
 {
-"request_type": 0,//   "login"
-  "credentials": {
-    "username": "alaskevych",
-    "password": "213w1s1"
+  "request_type": 0,// LOGIN
+  "data": {
+    "username": "irepeshko",
+    "password": "test123456"
   }
 };
 
+REGISTER response
 {
-"request_type": 0,//   "login"
-"status": 0,
+"request_type": 1,// LOGIN
+"status": 0, // SUCCESS
 "data": {
-"id": 10,
-"username": "alaskevych",
-"password": "213w1s1",
-"icon_id": 1
+  "id": 1,
+  "username": "irepeshko",
+  "password": "test1234",
+  "icon_id": 1
 }
 };
+
+LOGIN request
+{
+"request_type": 1,// LOGIN
+"credentials": {
+  "username": "Inessa",
+  "password": "PaSsWoRd"
+}
+};
+
+LOGIN response
+{
+"request_type": 1,// LOGIN
+"status": 1, // SUCCESS_VALID_CREDENTIALS
+"data": {
+  "id": 0,
+  "username": "Inessa",
+  "password": "PaSsWoRd",
+  "icon_id": 1
+}
+};
+
+
+
+
+
+
+
+
+
 {
 "request_type": "createUser",
 "data": {
@@ -24,7 +56,7 @@
 }
 };
 {
-"requestType": "signout",
+"request_type": "signout",
 "credentials": {
 "username": "alaskevych",
 "password": "213w1s1"
@@ -32,7 +64,7 @@
 },
 
 {
-"requestType": "getMessages",
+"request_type": "getMessages",
 "credentials": {
 "username": "alaskevych",
 "password": "213w1s1"
@@ -43,7 +75,7 @@
 },
 
 {
-"requestType": "getChats",
+"request_type": "getChats",
 "credentials": {
 "username": "alaskevych",
 "password": "213w1s1"
@@ -54,7 +86,7 @@
 },
 
 {
-"requestType": "createMessage",
+"request_type": "createMessage",
 "credentials": {
 "username": "alaskevych",
 "password": "213w1s1"
@@ -65,7 +97,7 @@
 }
 },
 {
-"requestType": "deleteMessage",
+"request_type": "deleteMessage",
 "credentials": {
 "username": "alaskevych",
 "password": "213w1s1"
@@ -76,7 +108,7 @@
 },
 
 {
-"requestType": "updateMessage",
+"request_type": "updateMessage",
 "credentials": {
 "username": "alaskevych",
 "password": "213w1s1"
@@ -88,7 +120,7 @@
 },
 
 {
-"requestType": "updateUser",
+"request_type": "updateUser",
 "credentials": {
 "username": "alaskevych",
 "password": "213w1s1"

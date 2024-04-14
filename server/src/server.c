@@ -3,11 +3,11 @@
 // DEPRECATED --- cd server/src/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c *.c -o server.o -I ../inc -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /usr/bin/ && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/src/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -o uchat_server && ./uchat_server 8090
 // kill PID
 // DEPRECATED --- cd server/obj && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /usr/bin/ -I /opt/homebrew/opt/sqlite/include && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../database/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /usr/bin/ -I /opt/homebrew/opt/sqlite/include && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/obj/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/Cellar/sqlite/3.45.2/lib/ -lsqlite3 -o uchat_server && ./uchat_server 8090
-// cd server/obj && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c ../database/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /opt/homebrew/opt/ -I /usr/bin/ && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/obj/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/opt/sqlite/lib -lsqlite3 -o uchat_server && ./uchat_server 8090
+// cd server/obj && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c ../database/*.c ../api/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /opt/homebrew/opt/ -I /usr/bin/ && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/obj/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/opt/sqlite/lib -lsqlite3 -o uchat_server && ./uchat_server 8090
 
 #include "server.h"
+#include "api.h"
 
-pthread_mutex_t clients_mutex;
 pthread_mutex_t logging_mutex;
 t_list *user_list;
 
@@ -26,34 +26,30 @@ void log_to_file(char *message, t_log_type log_type) {
     strftime(time_string, sizeof(time_string), "%Y-%m-%d %H:%M:%S", time_info);
 
     /* Write a log message */
-    if (log_type == INFO) {
-        fprintf(log_file, "[%s]\tINFO\tPID %d\t%s\n", time_string, getpid(), message);
-    } else if (log_type == SSL_ERROR) {
-        fprintf(log_file, "[%s]\tSSL\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
-        ERR_print_errors_fp(log_file);
-//    } else if (log_type == DB_ERROR) {
-//        fprintf(log_file, "[%s]\tDB\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
-    } else {
-        fprintf(log_file, "[%s]\tERROR\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
+    switch (log_type) {
+        case INFO:
+            fprintf(log_file, "[%s]\tINFO\t\tPID %d\t%s\n", time_string, getpid(), message);
+            break;
+        case ERROR:
+            fprintf(log_file, "[%s]\tERROR\t\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
+            break;
+        case CJSON_ERROR:
+            fprintf(log_file, "[%s]\tCJSON_ERROR\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
+            break;
+        case SSL_ERROR:
+            fprintf(log_file, "[%s]\tSSL_ERROR\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
+            ERR_print_errors_fp(log_file);
+            break;
+        case DB_ERROR:
+            fprintf(log_file, "[%s]\tDB_ERROR\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
+            break;
+        default:
+            break;
     }
-//    free(time_info); //todo occurs the memory errors
+
     fclose(log_file);
     pthread_mutex_unlock(&logging_mutex);
 }
-
-//void log_ssl_err_to_file(char *message) {
-//    FILE *log_file = fopen(LOG_FILE, "a");
-//    log_to_file(message, ERROR);
-//    ERR_print_errors_fp(log_file);
-//    fclose(log_file);
-//}
-
-//void log_db_error_to_file(char *message, sqlite3 *db) {
-//    char msg[100];
-//    sprintf(msg, ": [%d | %s]", sqlite3_errcode(db), sqlite3_errmsg(db));
-//    mx_strcat(message, msg);
-//    log_to_file(msg, DB_ERROR);
-//}
 
 void create_deamon(void) {
     pid_t pid = fork();
@@ -128,8 +124,6 @@ void free_clients(void) {
         return;
     }
 
-    pthread_mutex_lock(&clients_mutex);
-
     while (user_list != NULL) {
         t_list *current = user_list->next;
 
@@ -148,7 +142,6 @@ void free_clients(void) {
     }
 
     user_list = NULL;
-    pthread_mutex_unlock(&clients_mutex);
 }
 
 SSL_CTX *create_context(void) {
@@ -190,8 +183,7 @@ int main(int argc, char **argv) {
         exit(EXIT_SUCCESS);
     }
 
-    if (pthread_mutex_init(&logging_mutex, NULL) != 0
-        || pthread_mutex_init(&clients_mutex, NULL) != 0) {
+    if (pthread_mutex_init(&logging_mutex, NULL) != 0) {
         log_to_file("Mutex initialization failed", ERROR);
         exit(EXIT_FAILURE);
     }

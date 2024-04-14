@@ -217,3 +217,540 @@ username: Inessa
 password: PaSsWoRd
 icon_id: 1
 
+[2024-04-12 15:34:43]	INFO	PID 80862	RESPONSE:
+User data:
+id: 0
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-12 15:36:37]	INFO	PID 80915	RESPONSE:
+User data:
+id: 0
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-12 16:10:49]	ERROR	PID 81385	Couldn't connect with the server: Connection refused
+[2024-04-12 16:10:49]	INFO	PID 81385	Thread joined
+[2024-04-12 16:13:55]	INFO	PID 81485	RESPONSE:
+User data:
+id: 0
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-12 16:58:29]	INFO		PID 82181	RESPONSE:
+User data:
+id: 0
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 15:21:24]	INFO		PID 1218	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 15:25:38]	INFO		PID 1306	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 15:29:07]	INFO		PID 1406	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 15:42:14]	INFO		PID 1734	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 15:43:45]	INFO		PID 1786	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 15:50:44]	INFO		PID 1873	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 15:53:42]	CJSON_ERROR	PID 1970	Wrong status for login request. Expected: SUCCESS_VALID_CREDENTIALS: Undefined error: 0
+[2024-04-14 15:56:07]	CJSON_ERROR	PID 2028	Wrong status for login request. Expected: SUCCESS_VALID_CREDENTIALS: Undefined error: 0
+[2024-04-14 15:56:42]	CJSON_ERROR	PID 2067	Wrong status for login request. Expected: SUCCESS_VALID_CREDENTIALS: Undefined error: 0
+[2024-04-14 15:57:20]	CJSON_ERROR	PID 2109	Wrong status for login request. Expected: SUCCESS_VALID_CREDENTIALS: Undefined error: 0
+[2024-04-14 16:07:00]	INFO		PID 2223	{
+	"data":	{
+		"id":	6,
+		"username":	"Denys",
+		"password":	"TEST",
+		"icon_id":	1
+	},
+	"request_type":	0,
+	"status":	0
+}
+[2024-04-14 16:07:00]	CJSON_ERROR	PID 2223	Wrong status for login request. Expected: SUCCESS_VALID_CREDENTIALS: Undefined error: 0
+[2024-04-14 16:11:48]	INFO		PID 2355	{
+	"data":	{
+		"id":	6,
+		"username":	"Denys",
+		"password":	"TEST",
+		"icon_id":	1
+	},
+	"request_type":	0,
+	"status":	0
+}
+[2024-04-14 16:11:48]	INFO		PID 2355	RESPONSE:
+User data:
+id: 6
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:13:30]	INFO		PID 2410	{
+	"data":	{
+		"id":	6,
+		"username":	"Denys",
+		"password":	"TEST",
+		"icon_id":	1
+	},
+	"request_type":	0,
+	"status":	0
+}
+[2024-04-14 16:13:30]	INFO		PID 2410	RESPONSE:
+User data:
+id: 6
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:13:47]	INFO		PID 2429	{
+	"data":	{
+		"id":	13,
+		"username":	"Denys",
+		"password":	"TEST",
+		"icon_id":	1
+	},
+	"request_type":	0,
+	"status":	0
+}
+[2024-04-14 16:13:47]	INFO		PID 2429	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:18:23]	INFO		PID 2497	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:22:39]	INFO		PID 2568	Registration request successfully sent
+[2024-04-14 16:22:39]	INFO		PID 2568	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:24:00]	INFO		PID 2612	Login request successfully sent
+[2024-04-14 16:24:00]	INFO		PID 2612	Registration request successfully sent
+[2024-04-14 16:24:00]	INFO		PID 2612	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:26:03]	INFO		PID 2661	Login request successfully sent
+[2024-04-14 16:26:03]	INFO		PID 2661	Registration request successfully sent
+[2024-04-14 16:26:03]	INFO		PID 2661	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:27:51]	INFO		PID 2715	Login request successfully sent
+[2024-04-14 16:27:53]	INFO		PID 2715	Registration request successfully sent
+[2024-04-14 16:27:53]	INFO		PID 2715	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:29:19]	INFO		PID 2764	Login request successfully sent
+[2024-04-14 16:29:21]	INFO		PID 2764	Registration request successfully sent
+[2024-04-14 16:29:21]	INFO		PID 2764	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:31:26]	INFO		PID 2817	Login request successfully sent
+[2024-04-14 16:31:28]	INFO		PID 2817	Registration request successfully sent
+[2024-04-14 16:31:28]	INFO		PID 2817	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:31:28]	INFO		PID 2817	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:32:25]	INFO		PID 2861	Login request successfully sent
+[2024-04-14 16:32:27]	INFO		PID 2861	Registration request successfully sent
+[2024-04-14 16:32:27]	INFO		PID 2861	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:32:27]	INFO		PID 2861	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:32:40]	INFO		PID 2891	Login request successfully sent
+[2024-04-14 16:32:42]	INFO		PID 2891	Registration request successfully sent
+[2024-04-14 16:32:42]	INFO		PID 2891	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:32:42]	INFO		PID 2891	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:32:50]	INFO		PID 2918	Login request successfully sent
+[2024-04-14 16:32:52]	INFO		PID 2918	Registration request successfully sent
+[2024-04-14 16:32:52]	INFO		PID 2918	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:32:52]	INFO		PID 2918	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:33:32]	INFO		PID 2960	Login request successfully sent
+[2024-04-14 16:33:34]	INFO		PID 2960	Registration request successfully sent
+[2024-04-14 16:33:34]	INFO		PID 2960	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:33:34]	INFO		PID 2960	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:33:38]	INFO		PID 2975	Login request successfully sent
+[2024-04-14 16:33:40]	INFO		PID 2975	Registration request successfully sent
+[2024-04-14 16:33:40]	INFO		PID 2975	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:33:40]	INFO		PID 2975	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:33:46]	INFO		PID 2989	Login request successfully sent
+[2024-04-14 16:33:48]	INFO		PID 2989	Registration request successfully sent
+[2024-04-14 16:33:48]	INFO		PID 2989	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:33:48]	INFO		PID 2989	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:33:52]	INFO		PID 3003	Login request successfully sent
+[2024-04-14 16:33:54]	INFO		PID 3003	Registration request successfully sent
+[2024-04-14 16:33:54]	INFO		PID 3003	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:33:54]	INFO		PID 3003	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:33:59]	INFO		PID 3016	Login request successfully sent
+[2024-04-14 16:34:01]	INFO		PID 3016	Registration request successfully sent
+[2024-04-14 16:34:01]	INFO		PID 3016	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:34:01]	INFO		PID 3016	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:34:04]	INFO		PID 3030	Login request successfully sent
+[2024-04-14 16:34:06]	INFO		PID 3030	Registration request successfully sent
+[2024-04-14 16:34:06]	INFO		PID 3030	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:34:06]	INFO		PID 3030	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:34:08]	INFO		PID 3043	Login request successfully sent
+[2024-04-14 16:34:10]	INFO		PID 3043	Registration request successfully sent
+[2024-04-14 16:34:10]	INFO		PID 3043	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:34:10]	INFO		PID 3043	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:34:13]	INFO		PID 3056	Login request successfully sent
+[2024-04-14 16:34:15]	INFO		PID 3056	Registration request successfully sent
+[2024-04-14 16:34:15]	INFO		PID 3056	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:34:15]	INFO		PID 3056	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:34:17]	INFO		PID 3071	Login request successfully sent
+[2024-04-14 16:34:19]	INFO		PID 3071	Registration request successfully sent
+[2024-04-14 16:34:19]	INFO		PID 3071	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:34:19]	INFO		PID 3071	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:34:22]	INFO		PID 3084	Login request successfully sent
+[2024-04-14 16:34:24]	INFO		PID 3084	Registration request successfully sent
+[2024-04-14 16:34:24]	INFO		PID 3084	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:34:24]	INFO		PID 3084	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:34:28]	INFO		PID 3097	Login request successfully sent
+[2024-04-14 16:34:30]	INFO		PID 3097	Registration request successfully sent
+[2024-04-14 16:34:30]	INFO		PID 3097	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:34:30]	INFO		PID 3097	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:34:53]	INFO		PID 3115	Login request successfully sent
+[2024-04-14 16:34:53]	INFO		PID 3115	Registration request successfully sent
+[2024-04-14 16:34:53]	INFO		PID 3115	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:34:53]	INFO		PID 3115	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:34:57]	INFO		PID 3128	Login request successfully sent
+[2024-04-14 16:34:57]	INFO		PID 3128	Registration request successfully sent
+[2024-04-14 16:34:57]	INFO		PID 3128	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:34:57]	INFO		PID 3128	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:38:46]	INFO		PID 3257	Login request successfully sent
+[2024-04-14 16:38:46]	INFO		PID 3257	Registration request successfully sent
+[2024-04-14 16:38:46]	INFO		PID 3257	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:38:46]	INFO		PID 3257	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 16:47:11]	INFO		PID 3486	Login request successfully sent
+[2024-04-14 16:47:11]	INFO		PID 3486	Registration request successfully sent
+[2024-04-14 16:47:11]	INFO		PID 3486	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 16:47:11]	CJSON_ERROR	PID 3486	Wrong status for register or login request: Undefined error: 0
+[2024-04-14 17:08:02]	INFO		PID 3669	Login request successfully sent
+[2024-04-14 17:08:02]	INFO		PID 3669	Registration request successfully sent
+[2024-04-14 17:08:02]	INFO		PID 3669	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 17:08:02]	INFO		PID 3669	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 17:10:29]	INFO		PID 3768	Login request successfully sent
+[2024-04-14 17:10:29]	INFO		PID 3768	Registration request successfully sent
+[2024-04-14 17:10:29]	INFO		PID 3768	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 17:10:29]	INFO		PID 3768	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+
+[2024-04-14 17:10:45]	ERROR		PID 3794	Couldn't connect with the server: Connection refused
+[2024-04-14 17:10:45]	INFO		PID 3794	Thread joined
+[2024-04-14 17:10:52]	INFO		PID 3827	Login request successfully sent
+[2024-04-14 17:10:52]	INFO		PID 3827	Registration request successfully sent
+[2024-04-14 17:10:52]	INFO		PID 3827	RESPONSE:
+User data:
+id: 1
+username: Inessa
+password: PaSsWoRd
+icon_id: 1
+
+[2024-04-14 17:10:52]	INFO		PID 3827	RESPONSE:
+User data:
+id: 13
+username: Denys
+password: TEST
+icon_id: 1
+

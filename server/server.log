@@ -156,3 +156,704 @@ C03AF60102000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/r
 [2024-04-12 13:02:01]	INFO	PID 78643	User "Inessa" successfully logged in
 [2024-04-12 13:06:37]	SSL	PID 78643	Connection is closed: Undefined error: 0
 0030BE6B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-12 15:34:39]	INFO	PID 80845	Deamon started with pid 80848
+[2024-04-12 15:34:43]	DB	PID 80848	Database successfully opened: [0 | not an error]: Undefined error: 0
+[2024-04-12 15:34:43]	INFO	PID 80848	The passed user's credentials exists in the database
+[2024-04-12 15:34:43]	INFO	PID 80848	User "Inessa" successfully logged in
+[2024-04-12 15:36:18]	SSL	PID 80848	Connection is closed: Undefined error: 0
+00B0266B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-12 15:36:34]	INFO	PID 80902	Deamon started with pid 80903
+[2024-04-12 15:36:37]	DB_ERROR	PID 80903	Database successfully opened: [0 | not an error]: Undefined error: 0
+[2024-04-12 15:36:37]	SSL_ERROR	PID 80903	Database successfully opened: Undefined error: 0
+[2024-04-12 15:36:37]	INFO	PID 80903	The passed user's credentials exists in the database
+[2024-04-12 15:36:37]	INFO	PID 80903	User "Inessa" successfully logged in
+[2024-04-12 16:01:49]	SSL_ERROR	PID 80903	Connection is closed: Undefined error: 0
+0070F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-12 16:13:51]	INFO		PID 81472	Deamon started with pid 81473
+[2024-04-12 16:13:55]	INFO		PID 81473	Database successfully opened
+[2024-04-12 16:13:55]	INFO		PID 81473	Database successfully closed
+[2024-04-12 16:13:55]	INFO		PID 81473	The passed user's credentials exists in the database
+[2024-04-12 16:13:55]	INFO		PID 81473	User "Inessa" successfully logged in
+[2024-04-12 16:15:10]	SSL_ERROR	PID 81473	Connection is closed: Undefined error: 0
+00F0586B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-12 16:58:26]	INFO		PID 82163	Deamon started with pid 82166
+[2024-04-12 16:58:29]	INFO		PID 82166	Database successfully opened
+[2024-04-12 16:58:29]	INFO		PID 82166	Database successfully closed
+[2024-04-12 16:58:29]	INFO		PID 82166	The passed user's credentials exists in the database
+[2024-04-12 16:58:29]	INFO		PID 82166	User "Inessa" successfully logged in
+[2024-04-12 16:58:51]	SSL_ERROR	PID 82166	Connection is closed: Undefined error: 0
+00B07F6F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 13:43:52]	INFO		PID 17171	Deamon started with pid 17172
+[2024-04-14 13:49:45]	INFO		PID 17327	Deamon started with pid 17331
+[2024-04-14 14:01:23]	ERROR		PID 17331	Could not parse the "credentials" from a cJSON object: Undefined error: 0
+[2024-04-14 14:01:29]	SSL_ERROR	PID 17331	Connection is closed: Undefined error: 0
+0030436B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:01:40]	ERROR		PID 17331	Could not parse the "credentials" from a cJSON object: Undefined error: 0
+[2024-04-14 14:02:37]	SSL_ERROR	PID 17331	Connection is closed: Undefined error: 0
+0030436B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:03:04]	SSL_ERROR	PID 17331	Connection is closed: Undefined error: 0
+0030436B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:08:32]	SSL_ERROR	PID 17331	Connection is closed: Undefined error: 0
+0030436B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:09:11]	INFO		PID 17733	Deamon started with pid 17734
+[2024-04-14 14:10:45]	SSL_ERROR	PID 17734	Connection is closed: Undefined error: 0
+00F0A66B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:11:31]	SSL_ERROR	PID 17734	Connection is closed: Undefined error: 0
+00F0A66B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:11:45]	INFO		PID 17812	Deamon started with pid 17815
+[2024-04-14 14:12:14]	SSL_ERROR	PID 17815	Connection is closed: Undefined error: 0
+0030556F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:12:24]	INFO		PID 17861	Deamon started with pid 17862
+[2024-04-14 14:13:16]	SSL_ERROR	PID 17862	Connection is closed: Undefined error: 0
+0030516B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:13:28]	INFO		PID 17906	Deamon started with pid 17909
+[2024-04-14 14:17:41]	SSL_ERROR	PID 17909	Connection is closed: Undefined error: 0
+0070D16F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:18:09]	INFO		PID 18056	Deamon started with pid 18058
+[2024-04-14 14:19:00]	SSL_ERROR	PID 18058	Connection is closed: Undefined error: 0
+00F0EC6C01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:19:11]	INFO		PID 18105	Deamon started with pid 18108
+[2024-04-14 14:19:19]	INFO		PID 18108	before thread_controller
+[2024-04-14 14:20:03]	SSL_ERROR	PID 18108	Connection is closed: Undefined error: 0
+00B0866D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:20:15]	INFO		PID 18164	Deamon started with pid 18167
+[2024-04-14 14:21:09]	SSL_ERROR	PID 18167	Connection is closed: Undefined error: 0
+0070856F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:21:19]	INFO		PID 18209	Deamon started with pid 18212
+[2024-04-14 14:22:01]	SSL_ERROR	PID 18212	Connection is closed: Undefined error: 0
+00F0A66D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:25:15]	INFO		PID 18328	Deamon started with pid 18331
+[2024-04-14 14:26:28]	INFO		PID 18379	Deamon started with pid 18382
+[2024-04-14 14:26:55]	SSL_ERROR	PID 18382	Connection is closed: Undefined error: 0
+00B0AB6F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:35:28]	INFO		PID 18504	Deamon started with pid 18507
+[2024-04-14 14:38:12]	SSL_ERROR	PID 18507	Connection is closed: Undefined error: 0
+00704C6B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:38:24]	INFO		PID 18587	Deamon started with pid 18590
+[2024-04-14 14:41:20]	SSL_ERROR	PID 18590	Connection is closed: Undefined error: 0
+0030DB6F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:42:27]	INFO		PID 18708	Deamon started with pid 18709
+[2024-04-14 14:44:20]	SSL_ERROR	PID 18709	Connection is closed: Undefined error: 0
+00F03D6B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:44:24]	ERROR		PID 18751	Couldn't bind socket: Address already in use
+[2024-04-14 14:44:24]	INFO		PID 18748	Deamon started with pid 18751
+[2024-04-14 14:44:53]	ERROR		PID 18770	Couldn't bind socket: Address already in use
+[2024-04-14 14:44:53]	INFO		PID 18769	Deamon started with pid 18770
+[2024-04-14 14:45:47]	INFO		PID 18813	Deamon started with pid 18816
+[2024-04-14 14:45:59]	INFO		PID 18816	defore thread_controller
+[2024-04-14 14:46:56]	SSL_ERROR	PID 18816	Connection is closed: Undefined error: 0
+0070F76C01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 14:47:08]	INFO		PID 18893	Deamon started with pid 18896
+[2024-04-14 14:47:29]	INFO		PID 18896	defore thread_controller
+[2024-04-14 14:51:57]	SSL_ERROR	PID 18896	Connection is closed: Undefined error: 0
+00B0B96D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:04:07]	INFO		PID 19268	Deamon started with pid 19269
+[2024-04-14 15:04:09]	INFO		PID 19269	defore thread_controller
+[2024-04-14 15:04:55]	SSL_ERROR	PID 19269	Connection is closed: Undefined error: 0
+00F0546F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:05:16]	INFO		PID 19320	Deamon started with pid 19323
+[2024-04-14 15:05:18]	INFO		PID 19323	defore thread_controller
+[2024-04-14 15:05:38]	SSL_ERROR	PID 19323	Connection is closed: Undefined error: 0
+00301F6F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:08:09]	INFO		PID 841	Deamon started with pid 842
+[2024-04-14 15:08:15]	INFO		PID 842	defore thread_controller
+[2024-04-14 15:10:00]	SSL_ERROR	PID 842	Connection is closed: Undefined error: 0
+0030306F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:20:57]	INFO		PID 1195	Deamon started with pid 1198
+[2024-04-14 15:21:24]	INFO		PID 1198	defore thread_controller
+[2024-04-14 15:21:24]	INFO		PID 1198	INSIDE thread_controller
+[2024-04-14 15:21:24]	INFO		PID 1198	before read_client_socket
+[2024-04-14 15:21:24]	INFO		PID 1198	SSL_READ
+[2024-04-14 15:21:24]	INFO		PID 1198	1SSL_READ
+[2024-04-14 15:21:24]	INFO		PID 1198	Database successfully opened
+[2024-04-14 15:21:24]	INFO		PID 1198	Database successfully closed
+[2024-04-14 15:21:24]	INFO		PID 1198	The database has credentials for the user: Inessa
+[2024-04-14 15:21:24]	INFO		PID 1198	Successfully logged in user: Inessa
+[2024-04-14 15:21:24]	INFO		PID 1198	before read_client_socket
+[2024-04-14 15:21:24]	INFO		PID 1198	SSL_READ
+[2024-04-14 15:25:13]	SSL_ERROR	PID 1198	Connection is closed: Undefined error: 0
+0070BE6B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:25:36]	INFO		PID 1290	Deamon started with pid 1291
+[2024-04-14 15:25:38]	INFO		PID 1291	Database successfully opened
+[2024-04-14 15:25:38]	INFO		PID 1291	Database successfully closed
+[2024-04-14 15:25:38]	INFO		PID 1291	The database has credentials for the user: Inessa
+[2024-04-14 15:25:38]	INFO		PID 1291	Successfully logged in user: Inessa
+[2024-04-14 15:26:17]	SSL_ERROR	PID 1291	Connection is closed: Undefined error: 0
+0030556B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:28:03]	INFO		PID 1347	Deamon started with pid 1350
+[2024-04-14 15:29:03]	INFO		PID 1393	Deamon started with pid 1396
+[2024-04-14 15:29:07]	INFO		PID 1396	Database successfully opened
+[2024-04-14 15:29:07]	INFO		PID 1396	Database successfully closed
+[2024-04-14 15:29:07]	INFO		PID 1396	The database has credentials for the user: Inessa
+[2024-04-14 15:29:07]	INFO		PID 1396	Successfully logged in user: Inessa
+[2024-04-14 15:29:07]	INFO		PID 1396	Database successfully opened
+[2024-04-14 15:29:07]	DB_ERROR	PID 1396	Failed to execute SQL query to put user data: [19 | NOT NULL constraint failed: users.created_at]: No such file or directory
+[2024-04-14 15:29:07]	INFO		PID 1396	User data successfully written to the database
+[2024-04-14 15:29:07]	INFO		PID 1396	Database successfully closed
+[2024-04-14 15:29:07]	INFO		PID 1396	Database successfully opened
+[2024-04-14 15:29:07]	DB_ERROR	PID 1396	Could not execute the SQL statement: [101 | no more rows available]: No such file or directory
+[2024-04-14 15:29:07]	ERROR		PID 1396	Could not put user data to database: No such file or directory
+[2024-04-14 15:41:37]	SSL_ERROR	PID 1396	Connection is closed: Undefined error: 0
+00B0516F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:42:07]	INFO		PID 1719	Deamon started with pid 1722
+[2024-04-14 15:42:14]	INFO		PID 1722	Database successfully opened
+[2024-04-14 15:42:14]	INFO		PID 1722	Database successfully closed
+[2024-04-14 15:42:14]	INFO		PID 1722	The database has credentials for the user: Inessa
+[2024-04-14 15:42:14]	INFO		PID 1722	Successfully logged in user: Inessa
+[2024-04-14 15:42:14]	INFO		PID 1722	Database successfully opened
+[2024-04-14 15:42:14]	DB_ERROR	PID 1722	Failed to execute SQL query to put user data: [19 | NOT NULL constraint failed: users.updated_at]: No such file or directory
+[2024-04-14 15:42:14]	INFO		PID 1722	User data successfully written to the database
+[2024-04-14 15:42:14]	INFO		PID 1722	Database successfully closed
+[2024-04-14 15:42:14]	INFO		PID 1722	Database successfully opened
+[2024-04-14 15:42:14]	DB_ERROR	PID 1722	Could not execute the SQL statement: [101 | no more rows available]: No such file or directory
+[2024-04-14 15:42:14]	ERROR		PID 1722	Could not put user data to database: No such file or directory
+[2024-04-14 15:43:33]	SSL_ERROR	PID 1722	Connection is closed: Undefined error: 0
+00B0706B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:43:41]	INFO		PID 1770	Deamon started with pid 1773
+[2024-04-14 15:43:45]	INFO		PID 1773	Database successfully opened
+[2024-04-14 15:43:45]	INFO		PID 1773	Database successfully closed
+[2024-04-14 15:43:45]	INFO		PID 1773	The database has credentials for the user: Inessa
+[2024-04-14 15:43:45]	INFO		PID 1773	Successfully logged in user: Inessa
+[2024-04-14 15:50:28]	SSL_ERROR	PID 1773	Connection is closed: Undefined error: 0
+0030D06D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:50:41]	INFO		PID 1861	Deamon started with pid 1862
+[2024-04-14 15:50:44]	INFO		PID 1862	Database successfully opened
+[2024-04-14 15:50:44]	INFO		PID 1862	Database successfully closed
+[2024-04-14 15:50:44]	INFO		PID 1862	The database has credentials for the user: Inessa
+[2024-04-14 15:50:44]	INFO		PID 1862	Successfully logged in user: Inessa
+[2024-04-14 15:52:10]	SSL_ERROR	PID 1862	Connection is closed: Undefined error: 0
+00B0176D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:52:29]	INFO		PID 1906	Deamon started with pid 1909
+[2024-04-14 15:52:32]	INFO		PID 1909	Database successfully opened
+[2024-04-14 15:52:32]	INFO		PID 1909	User data successfully written to the database
+[2024-04-14 15:52:32]	INFO		PID 1909	Database successfully closed
+[2024-04-14 15:52:32]	INFO		PID 1909	Database successfully opened
+[2024-04-14 15:52:32]	INFO		PID 1909	Database successfully closed
+[2024-04-14 15:52:32]	INFO		PID 1909	Successfully registered user: Denys
+[2024-04-14 15:53:30]	SSL_ERROR	PID 1909	Connection is closed: Undefined error: 0
+00B0D66B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:53:39]	INFO		PID 1956	Deamon started with pid 1959
+[2024-04-14 15:53:42]	INFO		PID 1959	Database successfully opened
+[2024-04-14 15:53:42]	INFO		PID 1959	User data successfully written to the database
+[2024-04-14 15:53:42]	INFO		PID 1959	Database successfully closed
+[2024-04-14 15:53:42]	INFO		PID 1959	Database successfully opened
+[2024-04-14 15:53:42]	INFO		PID 1959	Database successfully closed
+[2024-04-14 15:53:42]	INFO		PID 1959	Successfully registered user: Denys
+[2024-04-14 15:55:33]	SSL_ERROR	PID 1959	Connection is closed: Undefined error: 0
+00F0B06D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:56:03]	INFO		PID 2011	Deamon started with pid 2012
+[2024-04-14 15:56:07]	INFO		PID 2012	Database successfully opened
+[2024-04-14 15:56:07]	INFO		PID 2012	User data successfully written to the database
+[2024-04-14 15:56:07]	INFO		PID 2012	Database successfully closed
+[2024-04-14 15:56:07]	INFO		PID 2012	Database successfully opened
+[2024-04-14 15:56:07]	INFO		PID 2012	Database successfully closed
+[2024-04-14 15:56:07]	INFO		PID 2012	Successfully registered user: Denys
+[2024-04-14 15:56:31]	SSL_ERROR	PID 2012	Connection is closed: Undefined error: 0
+00F0836B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:56:39]	INFO		PID 2054	Deamon started with pid 2055
+[2024-04-14 15:56:42]	INFO		PID 2055	Database successfully opened
+[2024-04-14 15:56:42]	INFO		PID 2055	User data successfully written to the database
+[2024-04-14 15:56:42]	INFO		PID 2055	Database successfully closed
+[2024-04-14 15:56:42]	INFO		PID 2055	Database successfully opened
+[2024-04-14 15:56:42]	INFO		PID 2055	Database successfully closed
+[2024-04-14 15:56:42]	INFO		PID 2055	Successfully registered user: Denys
+[2024-04-14 15:57:10]	SSL_ERROR	PID 2055	Connection is closed: Undefined error: 0
+00F00E6D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 15:57:17]	INFO		PID 2096	Deamon started with pid 2097
+[2024-04-14 15:57:20]	INFO		PID 2097	Database successfully opened
+[2024-04-14 15:57:20]	INFO		PID 2097	User data successfully written to the database
+[2024-04-14 15:57:20]	INFO		PID 2097	Database successfully closed
+[2024-04-14 15:57:20]	INFO		PID 2097	Database successfully opened
+[2024-04-14 15:57:20]	INFO		PID 2097	Database successfully closed
+[2024-04-14 15:57:20]	INFO		PID 2097	Successfully registered user: Denys
+[2024-04-14 15:58:55]	SSL_ERROR	PID 2097	Connection is closed: Undefined error: 0
+00B0236B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:06:57]	INFO		PID 2205	Deamon started with pid 2210
+[2024-04-14 16:07:00]	INFO		PID 2210	Database successfully opened
+[2024-04-14 16:07:00]	INFO		PID 2210	User data successfully written to the database
+[2024-04-14 16:07:00]	INFO		PID 2210	Database successfully closed
+[2024-04-14 16:07:00]	INFO		PID 2210	Database successfully opened
+[2024-04-14 16:07:00]	INFO		PID 2210	Database successfully closed
+[2024-04-14 16:07:00]	INFO		PID 2210	Successfully registered user: Denys
+[2024-04-14 16:11:08]	SSL_ERROR	PID 2210	Connection is closed: Undefined error: 0
+0030386F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:11:18]	INFO		PID 2316	Deamon started with pid 2317
+[2024-04-14 16:11:48]	INFO		PID 2317	Database successfully opened
+[2024-04-14 16:11:48]	INFO		PID 2317	User data successfully written to the database
+[2024-04-14 16:11:48]	INFO		PID 2317	Database successfully closed
+[2024-04-14 16:11:48]	INFO		PID 2317	Database successfully opened
+[2024-04-14 16:11:48]	INFO		PID 2317	Database successfully closed
+[2024-04-14 16:11:48]	INFO		PID 2317	Successfully registered user: Denys
+[2024-04-14 16:12:34]	SSL_ERROR	PID 2317	Connection is closed: Undefined error: 0
+0030256F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:13:27]	INFO		PID 2396	Deamon started with pid 2397
+[2024-04-14 16:13:30]	INFO		PID 2397	Database successfully opened
+[2024-04-14 16:13:30]	DB_ERROR	PID 2397	Failed to execute SQL query to put user data: [5 | database is locked]: Resource temporarily unavailable
+[2024-04-14 16:13:30]	INFO		PID 2397	User data successfully written to the database
+[2024-04-14 16:13:30]	INFO		PID 2397	Database successfully closed
+[2024-04-14 16:13:30]	INFO		PID 2397	Database successfully opened
+[2024-04-14 16:13:30]	INFO		PID 2397	Database successfully closed
+[2024-04-14 16:13:30]	INFO		PID 2397	Successfully registered user: Denys
+[2024-04-14 16:13:45]	SSL_ERROR	PID 2397	Connection is closed: Undefined error: 0
+00F0316D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:13:47]	INFO		PID 2397	Database successfully opened
+[2024-04-14 16:13:47]	INFO		PID 2397	User data successfully written to the database
+[2024-04-14 16:13:47]	INFO		PID 2397	Database successfully closed
+[2024-04-14 16:13:47]	INFO		PID 2397	Database successfully opened
+[2024-04-14 16:13:47]	INFO		PID 2397	Database successfully closed
+[2024-04-14 16:13:47]	INFO		PID 2397	Successfully registered user: Denys
+[2024-04-14 16:16:48]	SSL_ERROR	PID 2397	Connection is closed: Undefined error: 0
+00F0316D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:18:20]	INFO		PID 2484	Deamon started with pid 2485
+[2024-04-14 16:18:23]	INFO		PID 2485	Database successfully opened
+[2024-04-14 16:18:23]	INFO		PID 2485	User data successfully written to the database
+[2024-04-14 16:18:23]	INFO		PID 2485	Database successfully closed
+[2024-04-14 16:18:23]	INFO		PID 2485	Database successfully opened
+[2024-04-14 16:18:23]	INFO		PID 2485	Database successfully closed
+[2024-04-14 16:18:23]	INFO		PID 2485	Successfully registered user: Denys
+[2024-04-14 16:22:19]	SSL_ERROR	PID 2485	Connection is closed: Undefined error: 0
+00F0FC6C01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:22:37]	INFO		PID 2552	Deamon started with pid 2553
+[2024-04-14 16:22:39]	INFO		PID 2553	Database successfully opened
+[2024-04-14 16:22:39]	INFO		PID 2553	User data successfully written to the database
+[2024-04-14 16:22:39]	INFO		PID 2553	Database successfully closed
+[2024-04-14 16:22:39]	INFO		PID 2553	Database successfully opened
+[2024-04-14 16:22:39]	INFO		PID 2553	Database successfully closed
+[2024-04-14 16:22:39]	INFO		PID 2553	Successfully registered user: Denys
+[2024-04-14 16:23:46]	SSL_ERROR	PID 2553	Connection is closed: Undefined error: 0
+00F0B46F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:23:57]	ERROR		PID 2601	Couldn't bind socket: Address already in use
+[2024-04-14 16:23:57]	INFO		PID 2598	Deamon started with pid 2601
+[2024-04-14 16:24:00]	INFO		PID 2553	Database successfully opened
+[2024-04-14 16:24:00]	INFO		PID 2553	Database successfully closed
+[2024-04-14 16:24:00]	INFO		PID 2553	The database has credentials for the user: Inessa
+[2024-04-14 16:24:00]	INFO		PID 2553	Successfully logged in user: Inessa
+[2024-04-14 16:25:37]	SSL_ERROR	PID 2553	Connection is closed: Undefined error: 0
+00F0B46F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:25:55]	INFO		PID 2648	Deamon started with pid 2649
+[2024-04-14 16:26:03]	INFO		PID 2649	Database successfully opened
+[2024-04-14 16:26:03]	INFO		PID 2649	Database successfully closed
+[2024-04-14 16:26:03]	INFO		PID 2649	The database has credentials for the user: Inessa
+[2024-04-14 16:26:03]	INFO		PID 2649	Successfully logged in user: Inessa
+[2024-04-14 16:27:28]	SSL_ERROR	PID 2649	Connection is closed: Undefined error: 0
+00B0736D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:27:49]	INFO		PID 2700	Deamon started with pid 2701
+[2024-04-14 16:27:51]	INFO		PID 2701	Database successfully opened
+[2024-04-14 16:27:51]	INFO		PID 2701	Database successfully closed
+[2024-04-14 16:27:51]	INFO		PID 2701	The database has credentials for the user: Inessa
+[2024-04-14 16:27:51]	INFO		PID 2701	Successfully logged in user: Inessa
+[2024-04-14 16:29:03]	SSL_ERROR	PID 2701	Connection is closed: Undefined error: 0
+0070366B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:29:15]	INFO		PID 2746	Deamon started with pid 2749
+[2024-04-14 16:29:19]	INFO		PID 2749	Database successfully opened
+[2024-04-14 16:29:19]	INFO		PID 2749	Database successfully closed
+[2024-04-14 16:29:19]	INFO		PID 2749	The database has credentials for the user: Inessa
+[2024-04-14 16:29:19]	INFO		PID 2749	Successfully logged in user: Inessa
+[2024-04-14 16:31:03]	SSL_ERROR	PID 2749	Connection is closed: Undefined error: 0
+00B0826F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:31:16]	INFO		PID 2799	Deamon started with pid 2802
+[2024-04-14 16:31:26]	INFO		PID 2802	SSL_read before
+[2024-04-14 16:31:26]	INFO		PID 2802	SSL_read after
+[2024-04-14 16:31:26]	INFO		PID 2802	Database successfully opened
+[2024-04-14 16:31:26]	INFO		PID 2802	Database successfully closed
+[2024-04-14 16:31:26]	INFO		PID 2802	The database has credentials for the user: Inessa
+[2024-04-14 16:31:26]	INFO		PID 2802	Successfully logged in user: Inessa
+[2024-04-14 16:31:26]	INFO		PID 2802	SSL_read before
+[2024-04-14 16:31:28]	INFO		PID 2802	SSL_read after
+[2024-04-14 16:31:28]	INFO		PID 2802	Database successfully opened
+[2024-04-14 16:31:28]	INFO		PID 2802	User data successfully written to the database
+[2024-04-14 16:31:28]	INFO		PID 2802	Database successfully closed
+[2024-04-14 16:31:28]	INFO		PID 2802	Database successfully opened
+[2024-04-14 16:31:28]	INFO		PID 2802	Database successfully closed
+[2024-04-14 16:31:28]	INFO		PID 2802	Successfully registered user: Denys
+[2024-04-14 16:31:28]	INFO		PID 2802	SSL_read before
+[2024-04-14 16:32:11]	INFO		PID 2802	SSL_read after
+[2024-04-14 16:32:11]	SSL_ERROR	PID 2802	Connection is closed: Undefined error: 0
+0070F76C01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:32:23]	INFO		PID 2846	Deamon started with pid 2847
+[2024-04-14 16:32:25]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:32:25]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:32:25]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:32:25]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:32:25]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:32:25]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:32:25]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:32:27]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:32:27]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:32:27]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:32:27]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:32:27]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:32:27]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:32:27]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:32:27]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:32:34]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:32:34]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:32:38]	INFO		PID 2877	Deamon started with pid 2878
+[2024-04-14 16:32:38]	ERROR		PID 2878	Couldn't bind socket: Address already in use
+[2024-04-14 16:32:40]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:32:40]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:32:40]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:32:40]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:32:40]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:32:40]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:32:40]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:32:42]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:32:42]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:32:42]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:32:42]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:32:42]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:32:42]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:32:42]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:32:42]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:32:46]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:32:46]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:32:48]	INFO		PID 2905	Deamon started with pid 2906
+[2024-04-14 16:32:48]	ERROR		PID 2906	Couldn't bind socket: Address already in use
+[2024-04-14 16:32:50]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:32:50]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:32:50]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:32:50]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:32:50]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:32:50]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:32:50]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:32:52]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:32:52]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:32:52]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:32:52]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:32:52]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:32:52]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:32:52]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:32:52]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:15]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:15]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:33:30]	ERROR		PID 2949	Couldn't bind socket: Address already in use
+[2024-04-14 16:33:30]	INFO		PID 2946	Deamon started with pid 2949
+[2024-04-14 16:33:32]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:32]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:32]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:33:32]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:33:32]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:33:32]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:33:32]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:34]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:34]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:33:34]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:33:34]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:33:34]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:33:34]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:33:34]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:33:34]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:36]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:36]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:33:38]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:38]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:38]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:33:38]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:33:38]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:33:38]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:33:38]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:40]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:40]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:33:40]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:33:40]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:33:40]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:33:40]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:33:40]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:33:40]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:44]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:44]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:33:46]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:46]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:46]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:33:46]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:33:46]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:33:46]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:33:46]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:48]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:48]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:33:48]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:33:48]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:33:48]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:33:48]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:33:48]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:33:48]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:51]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:51]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:33:52]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:52]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:52]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:33:52]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:33:52]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:33:52]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:33:52]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:54]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:54]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:33:54]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:33:54]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:33:54]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:33:54]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:33:54]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:33:54]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:56]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:56]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:33:59]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:33:59]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:33:59]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:33:59]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:33:59]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:33:59]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:33:59]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:01]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:01]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:01]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:34:01]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:01]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:01]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:01]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:34:01]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:02]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:02]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:34:04]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:04]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:04]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:04]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:04]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:34:04]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:34:04]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:06]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:06]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:06]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:34:06]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:06]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:06]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:06]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:34:06]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:07]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:07]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:34:08]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:08]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:08]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:08]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:08]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:34:08]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:34:08]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:10]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:10]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:10]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:34:10]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:10]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:10]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:10]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:34:10]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:11]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:11]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:34:13]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:13]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:13]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:13]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:13]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:34:13]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:34:13]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:15]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:15]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:15]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:34:15]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:15]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:15]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:15]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:34:15]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:16]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:16]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:34:17]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:17]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:17]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:17]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:17]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:34:17]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:34:17]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:19]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:19]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:19]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:34:19]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:19]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:19]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:19]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:34:19]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:21]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:21]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:34:22]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:22]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:22]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:22]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:22]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:34:22]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:34:22]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:24]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:24]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:24]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:34:24]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:24]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:24]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:24]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:34:24]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:26]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:26]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:34:28]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:28]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:28]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:28]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:28]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:34:28]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:34:28]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:30]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:30]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:30]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:34:30]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:30]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:30]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:30]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:34:30]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:51]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:51]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:34:53]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:53]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:53]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:53]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:53]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:34:53]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:34:53]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:53]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:53]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:53]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:34:53]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:53]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:53]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:53]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:34:53]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:56]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:56]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:34:57]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:57]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:57]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:57]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:57]	INFO		PID 2847	The database has credentials for the user: Inessa
+[2024-04-14 16:34:57]	INFO		PID 2847	Successfully logged in user: Inessa
+[2024-04-14 16:34:57]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:34:57]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:34:57]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:57]	INFO		PID 2847	User data successfully written to the database
+[2024-04-14 16:34:57]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:57]	INFO		PID 2847	Database successfully opened
+[2024-04-14 16:34:57]	INFO		PID 2847	Database successfully closed
+[2024-04-14 16:34:57]	INFO		PID 2847	Successfully registered user: Denys
+[2024-04-14 16:34:57]	INFO		PID 2847	SSL_read before
+[2024-04-14 16:35:04]	INFO		PID 2847	SSL_read after
+[2024-04-14 16:35:04]	SSL_ERROR	PID 2847	Connection is closed: Undefined error: 0
+0030F86E01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:38:40]	INFO		PID 3240	Deamon started with pid 3243
+[2024-04-14 16:38:46]	INFO		PID 3243	SSL_read before
+[2024-04-14 16:38:46]	INFO		PID 3243	SSL_read after
+[2024-04-14 16:38:46]	INFO		PID 3243	Database successfully opened
+[2024-04-14 16:38:46]	INFO		PID 3243	Database successfully closed
+[2024-04-14 16:38:46]	INFO		PID 3243	The database has credentials for the user: Inessa
+[2024-04-14 16:38:46]	INFO		PID 3243	Successfully logged in user: Inessa
+[2024-04-14 16:38:46]	INFO		PID 3243	SSL_read before
+[2024-04-14 16:38:46]	INFO		PID 3243	SSL_read after
+[2024-04-14 16:38:46]	INFO		PID 3243	Database successfully opened
+[2024-04-14 16:38:46]	INFO		PID 3243	User data successfully written to the database
+[2024-04-14 16:38:46]	INFO		PID 3243	Database successfully closed
+[2024-04-14 16:38:46]	INFO		PID 3243	Database successfully opened
+[2024-04-14 16:38:46]	INFO		PID 3243	Database successfully closed
+[2024-04-14 16:38:46]	INFO		PID 3243	Successfully registered user: Denys
+[2024-04-14 16:38:46]	INFO		PID 3243	SSL_read before
+[2024-04-14 16:39:16]	INFO		PID 3243	SSL_read after
+[2024-04-14 16:39:16]	SSL_ERROR	PID 3243	Connection is closed: Undefined error: 0
+00B0536B01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 16:41:09]	INFO		PID 3322	Deamon started with pid 3323
+[2024-04-14 16:45:36]	INFO		PID 3400	Deamon started with pid 3401
+[2024-04-14 16:47:08]	INFO		PID 3472	Deamon started with pid 3475
+[2024-04-14 16:47:11]	INFO		PID 3475	SSL_read before
+[2024-04-14 16:47:11]	INFO		PID 3475	SSL_read after
+[2024-04-14 16:47:11]	INFO		PID 3475	Database successfully opened
+[2024-04-14 16:47:11]	INFO		PID 3475	Database successfully closed
+[2024-04-14 16:47:11]	INFO		PID 3475	The database has credentials for the user: Inessa
+[2024-04-14 16:47:11]	INFO		PID 3475	Successfully logged in user: Inessa
+[2024-04-14 16:47:11]	INFO		PID 3475	SSL_read before
+[2024-04-14 16:47:11]	INFO		PID 3475	SSL_read after
+[2024-04-14 16:47:11]	CJSON_ERROR	PID 3475	Could not parse the "credentials" from a cJSON object: Undefined error: 0
+[2024-04-14 16:47:11]	INFO		PID 3475	SSL_read before
+[2024-04-14 16:47:25]	INFO		PID 3475	SSL_read after
+[2024-04-14 16:47:25]	SSL_ERROR	PID 3475	Connection is closed: Undefined error: 0
+0070EB6C01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 17:07:58]	INFO		PID 3648	Deamon started with pid 3651
+[2024-04-14 17:08:02]	INFO		PID 3651	SSL_read before
+[2024-04-14 17:08:02]	INFO		PID 3651	SSL_read after
+[2024-04-14 17:08:02]	INFO		PID 3651	Database successfully opened
+[2024-04-14 17:08:02]	INFO		PID 3651	Database successfully closed
+[2024-04-14 17:08:02]	INFO		PID 3651	The database has credentials for the user: Inessa
+[2024-04-14 17:08:02]	INFO		PID 3651	Successfully logged in user: Inessa
+[2024-04-14 17:08:02]	INFO		PID 3651	SSL_read before
+[2024-04-14 17:08:02]	INFO		PID 3651	SSL_read after
+[2024-04-14 17:08:02]	INFO		PID 3651	Database successfully opened
+[2024-04-14 17:08:02]	INFO		PID 3651	User data successfully written to the database
+[2024-04-14 17:08:02]	INFO		PID 3651	Database successfully closed
+[2024-04-14 17:08:02]	INFO		PID 3651	Database successfully opened
+[2024-04-14 17:08:02]	INFO		PID 3651	Database successfully closed
+[2024-04-14 17:08:02]	INFO		PID 3651	Successfully registered user: Denys
+[2024-04-14 17:08:02]	INFO		PID 3651	SSL_read before
+[2024-04-14 17:09:46]	INFO		PID 3651	SSL_read after
+[2024-04-14 17:09:46]	SSL_ERROR	PID 3651	Connection is closed: Undefined error: 0
+0030556F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 17:09:55]	INFO		PID 3732	Deamon started with pid 3735
+[2024-04-14 17:10:29]	INFO		PID 3735	SSL_read before
+[2024-04-14 17:10:29]	INFO		PID 3735	SSL_read after
+[2024-04-14 17:10:29]	INFO		PID 3735	Database successfully opened
+[2024-04-14 17:10:29]	INFO		PID 3735	Database successfully closed
+[2024-04-14 17:10:29]	INFO		PID 3735	The database has credentials for the user: Inessa
+[2024-04-14 17:10:29]	INFO		PID 3735	Successfully logged in user: Inessa
+[2024-04-14 17:10:29]	INFO		PID 3735	SSL_read before
+[2024-04-14 17:10:29]	INFO		PID 3735	SSL_read after
+[2024-04-14 17:10:29]	INFO		PID 3735	Database successfully opened
+[2024-04-14 17:10:29]	INFO		PID 3735	User data successfully written to the database
+[2024-04-14 17:10:29]	INFO		PID 3735	Database successfully closed
+[2024-04-14 17:10:29]	INFO		PID 3735	Database successfully opened
+[2024-04-14 17:10:29]	INFO		PID 3735	Database successfully closed
+[2024-04-14 17:10:29]	INFO		PID 3735	Successfully registered user: Denys
+[2024-04-14 17:10:29]	INFO		PID 3735	SSL_read before
+[2024-04-14 17:10:32]	INFO		PID 3735	SSL_read after
+[2024-04-14 17:10:32]	SSL_ERROR	PID 3735	Connection is closed: Undefined error: 0
+0030A56D01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
+[2024-04-14 17:10:50]	INFO		PID 3814	Deamon started with pid 3815
+[2024-04-14 17:10:52]	INFO		PID 3815	SSL_read before
+[2024-04-14 17:10:52]	INFO		PID 3815	SSL_read after
+[2024-04-14 17:10:52]	INFO		PID 3815	Database successfully opened
+[2024-04-14 17:10:52]	INFO		PID 3815	Database successfully closed
+[2024-04-14 17:10:52]	INFO		PID 3815	The database has credentials for the user: Inessa
+[2024-04-14 17:10:52]	INFO		PID 3815	Successfully logged in user: Inessa
+[2024-04-14 17:10:52]	INFO		PID 3815	SSL_read before
+[2024-04-14 17:10:52]	INFO		PID 3815	SSL_read after
+[2024-04-14 17:10:52]	INFO		PID 3815	Database successfully opened
+[2024-04-14 17:10:52]	INFO		PID 3815	User data successfully written to the database
+[2024-04-14 17:10:52]	INFO		PID 3815	Database successfully closed
+[2024-04-14 17:10:52]	INFO		PID 3815	Database successfully opened
+[2024-04-14 17:10:52]	INFO		PID 3815	Database successfully closed
+[2024-04-14 17:10:52]	INFO		PID 3815	Successfully registered user: Denys
+[2024-04-14 17:10:52]	INFO		PID 3815	SSL_read before
+[2024-04-14 17:10:58]	INFO		PID 3815	SSL_read after
+[2024-04-14 17:10:58]	SSL_ERROR	PID 3815	Connection is closed: Undefined error: 0
+0070E56F01000000:error:0A000126:SSL routines::unexpected eof while reading:ssl/record/rec_layer_s3.c:650:
