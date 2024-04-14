@@ -1,8 +1,9 @@
 #include "api.h"
+#include "gui.h"
 
 void controller(void) {
     char *json_string = NULL;
-    t_request_type request_type;
+    GMainContext *context = g_main_context_default(); // Получаем контекст главного потока
 
     while (true) {
         json_string = read_client_socket();
@@ -11,13 +12,28 @@ void controller(void) {
             continue;
         }
 
-        request_type = parse_request_type(json_string);
+        // Вызываем функцию обработки данных немедленно в контексте главного потока
+        g_main_context_invoke(context, (GSourceFunc)process_data_from_controller, (gpointer)json_string);
 
-        process_server_response(request_type, json_string);
-        mx_strdel(&json_string); // todo change to standard foo?
+        // Освобождаем память json_string, если необходимо
+         g_free(json_string);
     }
 
     return;
+}
+
+int process_data_from_controller(gpointer data) {
+    char *json_string = (char *)data;
+
+    // Пример вызова функции для обработки полученных данных
+    t_request_type request_type = parse_request_type(json_string);
+    process_server_response(request_type, json_string);
+
+    // Освобождаем память, если она выделена динамически
+    g_free(json_string);
+
+    // Возвращаем 0, чтобы функция не была повторно добавлена в очередь
+    return 0;
 }
 
 /* Read the information received from the server and write it as a string */

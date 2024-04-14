@@ -1,9 +1,11 @@
 // COMPILE && RUN:
 // DEPRECATED --- cd client/src/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c *.c -o client.o -I ../inc -I ../../libraries/libmx/inc && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic client/src/*.o -I client/inc -I libraries/libmx/inc -L libraries/libmx -lmx -o uchat && ./uchat 127.0.0.1 8090
-// cd client/obj/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c ../api/*.c -I ../inc -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /opt/homebrew/opt/ -I /usr/bin/&& cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic client/obj/*.o -I client/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/opt/sqlite/lib -lsqlite3 -o uchat && ./uchat 127.0.0.1 8090
+// FOR LINUX
+// cd client/obj/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c ../api/*.c ../gui/*.c -I ../inc -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /opt/homebrew/opt/ -I /usr/bin/ $(pkg-config --cflags gtk+-3.0) && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic client/obj/*.o -I client/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/opt/sqlite/lib -lsqlite3 -o uchat $(pkg-config --libs gtk+-3.0) && ./uchat 127.0.0.1 8090
 
 #include "client.h"
 #include "api.h"
+//#include "gui.h"
 
 t_server *server_info;
 t_client *client_info;
@@ -45,13 +47,6 @@ void log_to_file(char *message, t_log_type log_type) {
 
     fclose(log_file);
 }
-
-//void log_ssl_err_to_file(char *message) {
-//    FILE *log_file = fopen(LOG_FILE, "a");
-//    log_to_file(message, ERROR);
-//    ERR_print_errors_fp(log_file);
-//    fclose(log_file);
-//}
 
 SSL_CTX *create_context(void) {
     const SSL_METHOD *method;
@@ -150,26 +145,22 @@ int main(int argc, char **argv) {
         free_and_exit();
     }
 
-    t_user_data *user_data = NULL;
-    user_data = (t_user_data *) malloc(sizeof(t_user_data));
-    const char *username = "Inessa";
-    user_data->username = strdup(username);
-    char *password = "PaSsWoRd";
-    user_data->password = strdup(password);
+    int flags = fcntl(client_info->client_socket, F_GETFL, 0);
 
-    send_login_request(client_info->ssl, LOGIN, user_data);
+    if (flags == -1) {
+        perror("Could not get socket flags");
+        log_to_file("Could not get socket flags", ERROR);
+        free_and_exit();
+    }
 
-    t_user_data *user_data1 = NULL;
-    user_data1 = (t_user_data *) malloc(sizeof(t_user_data));
-    const char *username1 = "Denys";
-    user_data1->username = strdup(username1);
-    char *password1 = "TEST";
-    user_data1->password = strdup(password1);
+    if (fcntl(client_info->client_socket, F_SETFL, flags | O_NONBLOCK) == -1) {
+        perror("Could not set socket to non-blocking mode");
+        log_to_file("Could not set socket to non-blocking mode", ERROR);
+        free_and_exit();
+    }
 
-    send_registration_request(client_info->ssl, REGISTER, user_data1);
-
-    // todo request_handler. do we need threads or something else?
-    controller();
+    gtk_init(&argc, &argv); // Ініціалізувати GTK
+    gtk_inital_function();
 
     return 0;
 }

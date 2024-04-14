@@ -1,9 +1,12 @@
 #pragma once
 
 #include "libmx.h"
+#include "gui.h"
 
 #include <stdio.h>
 #include <stdlib.h>
+//#include <stdbool.h>
+//#include <string.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
@@ -79,7 +82,6 @@ typedef struct s_client {
 typedef struct s_user_data {
     char *username;
     char *password; // якщо "unsigned char *password", то для SHA-256 хеша розмір поля буде 32 байти.
-    int icon_id; // todo do we need it in GTK?
 } t_user_data;
 
 extern t_server *server_info;

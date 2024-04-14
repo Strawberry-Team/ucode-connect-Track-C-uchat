@@ -27,9 +27,7 @@ char *read_client_socket(SSL *ssl) {
     int total_bytes_read = 0;
 
     while (true) {
-        log_to_file("SSL_read before", INFO);
         bytes_read = SSL_read(ssl, buffer + total_bytes_read, BUF_SIZE - total_bytes_read);
-        log_to_file("SSL_read after", INFO);
 
         if (bytes_read <= 0) {
             int error_code = SSL_get_error(ssl, bytes_read);

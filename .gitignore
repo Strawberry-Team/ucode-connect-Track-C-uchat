@@ -2,3 +2,7 @@
 ._.DS_Store$
 .idea
 .git
+*.o
+*.log
+client/obj
+server/obj

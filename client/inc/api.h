@@ -1,9 +1,11 @@
 #pragma once
 
 #include "client.h"
+#include "gui.h"
 
 // functions from "get_server_response.c" file
 void controller(void);
+int process_data_from_controller(gpointer data);
 char *read_client_socket(void);
 void reconnect_to_server(void);
 t_request_type parse_request_type(char *json_string);
