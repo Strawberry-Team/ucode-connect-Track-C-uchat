@@ -1,15 +1,19 @@
 #pragma once
 
 #include "server.h"
-#include "database.h"
 
-//extern pthread_mutex_t clients_mutex;
-//extern t_list *user_list;
-//extern t_client *client_info;
+/* Functions from "get_client_request.c" file */
+void *thread_controller(void *arg);
+char *read_client_socket(SSL *ssl);
+t_request_type parse_request_type(char *json_string);
 
-// functions from "process_client_request.c" file
+/* Functions from "process_client_request.c" file */
+void process_client_request(t_client *client_info, t_request_type request_type, char *json_string);
+void log_status_to_file(char *message, char *value);
+void handle_registration(t_client *client_info, char *json_string);
 bool handle_login(t_client *client_info, char *json_string);
 
-// functions from "send_response_to_client.c" file
+/* Functions from "send_response_to_client.c" file */
 void send_status_response(SSL *ssl, t_request_type request_type, t_status_type status);
-void send_login_response(SSL *ssl, t_request_type request_type, t_status_type status, t_user_data *user_data);
+void send_auth_response(SSL *ssl, t_request_type request_type, t_status_type status, t_user_data *user_data);
+
