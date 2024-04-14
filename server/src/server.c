@@ -4,6 +4,7 @@
 // kill PID
 // DEPRECATED --- cd server/obj && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /usr/bin/ -I /opt/homebrew/opt/sqlite/include && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../database/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /usr/bin/ -I /opt/homebrew/opt/sqlite/include && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/obj/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/Cellar/sqlite/3.45.2/lib/ -lsqlite3 -o uchat_server && ./uchat_server 8090
 // cd server/obj && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c ../database/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /opt/homebrew/opt/ -I /usr/bin/ && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/obj/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/opt/sqlite/lib -lsqlite3 -o uchat_server && ./uchat_server 8090
+// for linux: cd server/obj && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c ../database/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /opt/homebrew/opt/ -I /usr/bin/ && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/obj/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/opt/sqlite/lib -lsqlite3 -o uchat_server && ./uchat_server 8090
 
 #include "server.h"
 
@@ -242,6 +243,18 @@ int main(int argc, char **argv) {
 
         if (SSL_accept(client_info->ssl) != 1) {
             log_to_file("The TLS/SSL handshake was not successful", SSL_ERROR);
+            break;
+        }
+
+        int flags = fcntl(client_info->client_socket, F_GETFL, 0);
+
+        if (flags == -1) {
+            log_to_file("Could not get socket flags", ERROR);
+            break;
+        }
+
+        if (fcntl(client_info->client_socket, F_SETFL, flags | O_NONBLOCK) == -1) {
+            log_to_file("Could not set socket to non-blocking mode", ERROR);
             break;
         }
 

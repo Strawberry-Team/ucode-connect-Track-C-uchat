@@ -1,0 +1,230 @@
+/* Sign_in/up and Chat and Profile */
+
+.sign_in_window_style, .sign_up_window_style, .change_password_window_style {
+    background-image: radial-gradient(circle, #262626, #262626);
+}
+
+.sign_in_button_style, .sign_up_button_style, .change_passw_button_style, .log_out_button_style, .profile_go_back_style,
+.change_button_on_passw_change_window_style, .go_back_button_chng_window_style, .go_back_button_addchat_window_style, .create_button_style {
+    border-radius: 20px;
+    background: #c9c6c6;
+    border: none;
+    transition: background-color 0.3s ease;
+    outline-style: none;
+    color: #000000;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.profile_button_style, .add_chat_button_style {
+    border-radius: 0px;
+    background: #c9c6c6;
+    border: none;
+    transition: background-color 0.3s ease;
+    outline-style: none;
+    color: #000000;
+    font-size: 22px;
+    font-weight: 500;
+
+}
+
+.sign_in_button_style:hover, .sign_up_button_style:hover, .change_passw_button_style:hover,
+.log_out_button_style:hover, .profile_go_back_style:hover, .change_button_on_passw_change_window_style:hover,
+.go_back_button_chng_window_style:hover, .profile_button_style:hover, .add_chat_button_style:hover, .go_back_button_addchat_window_style:hover, .create_button_style:hover {
+    background-color: #989898;
+}
+
+.sign_in_button_style:active, .sign_up_button_style:active, .change_passw_button_style:active,
+.log_out_button_style:active, .profile_go_back_style:active, .change_button_on_passw_change_window_style:active,
+.go_back_button_chng_window_style:active, .profile_button_style:active, .add_chat_button_style:active, .go_back_button_addchat_window_style:active, .create_button_style:active {
+    background-color: #626262;
+}
+
+.password_entry_signin_style, .password_entry_signup_style, .password_entry_signup_confirm_style,
+.change_current_password, .change_new_password, .change_confirm_new_password, .search_entry_username_style {
+    background:  #595959;
+    font-size: 22px;
+    border-radius: 30px;
+    box-shadow: none;
+    border: none;
+    caret-color: black;
+}
+
+.entry_message_style {
+    background:  #595959;
+    font-size: 22px;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    caret-color: black;
+}
+/* Sign_in/up */
+
+.username_entry_signin_style, .username_entry_signup_style{
+    background:  #595959;
+    font-size: 22px;
+    border-radius: 30px;
+    box-shadow: none;
+    caret-color: black;
+}
+
+.mini_label_style {
+    font-size: 17px;
+    color: #c9c6c6;
+}
+
+.sign_in_mini_button_style, .sign_up_mini_button_style {
+    font-size: 17px;
+    color: #c9c6c6;
+    border-color: transparent;
+    background: transparent;
+    outline-style: none;
+
+}
+
+.sign_in_mini_button_style:hover, .sign_up_mini_button_style:hover {
+    color: #989898;
+    border-color: transparent;
+    background: transparent;
+}
+
+/* Profile */
+
+.tree_view_style {
+        background: #262626;
+        color: #c9c6c6;
+
+        padding: 10px;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 25px;
+
+}
+
+.tree_view_style:hover {
+    color: #626262;
+    border-color: transparent;
+    background: transparent;
+}
+
+.profile_page_style, .add_chat_window_style, .scrolled_window_addchat_style {
+    background-image: radial-gradient(circle, #262626, #262626);
+    border: none;
+}
+
+.profile_username_style {
+    font-size: 30px;
+}
+
+.notification_label_style {
+    font-size: 17px;
+    color: #c9c6c6;
+}
+
+.label_addchat_window_style {
+    font-size: 25px;
+    color: #c9c6c6;
+}
+.bx_style {
+    background-image: radial-gradient(circle, #262626, #262626);
+}
+.show_passw_button_style {
+    background:  #595959;
+    border: none;
+    outline-style: none;
+}
+
+.show_passw_button_style:checked {
+    background-color: #606060;
+    border: none;
+    outline-style: none;
+}
+
+.tree_view_chatbar_style {
+    background-image: radial-gradient(circle, #262626, #262626);
+    outline-style: none;
+}
+
+.tree_view_messegabar_style{
+    background: #333333;
+    color: #c9c6c6;
+
+    padding: 10px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+
+    border-style: none;
+    border-width: 0;
+    outline-style: none;
+}
+
+.scrolled_message_style{
+    border-top-color: #1e1d1d;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    outline-style: none;
+}
+
+.scrolled_chats_style {
+    border-color: #1e1d1d;
+
+    outline-style: none;
+
+}
+
+.chat_user_username_style, .chat_username_style{
+font-size: 20px;
+color: #c9c6c6;
+}
+
+.chat_button_style {
+    background: #595959;
+    border: none;
+    border-radius: 0;
+    outline-style: none;
+}
+
+.context_menu_style {
+    background-color: red;
+
+}
+.chat_button_style:hover {
+    background-color: #646363;
+
+}
+.chat_button_style:active {
+    background-color: #6c6b6b;
+}
+
+.daily_mode_style {
+    border-radius: 20px;
+    background: #c9c6c6;
+    border: none;
+    outline-style: none;
+    color: #000000;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.change_theme_style {
+    background-color: #6c6b6b; /* Цвет фона ползунка */
+    border-color: transparent;     /* Цвет границы */
+
+}
+
+.change_theme_style:checked {
+    background-color: #f3f3f3; /* Цвет фона ползунка */
+    border-color: transparent;     /* Цвет границы */
+    border: none;     /* Цвет границы */
+    outline-style: none;
+    outline: none;
+    box-shadow:  none;
+}
+
+.day_style  {
+    font-weight: 800;
+}

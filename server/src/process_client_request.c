@@ -24,8 +24,8 @@ bool handle_login(t_client *client_info, char *json_string) {
 
         if (cJSON_IsString(json_username)
             && cJSON_IsString(json_password)) {
-            client_info->username = strdup((const char *)json_username->valuestring);
-            client_info->password = strdup((const char *)json_password->valuestring);
+            client_info->username = mx_strdup((const char *)json_username->valuestring);
+            client_info->password = mx_strdup((const char *)json_password->valuestring);
         }
     } else {
         log_to_file("Could not parse the \"credentials\" from a cJSON object", ERROR);

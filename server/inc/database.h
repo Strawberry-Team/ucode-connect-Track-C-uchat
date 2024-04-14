@@ -3,7 +3,7 @@
 #include "server.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <sqlite/include/sqlite3.h> // -I /usr/bin/      -I /opt/homebrew/opt/        -L /opt/homebrew/opt/sqlite/lib -lsqlite3
+#include <sqlite3.h> // -I /usr/bin/      -I /opt/homebrew/opt/        -L /opt/homebrew/opt/sqlite/lib -lsqlite3
 
 #define DATABASE_FILE "server/database/uchat.db"
 #define CREATE_DB_TABLES_FILE "server/database/create_db_tables.sql"

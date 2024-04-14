@@ -30,14 +30,62 @@ void send_login_req_to_server(SSL *ssl, t_request_type request_type, t_user_data
         log_to_file("Could not write JSON string over the TLS/SSL connection to send a login request to the server", ERROR);
     }
 
+    g_print("otpravleno");
+
+
     free(json_string); // todo або mx_strdel(&json_string);
     cJSON_Delete(json);
+
     return;
 }
 
+void send_registration_req_to_server(SSL *ssl, t_request_type request_type, t_user_data *user_data) {
+    char *json_string = NULL;
+    cJSON *json = cJSON_CreateObject();
+    cJSON *json_credentials_obj = cJSON_CreateObject();
+
+    if (!json
+        || !json_credentials_obj) {
+        log_to_file("Could not create the cJSON object to send a registration request to the server", ERROR);
+        cJSON_Delete(json_credentials_obj);
+        cJSON_Delete(json);
+        return;
+    }
+
+    if (!cJSON_AddNumberToObject(json, "request_type", request_type)
+        || !cJSON_AddItemToObject(json, "credentials", json_credentials_obj)
+        || !cJSON_AddStringToObject(json_credentials_obj, "username", user_data->username)
+        || !cJSON_AddStringToObject(json_credentials_obj, "password", user_data->password)) {
+        log_to_file("Could not add the data in the cJSON object to send a registration request to the server", ERROR);
+        cJSON_Delete(json);
+        return;
+    }
+
+    json_string = cJSON_Print(json); // todo Друкує JSON-об'єкт або масив у форматі, що включає відступи та нові рядки. альтернатива cJSON_PrintUnformatted() - без відступів та нових рядків.
+
+    int bytes_written = SSL_write(ssl, json_string, strlen(json_string));
+
+    if (bytes_written <= 0) {
+        log_to_file("Could not write JSON string over the TLS/SSL connection to send a registration request to the server", ERROR);
+    }
+
+    g_print("otpravleno_reg");
+
+
+    free(json_string); // todo або mx_strdel(&json_string);
+    cJSON_Delete(json);
+
+    return;
+}
+
+
+
+
+
+
 bool handle_login_response(char *json_string) {
     cJSON *json = cJSON_Parse(json_string);
-
+    g_print("получила ответ");
     if (!json) {
         const char *error_ptr = cJSON_GetErrorPtr();
 
@@ -67,6 +115,9 @@ bool handle_login_response(char *json_string) {
 
     if (request_status != SUCCESS_VALID_CREDENTIALS) {
 //        handle_error_response(); // todo CREATE THIS FOO
+        gtk_widget_show(error_label);
+        gtk_label_set_text(GTK_LABEL(error_label), (const gchar*) "Не верный логин или пароль!");
+        gtk_widget_set_opacity(error_label, 1.0);
         // todo создать вывод сообщения об ошибке на фронте
         log_to_file("Wrong status for login request. Expected: SUCCESS_VALID_CREDENTIALS", ERROR);
         cJSON_Delete(json);
@@ -86,8 +137,8 @@ bool handle_login_response(char *json_string) {
             && cJSON_IsString(json_password)
             && cJSON_IsNumber(json_icon_id)) {
             client->id = json_id->valueint;
-            client->username = strdup((const char *)json_username->valuestring);
-            client->password = strdup((const char *)json_password->valuestring);
+            client->username = mx_strdup((const char *)json_username->valuestring);
+            client->password = mx_strdup((const char *)json_password->valuestring);
             client->icon_id = json_icon_id->valueint;
         }
     } else {
@@ -95,6 +146,18 @@ bool handle_login_response(char *json_string) {
         cJSON_Delete(json);
         return false;
     }
+
+
+    gtk_widget_hide(sign_in_window);
+    GtkWidget *chat = GTK_WIDGET(gtk_builder_get_object(builder_chat, "our_chat")); // Отримати вікно чату
+    g_signal_connect(chat, "destroy", G_CALLBACK(on_window_destroy), NULL);
+    gtk_widget_show_all(chat); // Показати вікно чату
+
+    gtk_widget_show(chat_username);
+    gtk_label_set_text(GTK_LABEL(chat_username), client->username);
+
+
+
 
     // todo printf for testing
     printf("RESPONSE:\nUser data:\nid: %d\nusername: %s\npassword: %s\nicon_id: %d\n", client->id, client->username, client->password, client->icon_id);
@@ -260,7 +323,7 @@ char *read_client_socket(void) {
             if (error_code == SSL_ERROR_WANT_READ
                  || error_code == SSL_ERROR_WANT_WRITE) {
                 log_ssl_err_to_file("There is still unprocessed data available at the TLS/SSL connection. Continue reading...");
-                sleep(1);
+                sleep(1/2);
                 continue;
             } else {
                 log_ssl_err_to_file("Connection is closed");
@@ -281,12 +344,24 @@ char *read_client_socket(void) {
     }
 
 //    buffer[total_bytes_read] = '\0';
-    return strdup(buffer);
+    return mx_strdup(buffer);
+}
+int process_data_from_controller(gpointer data) {
+    char *json_string = (char *)data;
+    // Пример вызова функции для обработки полученных данных
+    t_request_type request_type = parse_request_type(json_string);
+    process_server_response(request_type, json_string);
+
+    // Освобождаем память, если она выделена динамически
+    g_free(json_string);
+
+    // Возвращаем 0, чтобы функция не была повторно добавлена в очередь
+    return 0;
 }
 
 void controller(void) {
     char *json_string = NULL;
-    t_request_type request_type;
+    GMainContext *context = g_main_context_default(); // Получаем контекст главного потока
 
     while (true) {
         json_string = read_client_socket();
@@ -294,10 +369,8 @@ void controller(void) {
         if (!json_string) {
             continue;
         }
-
-        request_type = parse_request_type(json_string);
-        process_server_response(request_type, json_string);
-        mx_strdel(&json_string); // todo change to standard foo?
+        // Вызываем функцию обработки данных немедленно в контексте главного потока
+        g_main_context_invoke(context, (GSourceFunc)process_data_from_controller, (gpointer)json_string);
     }
 
     return;
