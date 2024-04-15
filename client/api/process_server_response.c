@@ -81,18 +81,43 @@ bool handle_auth_response(char *json_string) {
         return false;
     }
 
-    request_status = json_status->valueint;
 
-    if (request_status != SUCCESS_VALID_CREDENTIALS
-        && request_status != SUCCESS) {
-        gtk_widget_show(error_label);
-        gtk_label_set_text(GTK_LABEL(error_label), (const gchar*) "Invalid user name or password!");
-        gtk_widget_set_opacity(error_label, 1.0);
-        // todo создать вывод сообщения об ошибке на фронте
-        log_to_file("Wrong status for register or login request", CJSON_ERROR);
+    const cJSON *json_req_type = cJSON_GetObjectItemCaseSensitive(json, "request_type");
+    int request_type;
+
+    if (!cJSON_IsNumber(json_req_type)
+        || json_req_type->valueint < 0
+        || json_req_type->valueint >= REQUEST_TYPE_COUNT) {
+        request_type = UNKNOWN_REQUEST;
+        log_to_file("Could not parse the \"request_type\" field from a cJSON object", CJSON_ERROR);
         cJSON_Delete(json);
         return false;
     }
+
+    request_status = json_status->valueint;
+    request_type = json_req_type->valueint;
+    g_print("%d", request_type);
+    if (request_status != SUCCESS_VALID_CREDENTIALS
+        && request_status != SUCCESS) {
+
+        if (request_type == LOGIN) {
+            gtk_widget_show(error_label);
+            gtk_label_set_text(GTK_LABEL(error_label), (const gchar*) "Invalid user name or password!");
+            gtk_widget_set_opacity(error_label, 1.0);
+        }
+        else if (request_type == REGISTER) {
+            gtk_widget_show(inform_label_sign_up);
+            gtk_label_set_text(GTK_LABEL(inform_label_sign_up), (const gchar*) "Invalid registration!");
+            gtk_widget_set_opacity(inform_label_sign_up, 1.0);
+        }
+        // todo создать вывод сообщения об ошибке на фронте
+        log_to_file("Wrong status for login request", CJSON_ERROR);
+        cJSON_Delete(json);
+        return false;
+    }
+
+
+
 
     const cJSON *json_data_obj = cJSON_GetObjectItemCaseSensitive(json, "data");
 
@@ -116,13 +141,21 @@ bool handle_auth_response(char *json_string) {
         cJSON_Delete(json);
         return false;
     }
-
-    gtk_widget_hide(sign_in_window);
-    GtkWidget *chat = GTK_WIDGET(gtk_builder_get_object(builder_chat, "our_chat")); // Отримати вікно чату
-    g_signal_connect(chat, "destroy", G_CALLBACK(on_window_destroy), NULL);
-    gtk_widget_show_all(chat); // Показати вікно чату
-    gtk_widget_show(chat_username);
-    gtk_label_set_text(GTK_LABEL(chat_username), client_info->username);
+    if(request_type == LOGIN) {
+        gtk_widget_hide(sign_in_window);
+        GtkWidget *chat = GTK_WIDGET(gtk_builder_get_object(builder_chat, "our_chat")); // Отримати вікно чату
+        g_signal_connect(chat, "destroy", G_CALLBACK(on_window_destroy), NULL);
+        gtk_widget_show_all(chat); // Показати вікно чату
+        gtk_widget_show(chat_username);
+        gtk_label_set_text(GTK_LABEL(chat_username), client_info->username);
+    }
+    if(request_type == REGISTER) {
+        GtkWidget *sign_up_window = gtk_widget_get_toplevel(GTK_WIDGET(sign_up_button)); // Отримання вікна(chat), до якого відноситься кнопка
+        gtk_widget_hide(sign_up_window);
+        GtkWidget *chat = GTK_WIDGET(gtk_builder_get_object(builder_chat, "our_chat")); // Отримати вікно чату
+        g_signal_connect(chat, "destroy", G_CALLBACK(on_window_destroy), NULL);
+        gtk_widget_show_all(chat); // Показати вікно чату
+    }
 
     // todo printf for testing
     printf("RESPONSE:\nUser data:\nid: %d\nusername: %s\npassword: %s\nicon_id: %d\n", client_info->id, client_info->username, client_info->password, client_info->icon_id);
@@ -132,4 +165,3 @@ bool handle_auth_response(char *json_string) {
     cJSON_Delete(json);
     return true;
 }
-

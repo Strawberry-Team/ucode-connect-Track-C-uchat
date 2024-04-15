@@ -544,7 +544,7 @@ void onSignInClicked(void) {
     }
 }
 
-void onSignUpClicked(GtkButton *sign_up_button) {
+void onSignUpClicked(void) {
     if (!builder_chat) { // Перевірка, чи конструктор вже існує
         builder_chat = gtk_builder_new(); // Створити конструктор
         gtk_builder_add_from_file(builder_chat, CHAT_GLADE, NULL); // Завантажити файл client/resources/chat.glade
@@ -572,11 +572,6 @@ void onSignUpClicked(GtkButton *sign_up_button) {
         g_print("%s\n",user_data->password);
         g_print("%s\n",user_data->username);
         send_registration_request(client_info->ssl, REGISTER, user_data);
-        GtkWidget *sign_up_window = gtk_widget_get_toplevel(GTK_WIDGET(sign_up_button)); // Отримання вікна(chat), до якого відноситься кнопка
-        gtk_widget_hide(sign_up_window);
-        GtkWidget *chat = GTK_WIDGET(gtk_builder_get_object(builder_chat, "our_chat")); // Отримати вікно чату
-        g_signal_connect(chat, "destroy", G_CALLBACK(on_window_destroy), NULL);
-        gtk_widget_show_all(chat); // Показати вікно чату
     }
 }
 
