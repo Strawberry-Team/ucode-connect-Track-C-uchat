@@ -1,7 +1,7 @@
 #pragma once
 
-#include "gui.h"
 #include "libmx.h"
+#include "gui.h"
 #include <arpa/inet.h>
 #include <cjson/cJSON.h>
 #include <netinet/in.h>
