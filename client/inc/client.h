@@ -3,7 +3,7 @@
 #include "libmx.h"
 #include "gui.h"
 #include <arpa/inet.h>
-#include <cjson/cJSON.h>
+#include <cJSON.h>
 #include <netinet/in.h>
 #include <openssl/err.h>
 #include <openssl/ssl.h>

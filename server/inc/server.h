@@ -2,12 +2,11 @@
 
 #include "libmx.h"
 #include <arpa/inet.h>
-#include <cjson/cJSON.h>
+#include <cJSON.h>
 #include <errno.h>
 #include <netinet/in.h>
 #include <openssl/err.h>
 #include <openssl/ssl.h>
-#include <poll.h>
 #include <pthread.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -15,7 +14,6 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-#include <time.h>
 #include <time.h>
 #include <unistd.h>
 

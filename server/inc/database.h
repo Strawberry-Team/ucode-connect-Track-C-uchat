@@ -3,11 +3,7 @@
 #include "server.h"
 #include <stdio.h>
 #include <stdlib.h>
-#ifdef __MACH__
-#include <sqlite/include/sqlite3.h>
-#else
 #include <sqlite3.h>
-#endif
 
 #define DATABASE_FILE "server/src/database/uchat.db"
 

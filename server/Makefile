@@ -16,6 +16,8 @@ LIBMX_FOLDER = ../libraries/libmx
 LIBMX_NAME = $(LIBMX_FOLDER)/libmx.a
 LIBCJSON_FOLDER = ../libraries/cJSON
 LIBCJSON_NAME = $(LIBCJSON_FOLDER)/libcjson.a
+OPENSSL_FOLDER = ../libraries/openssl
+SQLITE3_FOLDER = ../libraries/sqlite3
 LIB_FLAGS = -lpthread -lssl -lcrypto -lsqlite3 \
  			-L $(LIBMX_FOLDER) -lmx \
  			-L $(LIBCJSON_FOLDER) -lcjson
@@ -36,18 +38,24 @@ $(OBJS_FOLDER)/%.o:$(SRCS_FOLDER)/%.c $(INCS)
 	$(CC) $(CFLAGS) -I $(LIBMX_FOLDER)/$(INCS_FOLDER) \
 					-I $(INCS_FOLDER) \
 					-I $(LIBCJSON_FOLDER)/$(INCS_FOLDER) \
+					-I $(SQLITE3_FOLDER)/$(INCS_FOLDER) \
+					-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
 					-c $< -o $@
 
 $(OBJS_FOLDER)/%.o:$(API_SRCS_FOLDER)/%.c $(INCS)
 	$(CC) $(CFLAGS) -I $(LIBMX_FOLDER)/$(INCS_FOLDER) \
 					-I $(INCS_FOLDER) \
 					-I $(LIBCJSON_FOLDER)/$(INCS_FOLDER) \
+					-I $(SQLITE3_FOLDER)/$(INCS_FOLDER) \
+					-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
 					-c $< -o $@
 
 $(OBJS_FOLDER)/%.o:$(DATABASE_SRCS_FOLDER)/%.c $(INCS)
 	$(CC) $(CFLAGS) -I $(LIBMX_FOLDER)/$(INCS_FOLDER) \
 					-I $(INCS_FOLDER) \
 					-I $(LIBCJSON_FOLDER)/$(INCS_FOLDER) \
+					-I $(SQLITE3_FOLDER)/$(INCS_FOLDER) \
+					-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
 					-c $< -o $@
 
 uninstall: clean
