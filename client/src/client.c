@@ -1,28 +1,24 @@
 // COMPILE && RUN:
 // DEPRECATED --- cd client/src/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c *.c -o client.o -I ../inc -I ../../libraries/libmx/inc && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic client/src/*.o -I client/inc -I libraries/libmx/inc -L libraries/libmx -lmx -o uchat && ./uchat 127.0.0.1 8090
 // FOR LINUX & MAC OS
-// cd client/obj/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c ../api/*.c ../gui/*.c -I ../inc -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /opt/homebrew/opt/ -I /usr/bin/ $(pkg-config --cflags gtk+-3.0) && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic client/obj/*.o -I client/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/opt/sqlite/lib -lsqlite3 -o uchat $(pkg-config --libs gtk+-3.0) && ./uchat 127.0.0.1 8090
+// cd client/obj/ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c ../src/api/*.c ../src/gui/*.c -I ../inc -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /opt/homebrew/opt/ -I /usr/bin/ $(pkg-config --cflags gtk+-3.0) && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic client/obj/*.o -I client/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/opt/sqlite/lib -lsqlite3 -o uchat $(pkg-config --libs gtk+-3.0) && ./uchat 127.0.0.1 8090
 
 #include "client.h"
 #include "api.h"
-//#include "gui.h"
 
 t_server *server_info;
 t_client *client_info;
+GAsyncQueue *data_queue;
 
 void log_to_file(char *message, t_log_type log_type) {
     FILE *log_file = fopen(LOG_FILE, "a");
     time_t current_time;
     struct tm *time_info;
     char time_string[80];
-    /* Get the current time */
     time(&current_time);
-    /* Convert the current time to local time */
     time_info = localtime(&current_time);
-    /* Formatting the time into a string */
     strftime(time_string, sizeof(time_string), "%Y-%m-%d %H:%M:%S", time_info);
 
-    /* Write a log message */
     switch (log_type) {
         case INFO:
             fprintf(log_file, "[%s]\tINFO\t\tPID %d\t%s\n", time_string, getpid(), message);
@@ -30,16 +26,12 @@ void log_to_file(char *message, t_log_type log_type) {
         case ERROR:
             fprintf(log_file, "[%s]\tERROR\t\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
             break;
-        case CJSON_ERROR:
-            fprintf(log_file, "[%s]\tCJSON_ERROR\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
+        case JSON_ERROR:
+            fprintf(log_file, "[%s]\tJSON_ERROR\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
             break;
         case SSL_ERROR:
             fprintf(log_file, "[%s]\tSSL_ERROR\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
             ERR_print_errors_fp(log_file);
-            break;
-        case GTK_ERROR:
-            // todo change error logging for GTK lib
-            fprintf(log_file, "[%s]\tDB_ERROR\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
             break;
         default:
             break;
@@ -53,7 +45,6 @@ SSL_CTX *create_context(void) {
     method = TLS_client_method();
     SSL_CTX *context;
     context = SSL_CTX_new(method);
-
     return context;
 }
 
@@ -72,11 +63,25 @@ void free_and_exit(void) {
         SSL_CTX_free(client_info->context);
     }
 
-    printf("Thread joined\n");
-    log_to_file("Thread joined", INFO);
     free(client_info);
     free(server_info);
     exit(EXIT_FAILURE);
+}
+
+gpointer controller_thread(gpointer data) {
+    controller();
+    (void)data;
+    return NULL;
+}
+
+gboolean check_and_process_data(void) {
+    char *json_string = (char *)g_async_queue_try_pop(data_queue);
+
+    if (json_string != NULL) {
+        g_idle_add_full(G_PRIORITY_HIGH_IDLE, process_data_from_controller, json_string, NULL);
+    }
+
+    return TRUE;
 }
 
 int main(int argc, char **argv) {
@@ -145,22 +150,14 @@ int main(int argc, char **argv) {
         free_and_exit();
     }
 
-//    int flags = fcntl(client_info->client_socket, F_GETFL, 0);
-//
-//    if (flags == -1) {
-//        perror("Could not get socket flags");
-//        log_to_file("Could not get socket flags", ERROR);
-//        free_and_exit();
-//    }
-//
-//    if (fcntl(client_info->client_socket, F_SETFL, flags | O_NONBLOCK) == -1) {
-//        perror("Could not set socket to non-blocking mode");
-//        log_to_file("Could not set socket to non-blocking mode", ERROR);
-//        free_and_exit();
-//    }
-
-    gtk_init(&argc, &argv); // Ініціалізувати GTK
-    gtk_inital_function();
-
+    gtk_init(&argc, &argv);
+    data_queue = g_async_queue_new();
+    GThread *thread;
+    thread = g_thread_new("worker_thread", controller_thread, NULL);
+    g_timeout_add(100, (GSourceFunc)check_and_process_data, NULL);
+    gtk_initialisation();
+    g_async_queue_unref(data_queue);
+    g_thread_join(thread);
     return 0;
 }
+

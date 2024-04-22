@@ -1,7 +1,7 @@
 OBJS_FOLDER = obj
 INCS_FOLDER = inc
 SRCS_FOLDER = src
-NAME = libmx.a
+NAME = libcjson.a
 SRCS := $(wildcard $(SRCS_FOLDER)/*.c)
 INCS := $(wildcard $(INCS_FOLDER)/*.h)
 OBJS := $(patsubst $(SRCS_FOLDER)/%.c, $(OBJS_FOLDER)/%.o, $(SRCS))

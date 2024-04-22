@@ -3,5 +3,8 @@
 .idea
 .git
 *.log
-client/obj/*.o
-server/obj/*.o
+uchat_server
+uchat
+*.o
+obj
+*.a

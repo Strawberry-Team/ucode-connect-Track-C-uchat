@@ -1,0 +1,237 @@
+/* Sign_in/up and Chat and Profile */
+.sign_in_window_style, .sign_up_window_style, .change_password_window_style {
+    background: #8C8C8C;
+}
+
+.sign_in_button_style, .sign_up_button_style, .change_passw_button_style, .log_out_button_style, .profile_go_back_style,
+.change_button_on_passw_change_window_style, .go_back_button_chng_window_style, .go_back_button_addchat_window_style, .create_button_style {
+    border-radius: 20px;
+    background: #c9c6c6;
+    border: none;
+    transition: background-color 0.3s ease;
+    outline-style: none;
+    color: #000000;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.sign_in_button_style:hover, .sign_up_button_style:hover, .change_passw_button_style:hover,
+.log_out_button_style:hover, .profile_go_back_style:hover, .change_button_on_passw_change_window_style:hover,
+.go_back_button_chng_window_style:hover, .profile_button_style:hover, .add_chat_button_style:hover, .go_back_button_addchat_window_style:hover, .create_button_style:hover {
+    background-color: #989898;
+}
+
+.sign_in_button_style:active, .sign_up_button_style:active, .change_passw_button_style:active,
+.log_out_button_style:active, .profile_go_back_style:active, .change_button_on_passw_change_window_style:active,
+.go_back_button_chng_window_style:active, .profile_button_style:active, .add_chat_button_style:active, .go_back_button_addchat_window_style:active, .create_button_style:active {
+    background-color: #626262;
+}
+
+.password_entry_signin_style, .password_entry_signup_style, .password_entry_signup_confirm_style,
+.change_current_password, .change_new_password, .change_confirm_new_password, .search_entry_username_style {
+    background:  #D9D9D9;
+    color: black;
+    font-size: 22px;
+    border-radius: 30px;
+    box-shadow: none;
+    border: none;
+    caret-color: black;
+}
+
+/* Sign_in/up */
+.speechy_style {
+    font-size: 60px;
+    color: #000000;
+    font-family: Arial, sans-serif;
+}
+
+.username_entry_signin_style, .username_entry_signup_style{
+    background:  #D9D9D9;
+    color: black;
+    font-size: 22px;
+    border-radius: 30px;
+    box-shadow: none;
+    caret-color: black;
+}
+
+.mini_label_style {
+    font-size: 17px;
+    color: #000000;
+}
+
+.sign_in_mini_button_style, .sign_up_mini_button_style {
+    font-size: 17px;
+    color: #000000;
+    border-color: transparent;
+    background: transparent;
+    outline-style: none;
+
+}
+
+.sign_in_mini_button_style:hover, .sign_up_mini_button_style:hover {
+    color: #2b2b2b;
+    border-color: transparent;
+    background: transparent;
+}
+
+.show_passw_button_style {
+    background:  #D9D9D9;
+    border: none;
+    outline-style: none;
+}
+
+.show_passw_button_style:checked {
+    background-color: #c4c2c2;
+    border: none;
+    outline-style: none;
+}
+
+/* Add Chat */
+.tree_view_addchat_style {
+    background: #8C8C8C;
+    color: #000000;
+    padding: 10px;
+    font-style: normal;
+    font-size: 25px;
+
+}
+
+.tree_view_addchat_style:hover {
+    background-color: rgba(120, 120, 120, 0.4);
+    border-radius: 30px;
+}
+
+.tree_view_addchat_style:selected {
+    background-color: rgba(92, 92, 92, 0.4);
+    border-radius: 30px;
+}
+
+.label_addchat_window_style {
+    color: #000000;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+/* Profile */
+.profile_page_style, .add_chat_window_style, .scrolled_window_addchat_style {
+    background: #8C8C8C;
+    border: none;
+}
+
+.profile_username_style {
+    font-size: 30px;
+    color: black;
+}
+
+.daily_mode_style {
+    border-radius: 20px;
+    background: #c9c6c6;
+    border: none;
+    outline-style: none;
+    color: #000000;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+
+
+/* Chat */
+.chat_box_style {
+    background: #8C8C8C;
+}
+
+.tree_view_chatbar_style {
+    background: #8C8C8C;
+    outline-style: none;
+    color: #000000;
+    font-size: 25px;
+}
+
+.tree_view_chatbar_style:hover {
+    background-color: rgba(120, 120, 120, 0.4);
+    border: none;
+    outline: none;
+}
+
+.tree_view_chatbar_style:selected {
+    background-color: rgba(92, 92, 92, 0.4);
+    border: none;
+}
+
+.tree_view_messegabar_style{
+    background: #a1a0a0;
+    color: #000000;
+    padding: 10px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    border-style: none;
+    border-width: 0;
+    outline-style: none;
+}
+
+.scrolled_message_style{
+    border-top-color: #b6b4b4;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    outline-style: none;
+}
+
+.scrolled_chats_style {
+    border-top-color: #787777;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    outline-style: none;
+}
+
+.entry_message_style {
+    background:  #D9D9D9;
+    font-size: 22px;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    caret-color: black;
+}
+
+.profile_button_style, .add_chat_button_style {
+    border-radius: 0px;
+    background: #c9c6c6;
+    border: none;
+    transition: background-color 0.3s ease;
+    outline-style: none;
+    color: #000000;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.chat_user_username_style, .chat_username_style{
+    font-size: 20px;
+    color: #000000;
+}
+
+.chat_button_style {
+    background: #D9D9D9;
+    border: none;
+    border-radius: 0;
+    outline-style: none;
+}
+
+.chat_button_style:hover {
+    background-color: #bab9b9;
+}
+.chat_button_style:active {
+    background-color: #a1a1a1;
+}
+
+.box_entry_button_style {
+    background: #a1a0a0;
+}
+
+
+/* Change Password */
+.notification_label_style {
+    font-size: 17px;
+    color: #000000;
+}

@@ -1,72 +1,55 @@
 #pragma once
 
-#include "libmx.h"
 #include "gui.h"
-
+#include "libmx.h"
+#include <arpa/inet.h>
+#include <cjson/cJSON.h>
+#include <netinet/in.h>
+#include <openssl/err.h>
+#include <openssl/ssl.h>
 #include <stdio.h>
 #include <stdlib.h>
-//#include <stdbool.h>
-//#include <string.h>
 #include <sys/socket.h>
-#include <arpa/inet.h>
-#include <netinet/in.h>
 #include <time.h>
-#include <openssl/ssl.h> // -I /opt/homebrew/include
-#include <openssl/err.h> // -I /opt/homebrew/include
-#include <cjson/cJSON.h> // -I /opt/homebrew/include
 
-#define BUF_SIZE 100000
-#define REQUEST_TYPE_COUNT 15
-#define STATUS_TYPE_COUNT 10
+#define BUF_SIZE 1000000
 #define LOG_FILE "client/client.log"
+#define REQUEST_TYPE_COUNT 12
+#define STATUS_TYPE_COUNT 5
 
-/* Enumeration of status types for logging data to the log file */
+
 typedef enum e_log_type {
     INFO,
     ERROR,
-    CJSON_ERROR,
-    SSL_ERROR,
-    GTK_ERROR
+    JSON_ERROR,
+    SSL_ERROR
 } t_log_type;
 
-/* Enumeration of request processing status types */
 typedef enum e_status_type {
     SUCCESS,
-    SUCCESS_VALID_CREDENTIALS,
-    SUCCESS_CHAT_EXIST,
-    SUCCESS_USER_IN_CHAT,
     ERROR_JSON,
     ERROR_DB,
     ERROR_INVALID_CREDENTIALS,
-    ERROR_CHAT_NONEXIST,
-    ERROR_USER_NOT_IN_CHAT,
-    ERROR_USER_DONT_HAVE_PERMISSION,
     UNKNOWN_STATUS = -1
 } t_status_type;
 
-/* Enumeration of request types */
-typedef enum e_request_type { // todo підтримувати акутальним значення REQUEST_TYPE_COUNT
+typedef enum e_request_type {
     REGISTER,
     LOGIN,
-    CREATE_CHAT,
-    ADD_MEMBER_TO_CHAT,
-    GET_USER_CHATS,
-    GET_MESSAGES_IN_CHAT,
-    SEND_MESSAGE_AND_GET_MESSAGE_UPDATES,
-    DELETE_MESSAGE_AND_GET_MESSAGE_UPDATES,
-    CHANGE_MESSAGE_AND_GET_MESSAGE_UPDATES,
-    REPLY_TO_MESSAGE_AND_GET_MESSAGE_UPDATES,
-    GET_MESSAGE_UPDATES,
-    GET_CHAT_MEMBERS,
+    UPDATE_USER,
+    GET_USERS_FOR_SEARCH,
+    ADD_CHAT,
+    GET_CHATS,
+    GET_MESSAGES,
+    ADD_MESSAGE,
+    UPDATE_MESSAGE,
+    DELETE_MESSAGE,
     LOGOUT,
     UNKNOWN_REQUEST = -1
 } t_request_type;
 
 typedef struct s_server {
     struct sockaddr_in address;
-//    bool is_run;
-//    bool connected;
-//    bool loaded;
 } t_server;
 
 typedef struct s_client {
@@ -76,20 +59,40 @@ typedef struct s_client {
     int id;
     char *username;
     char *password;
-    int icon_id;
 } t_client;
 
 typedef struct s_user_data {
+    int id;
     char *username;
-    char *password; // якщо "unsigned char *password", то для SHA-256 хеша розмір поля буде 32 байти.
+    char *password;
 } t_user_data;
 
-extern t_server *server_info;
-extern t_client *client_info;
+typedef struct s_chat_data {
+    int id;
+    char *title;
+} t_chat_data;
 
-// functions from "client.c" file
-void log_to_file(char *message, t_log_type log_type);
-//void log_ssl_err_to_file(char *message);
+typedef struct s_msg_data {
+    int message_id;
+    int user_id;
+    char *username;
+    int chat_id;
+    char *body;
+    time_t created_at;
+    time_t updated_at;
+    time_t deleted_at;
+} t_msg_data;
+
+
+extern t_client *client_info;
+extern t_list *chat_list;
+extern t_list *message_list;
+extern t_server *server_info;
+
+
+gboolean check_and_process_data(void);
+gpointer controller_thread(gpointer data);
 SSL_CTX *create_context(void);
 void free_and_exit(void);
+void log_to_file(char *message, t_log_type log_type);
 

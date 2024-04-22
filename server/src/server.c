@@ -6,7 +6,7 @@
 // FOR MAC OS
 // cd server/obj && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c ../database/*.c ../api/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /opt/homebrew/opt/ -I /usr/bin/ && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/obj/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/opt/sqlite/lib -lsqlite3 -o uchat_server && ./uchat_server 8090
 // FOR LINUX
-// cd server/obj && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c ../database/*.c ../api/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /opt/homebrew/opt/ -I /usr/bin/ && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/obj/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/opt/sqlite/lib -lsqlite3 -o uchat_server && ./uchat_server 8090
+// cd server/obj && clang -std=c11 -Wall -Wextra -Werror -Wpedantic -c ../src/*.c ../src/database/*.c ../src/api/*.c -I ../inc/ -I ../../libraries/libmx/inc -I /opt/homebrew/include -I /opt/homebrew/opt/ -I /usr/bin/ && cd ../../ && clang -std=c11 -Wall -Wextra -Werror -Wpedantic server/obj/*.o -I server/inc -I libraries/libmx/inc -L libraries/libmx -lmx -L /opt/homebrew/lib -lssl -lcrypto -lcjson -L /opt/homebrew/opt/sqlite/lib -lsqlite3 -o uchat_server && ./uchat_server 8090
 
 #include "server.h"
 #include "api.h"
@@ -19,16 +19,12 @@ void log_to_file(char *message, t_log_type log_type) {
     FILE *log_file = fopen(LOG_FILE, "a");
 
     time_t current_time;
-    struct tm *time_info;
-    char time_string[80];
-    /* Get the current time */
     time(&current_time);
-    /* Convert the current time to local time */
+    struct tm *time_info;
     time_info = localtime(&current_time);
-    /* Formatting the time into a string */
+    char time_string[50];
     strftime(time_string, sizeof(time_string), "%Y-%m-%d %H:%M:%S", time_info);
 
-    /* Write a log message */
     switch (log_type) {
         case INFO:
             fprintf(log_file, "[%s]\tINFO\t\tPID %d\t%s\n", time_string, getpid(), message);
@@ -36,8 +32,8 @@ void log_to_file(char *message, t_log_type log_type) {
         case ERROR:
             fprintf(log_file, "[%s]\tERROR\t\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
             break;
-        case CJSON_ERROR:
-            fprintf(log_file, "[%s]\tCJSON_ERROR\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
+        case JSON_ERROR:
+            fprintf(log_file, "[%s]\tJSON_ERROR\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
             break;
         case SSL_ERROR:
             fprintf(log_file, "[%s]\tSSL_ERROR\tPID %d\t%s: %s\n", time_string, getpid(), message, strerror(errno));
@@ -65,9 +61,10 @@ void create_deamon(void) {
 
     if (pid > 0) {
         printf("Deamon started with pid %d\n", pid);
-        char msg[200];
+        char *msg = (char *) malloc(100 * sizeof(char));
         sprintf(msg, "Deamon started with pid %d", pid);
         log_to_file(msg, INFO);
+        free(msg);
         exit(EXIT_SUCCESS);
     }
 
@@ -85,7 +82,6 @@ void create_deamon(void) {
 }
 
 int create_socket(void) {
-    /* Creating the socket with IPv4 domain and TCP protocol */
     int server_socket = socket(AF_INET, SOCK_STREAM, 0);
 
     if (server_socket < 0) {
@@ -98,14 +94,10 @@ int create_socket(void) {
 
 void bind_socket(int server_socket, char *port) {
     struct sockaddr_in server_address;
-    /* Initializing structure elements for address */
     server_address.sin_family = AF_INET;
-    /* Convert port to network byte order using htons */
     server_address.sin_port = htons(atoi(port));
-    /* Any address available */
     server_address.sin_addr.s_addr = INADDR_ANY;
 
-    /* Bind the socket with the values address and port from the sockaddr_in structure */
     if (bind(server_socket, (struct sockaddr*)&server_address, sizeof(struct sockaddr)) < 0) {
         log_to_file("Couldn't bind socket", ERROR);
         close(server_socket);
@@ -114,7 +106,6 @@ void bind_socket(int server_socket, char *port) {
 }
 
 void listen_socket(int server_socket) {
-    /* Listen on specified port with a maximum of 4 requests */
     if (listen(server_socket, BACKLOG) < 0) {
         log_to_file("Couldn't listen for connections", ERROR);
         close(server_socket);
@@ -161,7 +152,6 @@ SSL_CTX *create_context(void) {
 }
 
 bool configure_context(SSL_CTX *context) {
-    /* Set the key and cert */
     if (SSL_CTX_use_certificate_file(context, SSL_CERTIFICATE, SSL_FILETYPE_PEM) <= 0) {
         log_to_file("Couldn't load the certificate into the SSL_CTX", SSL_ERROR);
         return false;
@@ -240,18 +230,6 @@ int main(int argc, char **argv) {
             break;
         }
 
-//        int flags = fcntl(client_info->client_socket, F_GETFL, 0);
-//
-//        if (flags == -1) {
-//            log_to_file("Could not get socket flags", ERROR);
-//            break;
-//        }
-//
-//        if (fcntl(client_info->client_socket, F_SETFL, flags | O_NONBLOCK) == -1) {
-//            log_to_file("Could not set socket to non-blocking mode", ERROR);
-//            break;
-//        }
-
         pthread_t thread;
         pthread_attr_t thread_attr;
         pthread_attr_init(&thread_attr);
@@ -269,3 +247,4 @@ int main(int argc, char **argv) {
     close(server_socket);
     exit(EXIT_FAILURE);
 }
+
