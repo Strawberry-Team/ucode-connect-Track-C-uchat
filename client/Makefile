@@ -39,21 +39,21 @@ $(OBJS_FOLDER)/%.o:$(SRCS_FOLDER)/%.c $(INCS)
 	$(CC) $(CFLAGS) $(GTK_FLAGS) -I $(LIBMX_FOLDER)/$(INCS_FOLDER) \
 					-I $(INCS_FOLDER) \
 					-I $(LIBCJSON_FOLDER)/$(INCS_FOLDER) \
-					-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
+					#-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
 					-c $< -o $@
 
 $(OBJS_FOLDER)/%.o:$(API_SRCS_FOLDER)/%.c $(INCS)
 	$(CC) $(CFLAGS) $(GTK_FLAGS) -I $(LIBMX_FOLDER)/$(INCS_FOLDER) \
 					-I $(INCS_FOLDER) \
 					-I $(LIBCJSON_FOLDER)/$(INCS_FOLDER) \
-					-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
+					#-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
 					-c $< -o $@
 
 $(OBJS_FOLDER)/%.o:$(GUI_SRCS_FOLDER)/%.c $(INCS)
 	$(CC) $(CFLAGS) $(GTK_FLAGS) -I $(LIBMX_FOLDER)/$(INCS_FOLDER) \
 					-I $(INCS_FOLDER) \
 					-I $(LIBCJSON_FOLDER)/$(INCS_FOLDER) \
-					-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
+					#-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
 					-c $< -o $@
 
 uninstall: clean

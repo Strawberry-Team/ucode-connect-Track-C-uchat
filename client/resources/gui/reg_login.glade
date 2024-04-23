@@ -99,7 +99,7 @@
                   <object class="GtkImage" id="eye_look">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="pixbuf">eak.png</property>
+                    <property name="pixbuf">eye.png</property>
                     <property name="pixel_size">25</property>
                     <property name="icon_size">1</property>
                     <style>

@@ -4,11 +4,11 @@
 #include <gtk/gtk.h>
 
 #define CHAT_GLADE "client/resources/gui/chat.glade"
-#define ICON_MESSAGE_PNG "client/resources/gui/icon_message.png"
-#define RECONNECTION_GIF "client/resources/gui/reconnecting.gif"
+#define ICON_MESSAGE_PNG "client/resources/gui/icon.png"
+#define RECONNECTION_GIF "client/resources/gui/reconnection.gif"
 #define REG_LOGIN_GLADE "client/resources/gui/reg_login.glade"
-#define STYLES_1_CSS "client/resources/gui/style1.css"
-#define STYLES_CSS "client/resources/gui/style.css"
+#define STYLES_1_CSS "client/resources/gui/style_day.css"
+#define STYLES_CSS "client/resources/gui/style_night.css"
 
 
 enum {
@@ -122,7 +122,7 @@ gboolean onChangePasswordWindowClose(GtkWidget *change_password_window);
 gboolean onProfilePageClose(GtkWidget *widget);
 gboolean send_add_chat_request_idle(gpointer data);
 gboolean send_get_users_for_search_request_idle(gpointer data);
-gboolean tree_view_messegabar_button_press_event(GtkWidget *treeview, GdkEventButton *event, gpointer data)
+gboolean tree_view_messegabar_button_press_event(GtkWidget *treeview, GdkEventButton *event, gpointer data);
 GdkPixbuf *load_pixbuf_from_file(const gchar *file_path);
 void create_message_side(void);
 void day_theme(GtkWidget *button, gboolean state);

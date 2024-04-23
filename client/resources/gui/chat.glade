@@ -44,7 +44,7 @@
             <property name="can_focus">True</property>
             <property name="margin_left">70</property>
             <property name="margin_right">70</property>
-            <property name="primary_icon_pixbuf">icon.png</property>
+            <property name="primary_icon_pixbuf">icon_profile.png</property>
             <property name="primary_icon_activatable">False</property>
             <property name="primary_icon_sensitive">False</property>
             <property name="placeholder_text" translatable="yes">Search</property>
@@ -304,7 +304,7 @@
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="pixbuf">send2.png</property>
+    <property name="pixbuf">send.png</property>
   </object>
   <object class="GtkWindow" id="our_chat">
     <property name="can_focus">False</property>
@@ -321,6 +321,7 @@
         <property name="can_focus">False</property>
         <child>
           <object class="GtkBox" id="sidebar">
+            <property name="width_request">225</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
@@ -335,7 +336,7 @@
                     <property name="can_focus">False</property>
                     <property name="margin_left">65</property>
                     <property name="margin_right">10</property>
-                    <property name="pixbuf">icon_message.png</property>
+                    <property name="pixbuf">icon.png</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -425,6 +426,7 @@
                 </child>
                 <child>
                   <object class="GtkImage" id="reconnection_gif">
+                    <property name="width_request">225</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="margin_top">5</property>
@@ -462,7 +464,7 @@
                     </style>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
+                    <property name="expand">True</property>
                     <property name="fill">True</property>
                     <property name="position">0</property>
                   </packing>
@@ -479,7 +481,7 @@
                     </style>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
+                    <property name="expand">True</property>
                     <property name="fill">True</property>
                     <property name="position">1</property>
                   </packing>
@@ -677,7 +679,7 @@
           <object class="GtkImage" id="profile_icon">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="pixbuf">icon.png</property>
+            <property name="pixbuf">icon_profile.png</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -702,27 +704,6 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="log_out_button">
-            <property name="label" translatable="yes">Log out</property>
-            <property name="height_request">47</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="margin_left">120</property>
-            <property name="margin_right">120</property>
-            <property name="margin_top">10</property>
-            <property name="margin_bottom">10</property>
-            <style>
-              <class name="log_out_button_style"/>
-            </style>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkButton" id="change_passw_button">
             <property name="label" translatable="yes">Change password</property>
             <property name="height_request">47</property>
@@ -735,6 +716,27 @@
             <property name="margin_bottom">10</property>
             <style>
               <class name="change_passw_button_style"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="log_out_button">
+            <property name="label" translatable="yes">Log out</property>
+            <property name="height_request">47</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="margin_left">120</property>
+            <property name="margin_right">120</property>
+            <property name="margin_top">10</property>
+            <property name="margin_bottom">10</property>
+            <style>
+              <class name="log_out_button_style"/>
             </style>
           </object>
           <packing>

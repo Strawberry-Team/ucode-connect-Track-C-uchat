@@ -732,11 +732,9 @@ gboolean massage_store_update(gpointer data) {
 }
 
 void show_user_icon(void) {
-    user_chat_icon = GTK_WIDGET(gtk_builder_get_object(builder_chat, "user_chat_icon"));
     GdkPixbuf *pixbuf;
     pixbuf = gdk_pixbuf_new_from_file(ICON_MESSAGE_PNG, NULL);
     gtk_image_set_from_pixbuf(GTK_IMAGE(user_chat_icon), pixbuf);
-    gtk_widget_set_opacity(user_chat_icon, 1.0);
 }
 
 void on_chats_selection_changed(GtkTreeSelection *s) {
@@ -814,9 +812,11 @@ void onLogOutButtonClicked(void) {
     gtk_label_set_text(GTK_LABEL(chat_user_username), "");
     mx_clear_list(&chat_list);
     mx_clear_list(&message_list);
+    GdkPixbuf *pixbuf;
+    pixbuf = gdk_pixbuf_new(GDK_COLORSPACE_RGB, TRUE, 8, 1, 1);
+    gtk_image_set_from_pixbuf(GTK_IMAGE(user_chat_icon), pixbuf);
     gtk_widget_show_all(sign_in_window);
-    gtk_widget_set_opacity(user_chat_icon, 0.0);
-    gtk_widget_set_opacity(error_label, 0.0);
+    gtk_label_set_text(GTK_LABEL(error_label), "");
 }
 
 void gtk_initialisation(void) {
@@ -872,6 +872,7 @@ void gtk_initialisation(void) {
     username_entry_signup = GTK_WIDGET(gtk_builder_get_object(builder, "username_entry_signup"));
     password_entry_signup = GTK_WIDGET(gtk_builder_get_object(builder, "password_entry_signup"));
     password_entry_signup_confirm = GTK_WIDGET(gtk_builder_get_object(builder, "password_entry_signup_confirm"));
+    user_chat_icon = GTK_WIDGET(gtk_builder_get_object(builder_chat, "user_chat_icon"));
     g_signal_connect(our_chat, "destroy", G_CALLBACK(on_window_destroy), NULL);
 
     g_signal_connect(profile_button, "clicked", G_CALLBACK(onProfileButtonClicked), NULL);
