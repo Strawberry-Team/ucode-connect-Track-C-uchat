@@ -154,7 +154,7 @@ bool handle_auth_response(char *json_string) {
         || request_type == REGISTER) {
         log_status_to_file("Successfully logged in user", client_info->username);
     } else if (request_type == UPDATE_USER) {
-        log_status_to_file("Successfully changed password for user", client_info->username);
+        log_status_to_file("Successfully updated password for user", client_info->username);
     }
 
     cJSON_Delete(json);

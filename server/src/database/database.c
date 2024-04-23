@@ -244,6 +244,39 @@ t_chat_data *db_add_chat(t_chat_data *chat_data) {
         return NULL;
     }
 
+    sqlite3_stmt *stmt;
+    const char *sql_check_chat = "SELECT id "
+                                 "FROM users_chats "
+                                 "WHERE chat_id IN ( "
+                                 "SELECT DISTINCT chat_id "
+                                 "FROM users_chats "
+                                 "WHERE user_id = ? ) "
+                                 "AND user_id = ? ; ";
+
+    if (sqlite3_prepare_v2(db, sql_check_chat, -1, &stmt, NULL) != SQLITE_OK) {
+        log_db_error_to_file("Could not create the prepared statement object", db);
+        sqlite3_finalize(stmt);
+        db_close(db);
+        return NULL;
+    }
+
+    if (sqlite3_bind_int(stmt, 1, chat_data->current_user.id) != SQLITE_OK
+        || sqlite3_bind_int(stmt, 2, chat_data->invitee_user.id) != SQLITE_OK) {
+        log_db_error_to_file("Could not bind value to the prepared statement object", db);
+        sqlite3_finalize(stmt);
+        db_close(db);
+        return NULL;
+    }
+
+    if (sqlite3_step(stmt) == SQLITE_ROW) {
+        log_db_error_to_file("Chat with the selected user already exists", db);
+        sqlite3_finalize(stmt);
+        db_close(db);
+        return NULL;
+    }
+
+    sqlite3_finalize(stmt);
+
     char *sql_add_chat = sqlite3_mprintf("INSERT INTO chats (title, created_at) "
                                       "VALUES ('%Q', '%li'); ",
                                       chat_data->title, chat_data->created_at);

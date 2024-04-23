@@ -21,7 +21,8 @@ GTK_FLAGS = `pkg-config --cflags gtk+-3.0`
 GTK_LIBS_FLAGS = `pkg-config --libs gtk+-3.0`
 LIB_FLAGS = -lssl -lcrypto \
  			-L $(LIBMX_FOLDER) -lmx \
- 			-L $(LIBCJSON_FOLDER) -lcjson
+ 			-L $(LIBCJSON_FOLDER) -lcjson \
+ 			-L /opt/homebrew/lib
 
 .PHONY: all install clean uninstall reinstall
 
@@ -39,21 +40,21 @@ $(OBJS_FOLDER)/%.o:$(SRCS_FOLDER)/%.c $(INCS)
 	$(CC) $(CFLAGS) $(GTK_FLAGS) -I $(LIBMX_FOLDER)/$(INCS_FOLDER) \
 					-I $(INCS_FOLDER) \
 					-I $(LIBCJSON_FOLDER)/$(INCS_FOLDER) \
-					#-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
+					-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
 					-c $< -o $@
 
 $(OBJS_FOLDER)/%.o:$(API_SRCS_FOLDER)/%.c $(INCS)
 	$(CC) $(CFLAGS) $(GTK_FLAGS) -I $(LIBMX_FOLDER)/$(INCS_FOLDER) \
 					-I $(INCS_FOLDER) \
 					-I $(LIBCJSON_FOLDER)/$(INCS_FOLDER) \
-					#-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
+					-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
 					-c $< -o $@
 
 $(OBJS_FOLDER)/%.o:$(GUI_SRCS_FOLDER)/%.c $(INCS)
 	$(CC) $(CFLAGS) $(GTK_FLAGS) -I $(LIBMX_FOLDER)/$(INCS_FOLDER) \
 					-I $(INCS_FOLDER) \
 					-I $(LIBCJSON_FOLDER)/$(INCS_FOLDER) \
-					#-I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
+                    -I $(OPENSSL_FOLDER)/$(INCS_FOLDER) \
 					-c $< -o $@
 
 uninstall: clean

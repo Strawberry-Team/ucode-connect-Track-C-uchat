@@ -262,6 +262,7 @@ void handle_update_user_request(t_client *client_info, char *json_string) {
     }
 
     send_auth_response(client_info->ssl, request_type, SUCCESS, new_user_data);
+    log_status_to_file("Successfully updated password for the user", client_info->username);
     free(user_data);
     free(new_user_data);
     cJSON_Delete(json);
@@ -342,6 +343,7 @@ void handle_add_chat_request(t_client *client_info, char *json_string) {
     }
 
     send_add_chat_response(client_info->ssl, SUCCESS, new_chat_data);
+    log_status_to_file("Successfully added chat for the user", client_info->username);
     free(chat_data);
     free(new_chat_data);
     cJSON_Delete(json);
@@ -458,7 +460,7 @@ void handle_add_message_request(t_client *client_info, char *json_string) {
     }
 
     send_message_response(client_info->ssl, request_type, SUCCESS, new_msg_data);
-    log_to_file("Successfully sent to client added message", INFO);
+    log_status_to_file("Successfully added message for the user", client_info->username);
     free(msg_data);
     free(new_msg_data);
     cJSON_Delete(json);
@@ -513,7 +515,7 @@ void handle_update_message_request(t_client *client_info, char *json_string) {
     }
 
     send_message_response(client_info->ssl, request_type, SUCCESS, new_msg_data);
-    log_to_file("Successfully sent to client updated message", INFO);
+    log_status_to_file("Successfully updated message for the user", client_info->username);
     free(msg_data);
     free(new_msg_data);
     cJSON_Delete(json);
@@ -521,7 +523,6 @@ void handle_update_message_request(t_client *client_info, char *json_string) {
 }
 
 void handle_delete_message_request(t_client *client_info, char *json_string) {
-    log_to_file("handle_delete_message_request", INFO);
     t_request_type request_type = DELETE_MESSAGE;
     cJSON *json = cJSON_Parse(json_string);
 
@@ -566,7 +567,7 @@ void handle_delete_message_request(t_client *client_info, char *json_string) {
     }
 
     send_message_response(client_info->ssl, request_type, SUCCESS, new_msg_data);
-    log_to_file("Successfully sent to client deleted message", INFO);
+    log_status_to_file("Successfully deleted message for the user", client_info->username);
     free(msg_data);
     free(new_msg_data);
     cJSON_Delete(json);
