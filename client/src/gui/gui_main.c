@@ -425,7 +425,7 @@ void onSignUpClicked(void) {
 
     if (!passwordsMatch
         && !usernameValidation) {
-        gtk_label_set_text(GTK_LABEL(inform_label_sign_up), (const gchar*) "Passwords and username unavailable!");
+        gtk_label_set_text(GTK_LABEL(inform_label_sign_up), (const gchar*) "Password and username unavailable!");
         gtk_widget_set_opacity(inform_label_sign_up, 1.0);
     } else if (!usernameValidation) {
         gtk_label_set_text(GTK_LABEL(inform_label_sign_up), (const gchar*) "Username validation crashed!");
@@ -493,6 +493,7 @@ gboolean getChangeDataPasswords(void) {
     const gchar *password_new_confirm = gtk_entry_get_text(GTK_ENTRY(change_confirm_new_password));
 
     if (strcmp(password_new, password_new_confirm) == 0
+        && strlen(password_new) > 5
         && (strcmp(password_new, "") != 0
         || strcmp(password_new_confirm, "") != 0)) {
         password_to_change = mx_strdup((const char *) password_new);
@@ -512,7 +513,7 @@ void onChangeButtonOnPasswButtonClicked(void) {
     gboolean passwordMatch = getChangeDataPasswords();
 
     if (!passwordMatch) {
-        gtk_label_set_text(GTK_LABEL(inform_label), (const gchar*) "Ошибка смены пароля!");
+        gtk_label_set_text(GTK_LABEL(inform_label), (const gchar*) "Failed to change the password!");
         gtk_widget_set_opacity(inform_label, 1.0);
     } else {
         t_user_data *user_data = (t_user_data *) malloc(sizeof(t_user_data));
@@ -536,7 +537,7 @@ void onChangePasswGoBackButtonClicked(GtkButton *go_back_button_chng_window) {
         gtk_builder_add_from_file(builder_chat, CHAT_GLADE, NULL);
     }
     onChangePasswordWindowClose(change_password_window);
-    gtk_label_set_text(GTK_LABEL(inform_label), (const gchar*) "Успешно изменено!");
+    gtk_label_set_text(GTK_LABEL(inform_label), (const gchar*) "Successfully changed!");
     g_signal_connect(profile_page, "destroy", G_CALLBACK(on_window_destroy), NULL);
     gtk_widget_show_all(profile_page);
 }
