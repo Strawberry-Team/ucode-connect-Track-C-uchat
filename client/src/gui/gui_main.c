@@ -123,7 +123,7 @@ gboolean getSignUpDataUsername(void) {
         || strlen(username) < 6){
         return FALSE;
     } else {
-        user_data->username = username;
+        user_data->username = mx_strdup((const char *)username);
         return TRUE;
     }
 }
@@ -146,7 +146,7 @@ gboolean getSignUpDataPasswords(void) {
         return FALSE;
     }
 
-    user_data->password = g_strdup(password_confirm);
+    user_data->password = mx_strdup((const char *)password_confirm);
     return TRUE;
 }
 
@@ -434,6 +434,8 @@ void onSignUpClicked(void) {
         gtk_label_set_text(GTK_LABEL(inform_label_sign_up), (const gchar*) "Password unavailable!");
         gtk_widget_set_opacity(inform_label_sign_up, 1.0);
     } else {
+        client_info->username = mx_strdup((const char *)user_data->username);
+        client_info->password = mx_strdup((const char *)user_data->password);
         send_registration_request(client_info->ssl, user_data);
         gtk_widget_set_opacity(entry_message, 0.0);
         gtk_widget_set_opacity(send_message_button, 0.0);
@@ -813,6 +815,8 @@ void onLogOutButtonClicked(void) {
     gtk_label_set_text(GTK_LABEL(chat_user_username), "");
     mx_clear_list(&chat_list);
     mx_clear_list(&message_list);
+    free(client_info->username);
+    free(client_info->password);
     GdkPixbuf *pixbuf;
     pixbuf = gdk_pixbuf_new(GDK_COLORSPACE_RGB, TRUE, 8, 1, 1);
     gtk_image_set_from_pixbuf(GTK_IMAGE(user_chat_icon), pixbuf);
