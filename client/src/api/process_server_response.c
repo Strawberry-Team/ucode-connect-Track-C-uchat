@@ -337,7 +337,7 @@ void handle_get_chats_response(char *json_string) {
         if (!existing_chat) {
             t_chat_data *chat_data = (t_chat_data *) malloc(sizeof(t_chat_data));
             chat_data->id = json_id->valueint;
-            chat_data->title = g_strdup(json_title->valuestring);
+            chat_data->title = mx_strdup((const char *)json_title->valuestring);
             mx_push_back(&chat_list, chat_data);
             gtk_list_store_append(chats_store, &iter);
             gtk_list_store_set(chats_store, &iter,
