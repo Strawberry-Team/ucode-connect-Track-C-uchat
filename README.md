@@ -25,7 +25,7 @@
 
 
 
-# About "Speechy" application
+# About "Speechy" messaging app
 <div align="left">
     <p><strong>"Speechy"</strong> is a desktop messaging application designed for seamless communication between users on a 
         localhost network, inspired by Telegram.This robust application consists of both a client and a server, 
@@ -200,6 +200,24 @@
     <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/add_chat.gif" alt="add_chat">
 </div><br />
 
+## Change password
+<div>
+    <p>The ability to easily change your password has also been added. For added security, you need to enter 
+    the new password twice to avoid mistakes. Notifications are also displayed when you change your password 
+    or if there are any errors during the process.</p>
+</div>
+
+## Appearance themes
+<div>
+    <p>Another key feature of our chat is the ability to change the topic. We have provided a choice between 
+        night and day themes for communication. This allows users to customize the appearance of the chat 
+        according to their own preferences and needs. Whether you are working at night or during the day, 
+        you can enjoy a comfortable chat in an environment that suits you.</p>
+</div>
+<div align="center">
+    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/profile.gif" alt="profile">
+</div><br />
+
 ## Messaging
 <div>
     <p>Users see that messages are sent almost instantly, without delay, and messages can be written in any language.</p>
@@ -225,16 +243,6 @@
         <img src="https://img.youtube.com/vi/WwZyQJQH8EE/0.jpg" height="700px" alt="chats">
     </a>
 </div>
-
-## Change password
-<div>
-    <p>The ability to easily change your password has also been added. For added security, you need to enter 
-    the new password twice to avoid mistakes. Notifications are also displayed when you change your password 
-    or if there are any errors during the process.</p>
-</div>
-<div align="center">
-    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/profile.gif" alt="profile">
-</div><br />
 
 
 
