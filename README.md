@@ -2,7 +2,7 @@
     <h1>
         <p align="center">
             <a href="https://ucode.world/en/" target="_blank">
-                <img src="https://github.com/InessaRepeshko/ucode-connect-Marathon-C-endgame/blob/main/screens/ucode_it_academy_logo.svg" height="100px" alt="ucode_logo">
+                <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/ucode_it_academy_logo.svg" height="100px" alt="ucode_logo">
             </a>
         </p>
     </h1>
@@ -20,91 +20,8 @@
 
 
 <div align="center">
-    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/tree/develop/screens/Strawberry-team.jpg" alt="Strawberry-team">
+    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/Strawberry-team.jpg" alt="Strawberry-team">
 </div><br />
-
-
-[//]: # (<div>)
-
-[//]: # (    <table width="100%" border="0" cellpadding="1" align="center">  )
-
-[//]: # (        <tr>)
-
-[//]: # (            <td align="center" colspan="2">)
-
-[//]: # (                <a href="https://github.com/InessaRepeshko">)
-
-[//]: # (                    <img src="https://avatars.githubusercontent.com/u/80609514?v=4?s=100" width="150px;" alt="Inessa Repeshko"/><br />)
-
-[//]: # (                    <sub><b>Inessa Repeshko</b></sub>)
-
-[//]: # (                </a><br />)
-
-[//]: # (            </td>)
-
-[//]: # (        </tr>)
-
-[//]: # (        <tr>)
-
-[//]: # (            <td align="center">)
-
-[//]: # (                <a href="https://github.com/Kolesnichenko0">)
-
-[//]: # (                     <img src="https://avatars.githubusercontent.com/u/99329524?v=4?s=100" width="150px;" alt="Denis Kolesnichenko"/><br />)
-
-[//]: # (                     <sub><b>Denis Kolesnichenko</b></sub>)
-
-[//]: # (                </a><br />)
-
-[//]: # (            </td>)
-
-[//]: # (            <td align="center">)
-
-[//]: # (                <a href="https://github.com/vzharyi">)
-
-[//]: # (                    <img src="https://avatars.githubusercontent.com/u/119208171?v=4?s=100" width="150px;" alt="Vadym Zharyi"/><br />)
-
-[//]: # (                    <sub><b>Vadym Zharyi</b></sub>)
-
-[//]: # (                </a><br />)
-
-[//]: # (            </td>)
-
-[//]: # (        </tr>)
-
-[//]: # (        <tr>)
-
-[//]: # (            <td align="center">)
-
-[//]: # (                <a href="https://github.com/Forzenook">)
-
-[//]: # (                    <img src="https://avatars.githubusercontent.com/u/119075422?v=4?s=100" width="150px;" alt="Anton Lukash"/><br />)
-
-[//]: # (                    <sub><b>Anton Lukash</b></sub>)
-
-[//]: # (                </a><br />)
-
-[//]: # (            </td>)
-
-[//]: # (            <td align="center">)
-
-[//]: # (                <a href="https://github.com/laskevych">)
-
-[//]: # (                    <img src="https://avatars.githubusercontent.com/u/29709878?v=4?s=100" width="150px;" alt="Andrew Laskevych"/><br />)
-
-[//]: # (                    <sub><b>Andrew Laskevych</b></sub>)
-
-[//]: # (                </a><br />)
-
-[//]: # (            </td>)
-
-[//]: # (        </tr>)
-
-[//]: # (    </table>)
-
-[//]: # (</div><br />)
-
-
 
 
 
@@ -124,7 +41,7 @@
     </p>
 </div>
 <div align="center">
-    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/tree/develop/screens/Speechy.png" alt="Speachy">
+    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/Speechy.png" alt="Speachy">
 </div><br />
 
 
@@ -140,7 +57,7 @@
         any time of the day.</p>
 </div>
 <div align="center">
-    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/tree/develop/screens/idea.jpg" alt="idea">
+    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/idea.jpg" alt="idea">
 </div><br />
 
 
@@ -160,7 +77,7 @@
         ensuring convenient collaboration, process stability, and development speed.</p>
 </div>
 <div align="center">
-    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/tree/develop/screens/dev-tools.jpg" alt="dev-tools">
+    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/dev-tools.jpg" alt="dev-tools">
 </div><br />
 
 
@@ -176,14 +93,14 @@
         that the team worked on our product successfully and smoothly.</p>
 </div>
 <div align="center">
-    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/tree/develop/screens/Fibery.jpg" alt="Fibery">
+    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/Fibery.gif" alt="Fibery">
 </div><br />
 
 
 
 # Deployment Diagram
 <div align="center">
-    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/tree/develop/screens/deployment-diagram.jpg" alt="deployment-diagram">
+    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/deployment-diagram.jpg" alt="deployment-diagram">
 </div>
 <div>
     <p>Our project uses a client-server architecture. On the slide, we see a deployment diagram that helps us understand 
@@ -221,7 +138,7 @@
 
 # Database Schema
 <div align="center">
-    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/tree/develop/screens/database-schema.jpg" alt="database-schema">
+    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/database-schema.jpg" alt="database-schema">
 </div>
 <div>
     <p>We implemented a relational database using SQLite. During the database normalization process, 
@@ -270,8 +187,8 @@
     entering incorrect data, which ensures their convenient use.</p>
 </div>
 <div align="center">
-    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/tree/develop/screens/login.gif" alt="login">
-    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/tree/develop/screens/registration.gif" alt="registration">
+    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/login.gif" alt="login">
+    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/registration.gif" alt="registration">
 </div><br />
 
 ## Chats with users
@@ -280,7 +197,7 @@
     This allows users to quickly find other registered users and create new chats with them.</p>
 </div>
 <div align="center">
-    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/tree/develop/screens/add_chat.gif" alt="add_chat">
+    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/add_chat.gif" alt="add_chat">
 </div><br />
 
 ## Messaging
@@ -316,7 +233,7 @@
     or if there are any errors during the process.</p>
 </div>
 <div align="center">
-    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/tree/develop/screens/profile.gif" alt="profile">
+    <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/profile.gif" alt="profile">
 </div><br />
 
 
