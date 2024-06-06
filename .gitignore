@@ -2,3 +2,9 @@
 ._.DS_Store$
 .idea
 .git
+*.log
+uchat_server
+uchat
+*.o
+obj
+*.a
