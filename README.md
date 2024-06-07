@@ -7,18 +7,36 @@
         </p>
     </h1>
     <h3>
-        <p align="center"><strong>ucode connect uchat</strong></p>
+        <p align="center"><strong>ucode connect uchat "Speechy"</strong></p>
         <p align="center"><sub><i>ucode connect uchat is the final stage of ucode connect the Track C programming bootcamp<br />
-            lasting 11 weeks (08.02.2024 - 24.04.2024), where the C programming language, SQLite and GTK libraries were used to develop the real-time communication tool.<br />
-            The purpose: create a real-time communication tool using creativity and the whole cycle of Challenge Based Learning framework with a team.</i></sub></p>
+            lasting 11 weeks (08.02.2024 - 24.04.2024),<br />where the C programming language, 
+            SQLite3 and GTK+3 libraries were used to develop the real-time communication tool.<br /><br />
+            The purpose: create a real-time communication tool using creativity<br />and the whole cycle of Challenge Based Learning framework with a team.</i></sub></p>
     </h3>
 </head>
 
 
 
 # "Strawberry" Team
-
-
+<div>
+    <ul>
+        <li>
+            <p>👩🏼‍💻 <a href="https://github.com/InessaRepeshko">Inessa Repeshko</a></p>
+        </li>
+        <li>
+            <p>🧑🏻‍💻 <a href="https://github.com/Kolesnichenko0">Denys Kolesnychenko</a></p>
+        </li>
+        <li>
+            <p>🧑🏼‍💻 <a href="https://github.com/laskevych">Andrew Laskevych</a></p>
+        </li>
+        <li>
+            <p>🧑🏻‍💻 <a href="https://github.com/Forzenook">Anton Lukash</a></p>
+        </li>
+        <li>
+            <p>🧑🏻‍💻 <a href="https://github.com/vzharyi">Vadym Zharyi</a></p>
+        </li>
+    </ul>
+</div>
 <div align="center">
     <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/Strawberry-team.jpg" alt="Strawberry-team">
 </div><br />
@@ -103,7 +121,7 @@
     <img src="https://github.com/Strawberry-Team/ucode-connect-Track-C-uchat/blob/develop/screens/deployment-diagram.jpg" alt="deployment-diagram">
 </div>
 <div>
-    <p>Our project uses a client-server architecture. On the slide, we see a deployment diagram that helps us understand 
+    <p>Our project uses a client-server architecture. On the diagram we can see a deployment diagram that helps us understand 
         how our application is physically distributed.</p>
     <p>The server and client communicate using TCP for a reliable connection at the transport layer, TLS/SSL for data 
         encryption and connection security, and JSON as the data exchange format.</p>
@@ -246,7 +264,7 @@
 
 
 
-# Demo
+# "Speechy" Demo
 <div align="center">
     <a href="https://www.youtube.com/watch?v=FPBP0BB3xE0" target="demo">
         <img src="https://img.youtube.com/vi/FPBP0BB3xE0/0.jpg" height="700px" alt="demo">
@@ -275,4 +293,4 @@ make
 
 
 
-© Inessa Repeshko. 2023
+© Inessa Repeshko. 2024
